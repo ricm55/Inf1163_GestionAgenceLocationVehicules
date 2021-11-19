@@ -1,7 +1,7 @@
 import java.sql.SQLException;
 import java.util.List;
 import database.Database;
-import models.Client;
+import models.ModeleClient;
 
 public class Main {
 
@@ -22,8 +22,8 @@ public class Main {
             System.out.println(c2);*/
             //********* GET PLUSIEURS CLIENTS ******************************
             System.out.println("********* LA DATABASE ************");
-            List<Client> clients = Database.getClients();
-            for(Client client: clients) {
+            List<ModeleClient> clients = Database.getClients();
+            for(ModeleClient client: clients) {
                 System.out.println(client.getId() + " " + client.getName() + " " + client.getEmail());
             }
            
