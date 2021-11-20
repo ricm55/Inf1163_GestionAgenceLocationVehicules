@@ -8,8 +8,9 @@ public class Vehicule
 	private String couleur;
 	private int kilometrage;
 	private double niveauReservoir;
+	private boolean disponible;
 	
-	public Vehicule(String marque, String modele, int annee, String couleur, int kilometrage, double niveauReservoir)
+	public Vehicule(String marque, String modele, int annee, String couleur, int kilometrage, double niveauReservoir, boolean disponible)
 	{
 		this.marque = marque;
 		this.modele = modele;

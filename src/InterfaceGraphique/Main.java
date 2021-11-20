@@ -1,14 +1,41 @@
 package InterfaceGraphique;
 
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 import database.Database;
 import models.ModeleClient;
+import background.Vehicule;
+import background.Client;
+import background.Forfait;
+import background.Location;
+import background.PermisDeConduire;
 
 public class Main {
 
     public static void main( String[] args ) {
-        System.out.println("First init");
+        
+        //Creer vehicule
+        System.out.println("Creation d'un vehicule");
+        Vehicule vehicule = new Vehicule("Hyndai","Accent",2011, "Rouge",320000,34.65, true);
+        
+        //Creer un permi
+        System.out.println("Creation d'un permi");
+        PermisDeConduire permi = new PermisDeConduire(new Date(2023,6,22), "Classe 1");
+        
+        //Creer client
+        Client client = new Client("Jonhson", new Date(1999,4,12),"123 rue des Johnsons", "123-1234-5678",true, permi);
+        
+        //Creer un forfait
+        Forfait forfait = new Forfait("Forfait 1", 32.55);
+        
+        //Creer location
+        Location location = new Location(client,new Date(),new Date(2021,12,4),forfait, vehicule);
+        
+        //Afficher les informations sur la location
+        
+        
+        /*System.out.println("First init");
         
         try {
             //********* INSERT DANS LA DB ******************************
@@ -23,7 +50,7 @@ public class Main {
             /*Client c2 = Database.getClient( 3 );
             System.out.println(c2);*/
             //********* GET PLUSIEURS CLIENTS ******************************
-            System.out.println("********* LA DATABASE ************");
+          /*  System.out.println("********* LA DATABASE ************");
             List<ModeleClient> clients = Database.getClients();
             for(ModeleClient client: clients) {
                 System.out.println(client.getId() + " " + client.getName() + " " + client.getEmail());
@@ -32,6 +59,6 @@ public class Main {
         } catch ( SQLException e ) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }
+        }*/
     }
 }
