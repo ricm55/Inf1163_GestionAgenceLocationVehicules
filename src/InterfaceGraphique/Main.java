@@ -1,3 +1,5 @@
+package InterfaceGraphique;
+
 import java.sql.SQLException;
 import java.util.List;
 import database.Database;
