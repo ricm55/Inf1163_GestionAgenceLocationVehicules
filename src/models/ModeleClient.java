@@ -1,17 +1,17 @@
 package models;
 
-public class Client {
+public class ModeleClient {
     
     private int id;
     private String name;
     private String email;
     
-    public Client(String name, String email) {
+    public ModeleClient(String name, String email) {
         this.setName( name );
         this.setEmail( email );
     }
     
-    public Client(int id, String name, String email) {
+    public ModeleClient(int id, String name, String email) {
         this.setId( id );
         this.setName( name );
         this.setEmail( email );

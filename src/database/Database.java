@@ -9,11 +9,11 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import models.Client;
+import models.ModeleClient;
 
 public class Database {
     
-    private static String jdbcUrl = "jdbc:sqlite:C:\\Users\\marca\\OneDrive\\Workspace\\eclipse_Workspace\\Inf1163_GestionAgenceLocationVehicules\\database\\GestionAgenceLocationVehicules.db";
+    private static String jdbcUrl = "jdbc:sqlite:C:\\Users\\Marilou Fugère\\Documents\\UQO\\Automne 2021\\INF1163 - Modélisation et conception orientée objet\\Inf1163_GestionAgenceLocationVehicules\\database\\GestionAgenceLocationVehicules.db";
     private static Connection conn = null;
     
     private static void connect() throws SQLException 
@@ -26,15 +26,15 @@ public class Database {
         conn.close();
     }
     
-    public static List<Client>  getClients() throws SQLException {
+    public static List<ModeleClient>  getClients() throws SQLException {
         
-        List<Client> clients = new ArrayList<Client>();
+        List<ModeleClient> clients = new ArrayList<ModeleClient>();
         connect();
         Statement statement = conn.createStatement();
         
         ResultSet result = statement.executeQuery("select * from client;");
         while(result.next()) {
-            Client client = new Client (
+            ModeleClient client = new ModeleClient (
                     result.getInt( "id" ),
                     result.getString( "name" ),
                     result.getString( "email" )
@@ -47,12 +47,12 @@ public class Database {
         return clients;
     }
     
-    public static Client  getClient(int id) throws SQLException {
+    public static ModeleClient  getClient(int id) throws SQLException {
         connect();
         Statement statement = conn.createStatement();
         String sql = MessageFormat.format( "select * from client where id={0};", id );
         ResultSet result = statement.executeQuery(sql);
-        Client client = new Client(
+        ModeleClient client = new ModeleClient(
                 result.getInt("id"),
                 result.getString( "name" ),
                 result.getString( "email" )
@@ -62,7 +62,7 @@ public class Database {
         return client;
     }
     
-    public static void insertClient(Client c) throws SQLException{
+    public static void insertClient(ModeleClient c) throws SQLException{
         
         connect();
         Statement statement = conn.createStatement();
@@ -70,7 +70,7 @@ public class Database {
         statement.executeUpdate(sql);
         disconnect();
     }
-    public static void updateClient(Client c) throws SQLException{
+    public static void updateClient(ModeleClient c) throws SQLException{
         connect();
         Statement statement = conn.createStatement();
         String sql = MessageFormat.format("update client set name=\"{0}\", email=\"{1}\" where id={2};",c.getName(),c.getEmail(),c.getId());
