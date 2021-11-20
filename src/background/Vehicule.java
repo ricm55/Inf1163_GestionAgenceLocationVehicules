@@ -18,6 +18,7 @@ public class Vehicule
 		this.couleur = couleur;
 		this.kilometrage = kilometrage;
 		this.niveauReservoir = niveauReservoir;
+		this.disponible = disponible;
 	}
 	
 	public String getMarque()

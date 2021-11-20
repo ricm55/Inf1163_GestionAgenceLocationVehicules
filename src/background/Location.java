@@ -4,42 +4,57 @@ import java.util.Date;
 
 public class Location
 {
-	private Date debut;
-	private Date fin;
+	private Date dateDebut;
+	private Date dateFin;
 	private int duree;
+	private Vehicule vehicule;
+	private Forfait forfait;
 	private int kilometrageInitial;
+
 	
-	public Location(Date debut, Date fin, int duree, int kilometrageInitial)
+	public Location(Date dateDebut, Date dateFin, int duree, Vehicule vehicule, Forfait forfait)
 	{
-		this.debut = debut;
-		this.fin = fin;
+		this.dateDebut = dateDebut;
+		this.dateFin = dateFin;
 		this.duree = duree;
-		this.kilometrageInitial = kilometrageInitial;
+		this.vehicule = vehicule;
+		this.forfait = forfait;
+		this.kilometrageInitial = this.vehicule.getKilometrage();
+	}
+	
+	public void setForfait(Forfait forfait)
+	{
+		this.forfait = forfait;
+	}
+	
+	public Forfait getForfait() 
+	{
+		return this.forfait;
 	}
 	
 	public Date getDebut()
 	{
-		return debut;
+		return this.dateDebut;
 	}
 	
 	public void setDebut(Date debut)
 	{
-		this.debut = debut;
+		this.dateDebut = debut;
 	}
 	
 	public Date getFin()
 	{
-		return fin;
+		return this.dateFin;
 	}
 	
 	public void setFin(Date fin)
 	{
-		this.fin = fin;
+		this.dateFin = fin;
 	}
 	
 	public int getDuree()
 	{
-		return duree;
+		return this.duree;
 	}
 	
 	public void setDuree(int duree)
@@ -49,11 +64,8 @@ public class Location
 	
 	public int getKilometrageInitial()
 	{
-		return kilometrageInitial;
+		return this.kilometrageInitial;
 	}
 	
-	public void setKilometrageInitial(int kilometrageInitial)
-	{
-		this.kilometrageInitial = kilometrageInitial;
-	}
+	
 }

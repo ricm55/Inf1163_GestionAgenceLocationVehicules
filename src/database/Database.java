@@ -14,9 +14,10 @@ import models.ModeleClient;
 
 public class Database {
     
+
     private static String dbPath = new File("database/GestionAgenceLocationVehicules.db").getAbsolutePath();
 	private static Connection conn = null;
-    
+
     private static void connect() throws SQLException 
     {
         conn = DriverManager.getConnection("jdbc:sqlite:" + dbPath);
