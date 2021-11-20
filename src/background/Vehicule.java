@@ -9,6 +9,7 @@ public class Vehicule
 	private int kilometrage;
 	private double niveauReservoir;
 	
+	
 	public Vehicule(String marque, String modele, int annee, String couleur, int kilometrage, double niveauReservoir)
 	{
 		this.marque = marque;
