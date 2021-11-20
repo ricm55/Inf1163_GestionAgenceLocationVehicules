@@ -1,5 +1,6 @@
 package database;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -13,12 +14,12 @@ import models.ModeleClient;
 
 public class Database {
     
-    private static String jdbcUrl = "jdbc:sqlite:C:\\Users\\Marilou Fugère\\Documents\\UQO\\Automne 2021\\INF1163 - Modélisation et conception orientée objet\\Inf1163_GestionAgenceLocationVehicules\\database\\GestionAgenceLocationVehicules.db";
-    private static Connection conn = null;
+    private static String dbPath = new File("database/GestionAgenceLocationVehicules.db").getAbsolutePath();
+	private static Connection conn = null;
     
     private static void connect() throws SQLException 
     {
-        conn = DriverManager.getConnection(jdbcUrl);
+        conn = DriverManager.getConnection("jdbc:sqlite:" + dbPath);
     }
     
     private static void disconnect() throws SQLException 
