@@ -34,6 +34,7 @@ public class Main {
         
         //Afficher les informations sur la location
         
+        System.out.println(location);
         
         /*System.out.println("First init");
         

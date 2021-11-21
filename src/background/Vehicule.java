@@ -21,7 +21,14 @@ public class Vehicule
 		this.disponible = disponible;
 	}
 	
-	public String getMarque()
+	@Override
+    public String toString() {
+        return "Vehicule [getMarque()=" + getMarque() + ", getModele()=" + getModele() + ", getAnnee()=" + getAnnee()
+                + ", getCouleur()=" + getCouleur() + ", getKilometrage()=" + getKilometrage()
+                + ", getNiveauReservoir()=" + getNiveauReservoir() + "]";
+    }
+
+    public String getMarque()
 	{
 		return marque;
 	}

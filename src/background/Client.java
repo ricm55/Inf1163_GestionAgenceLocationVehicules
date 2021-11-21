@@ -27,7 +27,8 @@ public class Client
 		return nom;
 	}
 	
-	public void setNom(String nom)
+
+    public void setNom(String nom)
 	{
 		this.nom = nom;
 	}
@@ -81,4 +82,11 @@ public class Client
 	{
 		this.permis = permis;
 	}
+	
+    @Override
+    public String toString() {
+        return "Client [getNom()=" + getNom() + ", getDateDeNaissance()=" + getDateDeNaissance() + ", getAdresse()="
+                + getAdresse() + ", getNumTelephone()=" + getNumTelephone() + ", isAssurancePersonnelle()="
+                + isAssurancePersonnelle() + ", getPermis()=" + getPermis() + "]";
+    }
 }

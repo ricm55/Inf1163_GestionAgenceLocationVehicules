@@ -32,4 +32,10 @@ public class PermisDeConduire
 	{
 		this.classe = classe;
 	}
+
+    @Override
+    public String toString() {
+        return "PermisDeConduire [getDateExpiration()=" + getDateExpiration() + ", getClasse()=" + getClasse() + "]";
+    }
+	
 }

@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class Location
 {
+    private Client client;
 	private Date dateDebut;
 	private Date dateFin;
 	private int duree;
@@ -13,15 +14,16 @@ public class Location
 	private int kilometrageInitial;
 	private boolean estEnCours;
 	
-	public Location(Date dateDebut, Date dateFin, Vehicule vehicule, Forfait forfait)
+	public Location(Client client, Date dateDebut, Date dateFin, Forfait forfait, Vehicule vehicule)
 	{
+	    this.setClient( client );
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
 		this.duree = 0;
 		this.vehicule = vehicule;
 		this.forfait = forfait;
 		this.kilometrageInitial = this.vehicule.getKilometrage();
-		this.estEnCours = false;
+		this.estEnCours = true;
 	
 	}
 	
@@ -32,10 +34,10 @@ public class Location
 	
 	public void setDuree() 
 	{
-		this.duree = ChronoUnit.DAYS.between(this.dateDebut, this.dateFin);
+		//this.duree = ChronoUnit.DAYS.between(this.dateDebut, this.dateFin);
 	}
 	
-	public int getKilometrageParcouru(Vehicule vehicule) 
+	public int getKilometrageParcouru() 
 	{
 		return this.vehicule.getKilometrage() - this.kilometrageInitial ;
 	}
@@ -60,22 +62,22 @@ public class Location
 		return this.forfait;
 	}
 	
-	public Date getDebut()
+	public Date getDateDebut()
 	{
 		return this.dateDebut;
 	}
 	
-	public void setDebut(Date debut)
+	public void setDateDebut(Date debut)
 	{
 		this.dateDebut = debut;
 	}
 	
-	public Date getFin()
+	public Date getDateFin()
 	{
 		return this.dateFin;
 	}
 	
-	public void setFin(Date fin)
+	public void setDateFin(Date fin)
 	{
 		this.dateFin = fin;
 	}
@@ -85,6 +87,33 @@ public class Location
 	{
 		return this.kilometrageInitial;
 	}
-	
+
+    /**
+     * @return the client
+     */
+    public Client getClient() {
+        return client;
+    }
+
+    /**
+     * @param client the client to set
+     */
+    public void setClient( Client client ) {
+        this.client = client;
+    }
+    
+    public Vehicule getVehicule() {
+        return this.vehicule;
+    }
+
+    @Override
+    public String toString() {
+        return "Location [getDuree()=" + getDuree() + "\n, getKilometrageParcouru()=" + getKilometrageParcouru()
+                + "\n, getEstEnCours()=" + getEstEnCours() + "\n, getForfait()=" + getForfait() + "\n, getDateDebut()="
+                + getDateDebut() + "\n, getDateFin()=" + getDateFin() + "\n, getKilometrageInitial()="
+                + getKilometrageInitial() + "\n, getClient()=" + getClient() + "\n, getVehicule()=" + getVehicule() + "]";
+    }
+    
+    
 	
 }
