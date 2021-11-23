@@ -35,7 +35,7 @@ public class creerLocation {
         ZoneId defaultZoneId = ZoneId.systemDefault();
         
         Date todayDate = Date.from(ld.atStartOfDay(defaultZoneId).toInstant());
-        boolean permiValide = permi.getDateExpiration().before( todayDate );
+        boolean permiValideDate = permi.getDateExpiration().before( todayDate );
         boolean classeVehiculeValide = false;
         
         //Classe du permi
@@ -43,8 +43,10 @@ public class creerLocation {
         if( vehicule.getClasse() == permi.getClasse()) {
             classeVehiculeValide = true;
         }
+        System.out.println(classeVehiculeValide);
+        System.out.println(permiValideDate);
         
-        return  permiValide && classeVehiculeValide;   
+        return  permiValideDate && classeVehiculeValide;   
     }
     
     public void premierPaiement() {
