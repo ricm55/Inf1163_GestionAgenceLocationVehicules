@@ -9,8 +9,9 @@ public class Vehicule
 	private int kilometrage;
 	private double niveauReservoir;
 	private boolean disponible;
+	private String classe;
 	
-	public Vehicule(String marque, String modele, int annee, String couleur, int kilometrage, double niveauReservoir, boolean disponible)
+	public Vehicule(String marque, String modele, int annee, String couleur, int kilometrage, double niveauReservoir, boolean disponible, String classe)
 	{
 		this.marque = marque;
 		this.modele = modele;
@@ -19,6 +20,7 @@ public class Vehicule
 		this.kilometrage = kilometrage;
 		this.niveauReservoir = niveauReservoir;
 		this.disponible = disponible;
+		this.setClasse( classe );
 	}
 	
 	@Override
@@ -87,4 +89,18 @@ public class Vehicule
 	{
 		this.niveauReservoir = niveauReservoir;
 	}
+
+    /**
+     * @return the classe
+     */
+    public String getClasse() {
+        return classe;
+    }
+
+    /**
+     * @param classe the classe to set
+     */
+    public void setClasse( String classe ) {
+        this.classe = classe;
+    }
 }
