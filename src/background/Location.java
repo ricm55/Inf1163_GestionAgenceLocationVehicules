@@ -13,6 +13,8 @@ public class Location
 	private Forfait forfait;
 	private int kilometrageInitial;
 	private boolean estEnCours;
+	private Paiement premierVersement;
+	private Paiement deuxiemeVersement;
 	
 	public Location(Client client, Date dateDebut, Date dateFin, Forfait forfait, Vehicule vehicule)
 	{
@@ -24,8 +26,22 @@ public class Location
 		this.forfait = forfait;
 		this.kilometrageInitial = this.vehicule.getKilometrage();
 		this.estEnCours = true;
+		this.premierVersement = premierVersement;
+		this.deuxiemeVersement = deuxiemeVersement;
 	
 	}
+	
+	public Paiement getPremierVersement()
+	{
+		return this.premierVersement;
+	}
+	
+	public Paiement getDeuxiemeVersement()
+	{
+		return this.deuxiemeVersement;
+	}
+	
+	
 	
 	public int getDuree() 
 	{
