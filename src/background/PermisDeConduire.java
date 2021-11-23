@@ -2,12 +2,14 @@ package background;
 
 import java.util.Date;
 
+import constante.ClasseVehicule;
+
 public class PermisDeConduire
 {	
 	private Date dateExpiration;
-	private String classe;
+	private ClasseVehicule classe;
 	
-	public PermisDeConduire(Date dateExpiration, String classe)
+	public PermisDeConduire(Date dateExpiration, ClasseVehicule classe)
 	{
 		this.dateExpiration = dateExpiration;
 		this.classe = classe;
@@ -23,12 +25,12 @@ public class PermisDeConduire
 		this.dateExpiration = dateExpiration;
 	}
 	
-	public String getClasse()
+	public ClasseVehicule getClasse()
 	{
 		return classe;
 	}
 	
-	public void setClasse(String classe)
+	public void setClasse(ClasseVehicule classe)
 	{
 		this.classe = classe;
 	}

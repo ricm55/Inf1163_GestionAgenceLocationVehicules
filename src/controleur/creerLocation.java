@@ -9,6 +9,7 @@ import background.Forfait;
 import background.Location;
 import background.PermisDeConduire;
 import background.Vehicule;
+import constante.ClasseVehicule;
 
 public class creerLocation {
     private Location location;
@@ -35,11 +36,12 @@ public class creerLocation {
         ZoneId defaultZoneId = ZoneId.systemDefault();
         
         Date todayDate = Date.from(ld.atStartOfDay(defaultZoneId).toInstant());
+        System.out.println( todayDate );
         boolean permiValideDate = permi.getDateExpiration().before( todayDate );
         boolean classeVehiculeValide = false;
         
         //Classe du permi
-        String classe = permi.getClasse();
+        ClasseVehicule classe = permi.getClasse();
         if( vehicule.getClasse() == permi.getClasse()) {
             classeVehiculeValide = true;
         }

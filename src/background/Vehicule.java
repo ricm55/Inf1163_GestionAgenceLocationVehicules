@@ -1,5 +1,7 @@
 package background;
 
+import constante.ClasseVehicule;
+
 public class Vehicule
 {
 	private String marque;
@@ -9,9 +11,9 @@ public class Vehicule
 	private int kilometrage;
 	private double niveauReservoir;
 	private boolean disponible;
-	private String classe;
+	private ClasseVehicule classe;
 	
-	public Vehicule(String marque, String modele, int annee, String couleur, int kilometrage, double niveauReservoir, boolean disponible, String classe)
+	public Vehicule(String marque, String modele, int annee, String couleur, int kilometrage, double niveauReservoir, boolean disponible, ClasseVehicule classe)
 	{
 		this.marque = marque;
 		this.modele = modele;
@@ -93,14 +95,14 @@ public class Vehicule
     /**
      * @return the classe
      */
-    public String getClasse() {
+    public ClasseVehicule getClasse() {
         return classe;
     }
 
     /**
      * @param classe the classe to set
      */
-    public void setClasse( String classe ) {
+    public void setClasse( ClasseVehicule classe ) {
         this.classe = classe;
     }
 }
