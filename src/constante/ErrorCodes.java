@@ -10,5 +10,4 @@ public interface ErrorCodes {
     
     String VALIDATION_PERMI_DATE = "Le permi de conduite du client est expiree";
     String VALIDATION_CLASSE_VEHICULE = "Le client n'a pas la bonne classe pour le vehicule desiree";
-    
 }
