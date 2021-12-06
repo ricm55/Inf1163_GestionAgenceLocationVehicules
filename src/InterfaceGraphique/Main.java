@@ -6,15 +6,29 @@ import java.util.List;
 import database.Database;
 import models.ModeleClient;
 import background.Vehicule;
+import constante.ClasseVehicule;
 import background.Client;
 import background.Forfait;
 import background.Location;
 import background.PermisDeConduire;
+import controleur.creerLocation;
 
 public class Main {
 
     public static void main( String[] args ) {
+        Vehicule vehicule = new Vehicule("Hyndai","Accent",2011, "Rouge",320000,34.65, true,ClasseVehicule.CLASSE1);
+        PermisDeConduire permi = new PermisDeConduire(new Date(2023,6,22), ClasseVehicule.CLASSE1);
+        Client client = new Client("Jonhson", new Date(1999,4,12),"123 rue des Johnsons", "123-1234-5678",true, permi);
+        Forfait forfait = new Forfait("Forfait 1", 32.55);
         
+        try {
+            creerLocation loc = new creerLocation(vehicule,client, forfait );    
+        }catch(Exception err){
+          System.out.println(err);
+        }
+        
+        
+        /*
         //Creer vehicule
         System.out.println("Creation d'un vehicule");
         Vehicule vehicule = new Vehicule("Hyndai","Accent",2011, "Rouge",320000,34.65, true);
@@ -35,7 +49,7 @@ public class Main {
         //Afficher les informations sur la location
         
         System.out.println(location);
-        
+        */
         /*System.out.println("First init");
         
         try {
