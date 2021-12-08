@@ -1,4 +1,4 @@
-package InterfaceGraphique;
+  package InterfaceGraphique;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
