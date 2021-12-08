@@ -3,19 +3,19 @@ package background;
 public class RetourLocation {
 	
 	private Location location;
-	private Paiement deuxiemePaiement;
+	private Paiement deuxiemeVersement;
 	
 
 	public RetourLocation(Location location) {
 		// TODO Auto-generated constructor stub
 		this.location = location;
-		this.deuxiemePaiement = this.location.getDeuxiemeVersement();
+		this.deuxiemeVersement = this.location.getDeuxiemeVersement();
 		
 	}
 	
-	public Paiement getDeuxiemePaiement(Location location) 
+	public Paiement getDeuxiemeVersement() 
 	{
-		return this.deuxiemePaiement;
+		return this.deuxiemeVersement;
 	}
 	
 	

@@ -31,6 +31,16 @@ public class Location
 	
 	}
 	
+	public Paiement setPremierVersement() 
+	{
+		
+	}
+	
+	public Paiement setDeuxiemeVersement()
+	{
+		
+	}
+	
 	public Paiement getPremierVersement()
 	{
 		return this.premierVersement;
