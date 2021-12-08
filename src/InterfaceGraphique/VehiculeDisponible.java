@@ -62,6 +62,8 @@ public class VehiculeDisponible {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		txtVehiculeDisponibleA = new JTextField();
+		txtVehiculeDisponibleA.setForeground(new Color(255, 255, 255));
+		txtVehiculeDisponibleA.setBackground(new Color(25, 25, 112));
 		txtVehiculeDisponibleA.setText("Vehicule disponible a la location");
 		txtVehiculeDisponibleA.setHorizontalAlignment(SwingConstants.CENTER);
 		txtVehiculeDisponibleA.setFont(new Font("Verdana", Font.PLAIN, 16));

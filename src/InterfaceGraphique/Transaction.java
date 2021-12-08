@@ -15,6 +15,7 @@ import java.awt.Color;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.SystemColor;
 
 public class Transaction extends JFrame {
 
@@ -66,6 +67,8 @@ public class Transaction extends JFrame {
 		Top.setLayout(new BorderLayout(0, 0));
 		
 		txtTransactiondetransaction = new JTextField();
+		txtTransactiondetransaction.setForeground(new Color(255, 255, 255));
+		txtTransactiondetransaction.setBackground(new Color(25, 25, 112));
 		txtTransactiondetransaction.setFont(new Font("Verdana", Font.PLAIN, 16));
 		txtTransactiondetransaction.setEditable(false);
 		txtTransactiondetransaction.setText("Transaction: #DeTransaction");
@@ -74,39 +77,45 @@ public class Transaction extends JFrame {
 		txtTransactiondetransaction.setColumns(10);
 		
 		JPanel Left = new JPanel();
+		Left.setBackground(SystemColor.textHighlight);
 		contentPane.add(Left, BorderLayout.WEST);
 		
-		JButton locationBouton_1_1_2 = new JButton("Location");
-		locationBouton_1_1_2.setFont(new Font("Verdana", Font.PLAIN, 16));
-		locationBouton_1_1_2.setBackground(Color.CYAN);
+		JButton inventaireBouton = new JButton("Inventaire");
+		inventaireBouton.setForeground(Color.WHITE);
+		inventaireBouton.setFont(new Font("Verdana", Font.PLAIN, 16));
+		inventaireBouton.setBackground(Color.DARK_GRAY);
 		
 		JButton locationBouton_1_1_2_1 = new JButton("Location");
+		locationBouton_1_1_2_1.setForeground(Color.WHITE);
 		locationBouton_1_1_2_1.setFont(new Font("Verdana", Font.PLAIN, 16));
-		locationBouton_1_1_2_1.setBackground(Color.CYAN);
+		locationBouton_1_1_2_1.setBackground(Color.DARK_GRAY);
 		
 		JButton locationBouton_1_1_2_2 = new JButton("Location");
+		locationBouton_1_1_2_2.setForeground(Color.WHITE);
 		locationBouton_1_1_2_2.setFont(new Font("Verdana", Font.PLAIN, 16));
-		locationBouton_1_1_2_2.setBackground(Color.CYAN);
+		locationBouton_1_1_2_2.setBackground(Color.DARK_GRAY);
 		
 		JButton locationBouton_1_1_2_3 = new JButton("Location");
+		locationBouton_1_1_2_3.setForeground(Color.WHITE);
 		locationBouton_1_1_2_3.setFont(new Font("Verdana", Font.PLAIN, 16));
-		locationBouton_1_1_2_3.setBackground(Color.CYAN);
+		locationBouton_1_1_2_3.setBackground(Color.DARK_GRAY);
 		
 		JButton locationBouton_1_1_2_3_2 = new JButton("Retour");
+		locationBouton_1_1_2_3_2.setForeground(Color.WHITE);
 		locationBouton_1_1_2_3_2.setFont(new Font("Verdana", Font.PLAIN, 16));
-		locationBouton_1_1_2_3_2.setBackground(Color.CYAN);
+		locationBouton_1_1_2_3_2.setBackground(Color.DARK_GRAY);
 		GroupLayout gl_Left = new GroupLayout(Left);
 		gl_Left.setHorizontalGroup(
 			gl_Left.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_Left.createSequentialGroup()
 					.addGap(5)
-					.addGroup(gl_Left.createParallelGroup(Alignment.LEADING)
-						.addComponent(locationBouton_1_1_2_3_2, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-						.addComponent(locationBouton_1_1_2_3, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-						.addComponent(locationBouton_1_1_2_2, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-						.addComponent(locationBouton_1_1_2, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-						.addComponent(locationBouton_1_1_2_1, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(97, Short.MAX_VALUE))
+					.addGroup(gl_Left.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(inventaireBouton, GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+						.addComponent(locationBouton_1_1_2_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(locationBouton_1_1_2_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(locationBouton_1_1_2_3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(locationBouton_1_1_2_3_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addContainerGap(63, Short.MAX_VALUE))
 		);
 		gl_Left.setVerticalGroup(
 			gl_Left.createParallelGroup(Alignment.LEADING)
@@ -114,7 +123,7 @@ public class Transaction extends JFrame {
 					.addGap(22)
 					.addComponent(locationBouton_1_1_2_1, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(locationBouton_1_1_2, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addComponent(inventaireBouton, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(locationBouton_1_1_2_2, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
@@ -126,6 +135,7 @@ public class Transaction extends JFrame {
 		Left.setLayout(gl_Left);
 		
 		JPanel Mid = new JPanel();
+		Mid.setBackground(new Color(255, 140, 0));
 		contentPane.add(Mid, BorderLayout.CENTER);
 		
 		txtForfaitType = new JTextField();
@@ -207,16 +217,19 @@ public class Transaction extends JFrame {
 		txtDurtotal.setColumns(10);
 		
 		JButton locationBouton_1_1_2_3_1 = new JButton("Comptant");
+		locationBouton_1_1_2_3_1.setForeground(new Color(255, 255, 0));
 		locationBouton_1_1_2_3_1.setFont(new Font("Verdana", Font.PLAIN, 16));
-		locationBouton_1_1_2_3_1.setBackground(Color.CYAN);
+		locationBouton_1_1_2_3_1.setBackground(new Color(0, 128, 0));
 		
 		JButton locationBouton_1_1_2_3_1_1 = new JButton("Interac");
+		locationBouton_1_1_2_3_1_1.setForeground(new Color(255, 255, 0));
 		locationBouton_1_1_2_3_1_1.setFont(new Font("Verdana", Font.PLAIN, 16));
-		locationBouton_1_1_2_3_1_1.setBackground(Color.CYAN);
+		locationBouton_1_1_2_3_1_1.setBackground(new Color(0, 128, 0));
 		
 		JButton locationBouton_1_1_2_3_1_2 = new JButton("Cr\u00E9dit");
+		locationBouton_1_1_2_3_1_2.setForeground(new Color(255, 255, 0));
 		locationBouton_1_1_2_3_1_2.setFont(new Font("Verdana", Font.PLAIN, 16));
-		locationBouton_1_1_2_3_1_2.setBackground(Color.CYAN);
+		locationBouton_1_1_2_3_1_2.setBackground(new Color(0, 128, 0));
 		GroupLayout gl_Mid = new GroupLayout(Mid);
 		gl_Mid.setHorizontalGroup(
 			gl_Mid.createParallelGroup(Alignment.LEADING)
