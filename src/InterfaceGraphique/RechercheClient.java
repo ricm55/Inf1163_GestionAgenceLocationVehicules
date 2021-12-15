@@ -40,15 +40,16 @@ public class RechercheClient extends JFrame {
 	private JTextField txtEntre;
 	private JTextField txtNom;
 	private JTextField txtContinuerAvecCe;
+	private static RechercheClient frame ;
 	
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void launch() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					RechercheClient frame = new RechercheClient();
+					/*RechercheClient*/ frame = new RechercheClient();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -58,6 +59,7 @@ public class RechercheClient extends JFrame {
 		ClasseVehicule Cv = ClasseVehicule.CLASSE1 ;
         PermisDeConduire Ptest = new PermisDeConduire(new Date(2023,8,8),Cv);
         Client ClientTest = new Client("Marilou Fugere", new Date(1997,01,01),"123 Chemin Chelsea","8191234567",false, Ptest);
+        
 	}
 
 	/**
@@ -93,10 +95,16 @@ public class RechercheClient extends JFrame {
 		btnNewButton_1.setForeground(Color.WHITE);
 		btnNewButton_1.setFont(new Font("Verdana", Font.PLAIN, 16));
 		
-		JButton btnNewButton_1_1 = new JButton("Retour");
-		btnNewButton_1_1.setForeground(Color.WHITE);
-		btnNewButton_1_1.setFont(new Font("Verdana", Font.PLAIN, 16));
-		btnNewButton_1_1.setBackground(Color.DARK_GRAY);
+		JButton btnBackToHome = new JButton("Retour");
+		btnBackToHome.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				InterfaceAccueil ia = new InterfaceAccueil();
+				ia.launch();
+			}
+		});
+		btnBackToHome.setForeground(Color.WHITE);
+		btnBackToHome.setFont(new Font("Verdana", Font.PLAIN, 16));
+		btnBackToHome.setBackground(Color.DARK_GRAY);
 		GroupLayout gl_Left = new GroupLayout(Left);
 		gl_Left.setHorizontalGroup(
 			gl_Left.createParallelGroup(Alignment.LEADING)
@@ -109,7 +117,7 @@ public class RechercheClient extends JFrame {
 								.addComponent(btnNewButton, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)))
 						.addGroup(gl_Left.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(btnNewButton_1_1, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(btnBackToHome, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap())
 		);
 		gl_Left.setVerticalGroup(
@@ -120,7 +128,7 @@ public class RechercheClient extends JFrame {
 					.addGap(18)
 					.addComponent(btnNewButton_1)
 					.addGap(191)
-					.addComponent(btnNewButton_1_1, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnBackToHome, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
 					.addGap(23))
 		);
 		Left.setLayout(gl_Left);
@@ -191,7 +199,8 @@ public class RechercheClient extends JFrame {
 		btnOui.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				VehiculeDisponible vd = new VehiculeDisponible();
-				vd.getContentPane();
+				frame.dispose();
+				vd.launch();
 				vd.setVisible(true);
 			}
 		});

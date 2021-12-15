@@ -18,10 +18,12 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JRadioButton;
 import javax.swing.JCheckBox;
 import java.awt.SystemColor;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class VehiculeDisponible extends JFrame {
 
-	private JFrame frame;
+	//private JFrame frame;
 	private JTextField txtVehiculeDisponibleA;
 	private JTextField txtClasse;
 	private JTextField txtVehiculeSlectionn;
@@ -29,16 +31,21 @@ public class VehiculeDisponible extends JFrame {
 	private JTextField txtAssuarance;
 	private JTextField assuranceCompagnie;
 	private JTextField assuranceClient;
+	private static VehiculeDisponible frame ;
+	/**
+	 * @wbp.nonvisual location=480,229
+	 */
+	private final JPanel panel = new JPanel();
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void launch() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VehiculeDisponible window = new VehiculeDisponible();
-					window.frame.setVisible(true);
+					 frame = new VehiculeDisponible();
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -57,9 +64,9 @@ public class VehiculeDisponible extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 853, 487);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//frame = new JFrame();
+		setBounds(100, 100, 853, 487);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		txtVehiculeDisponibleA = new JTextField();
 		txtVehiculeDisponibleA.setForeground(new Color(255, 255, 255));
@@ -86,6 +93,13 @@ public class VehiculeDisponible extends JFrame {
 		LocationBouton.setBackground(Color.DARK_GRAY);
 		
 		JButton btnRetour = new JButton("Retour");
+		btnRetour.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RechercheClient rc = new RechercheClient();
+				frame.dispose();
+				rc.launch();
+			}
+		});
 		btnRetour.setForeground(Color.WHITE);
 		btnRetour.setFont(new Font("Verdana", Font.PLAIN, 16));
 		btnRetour.setBackground(Color.DARK_GRAY);
