@@ -27,6 +27,10 @@ public class Main {
           System.out.println(err);
         }
         
+       /* ClasseVehicule Cv = ClasseVehicule.CLASSE1 ;
+        PermisDeConduire Ptest = new PermisDeConduire(new Date(2023,8,8),Cv);
+        Client ClientTest = new Client("Marilou Fugere", new Date(1997,01,01),"123 Chemin Chelsea","8191234567",false, Ptest);*/
+        		 
         
         /*
         //Creer vehicule

@@ -19,7 +19,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JCheckBox;
 import java.awt.SystemColor;
 
-public class VehiculeDisponible {
+public class VehiculeDisponible extends JFrame {
 
 	private JFrame frame;
 	private JTextField txtVehiculeDisponibleA;
