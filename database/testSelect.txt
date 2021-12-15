@@ -1,0 +1,29 @@
+select nom,prenom, classeVoiture from client
+    inner join PermisConduire on Client.permisDeConduire_id = PermisConduire.id;
+
+-- Inserer une liaison entre un permis existant et une classe
+select type from PermisConduireClassePermis
+    inner join ClassePermis ON PermisConduireClassePermis.classePermis_id = classePermis.id
+    WHERE permisConduire_id = 1;
+    
+-- Get Classes d'un permis
+select type from PermisConduireClassePermis
+    inner join ClassePermis ON PermisConduireClassePermis.classePermis_id = classePermis.id
+    WHERE permisConduire_id = 1;
+
+ -- Get les id des classes d'un permis
+SELECT classePermis_id FROM PermisConduireClassePermis WHERE permisConduire_id = 1;
+
+
+
+-- Get Clients
+select nom, prenom, numTelephone, courriel, dateDeNaissance, adresse, assurancePersonnelle, permisDeConduire_id, dateExpiration from client
+    inner join PermisConduire on Client.permisDeConduire_id = PermisConduire.id;
+
+-- Get les classes du permis d'un client
+select * from PermisConduireClassePermis where permisConduire_id=1;
+
+
+
+
+
