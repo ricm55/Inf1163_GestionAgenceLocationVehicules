@@ -17,12 +17,17 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
+
+import background.Client;
+import background.PermisDeConduire;
+import constante.ClasseVehicule;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.SystemColor;
@@ -35,7 +40,7 @@ public class RechercheClient extends JFrame {
 	private JTextField txtEntre;
 	private JTextField txtNom;
 	private JTextField txtContinuerAvecCe;
-
+	
 	/**
 	 * Launch the application.
 	 */
@@ -50,6 +55,9 @@ public class RechercheClient extends JFrame {
 				}
 			}
 		});
+		ClasseVehicule Cv = ClasseVehicule.CLASSE1 ;
+        PermisDeConduire Ptest = new PermisDeConduire(new Date(2023,8,8),Cv);
+        Client ClientTest = new Client("Marilou Fugere", new Date(1997,01,01),"123 Chemin Chelsea","8191234567",false, Ptest);
 	}
 
 	/**
@@ -63,6 +71,10 @@ public class RechercheClient extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
+		ClasseVehicule Cv = ClasseVehicule.CLASSE1 ;
+        PermisDeConduire Ptest = new PermisDeConduire(new Date(2023,8,8),Cv);
+        Client ClientTest = new Client("Marilou Fugere", new Date(1997,01,01),"123 Chemin Chelsea","8191234567",false, Ptest);
+        
 		JPanel Left = new JPanel();
 		Left.setBackground(new Color(255, 140, 0));
 		contentPane.add(Left, BorderLayout.WEST);
@@ -136,13 +148,10 @@ public class RechercheClient extends JFrame {
 		textField.setBounds(260, 68, 184, 27);
 		Mid.add(textField);
 		textField.setColumns(10);
+		//if(textField == Cv.getNumTelephone()){
+		//		txtNom = Cv.getNom();
+		// }
 		
-		JButton btnEnvoyer = new JButton("Envoyer");
-		btnEnvoyer.setBackground(new Color(60, 179, 113));
-		btnEnvoyer.setForeground(Color.WHITE);
-		btnEnvoyer.setFont(new Font("Verdana", Font.PLAIN, 16));
-		btnEnvoyer.setBounds(131, 68, 99, 29);
-		Mid.add(btnEnvoyer);
 		
 		txtEntre = new JTextField();
 		txtEntre.setForeground(Color.WHITE);
@@ -178,17 +187,47 @@ public class RechercheClient extends JFrame {
 		Mid.add(txtContinuerAvecCe);
 		
 		JButton btnOui = new JButton("Oui");
-		btnOui.setForeground(new Color(255, 255, 255));
+		btnOui.setEnabled(false);
+		btnOui.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VehiculeDisponible vd = new VehiculeDisponible();
+				vd.getContentPane();
+				vd.setVisible(true);
+			}
+		});
+		btnOui.setForeground(Color.WHITE);
 		btnOui.setBackground(new Color(60, 179, 113));
 		btnOui.setFont(new Font("Verdana", Font.PLAIN, 16));
 		btnOui.setBounds(131, 182, 122, 29);
 		Mid.add(btnOui);
 		
 		JButton btnNon = new JButton("Non");
+		btnNon.setEnabled(false);
+		btnNon.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnNon.setForeground(Color.WHITE);
 		btnNon.setBackground(new Color(165, 42, 42));
 		btnNon.setFont(new Font("Verdana", Font.PLAIN, 16));
 		btnNon.setBounds(322, 182, 122, 29);
 		Mid.add(btnNon);
+		
+		JButton btnEnvoyer = new JButton("Envoyer");
+		btnEnvoyer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnOui.setEnabled(true);
+				btnNon.setEnabled(true);
+				if(textField.getText().equals(ClientTest.getNumTelephone())){
+					txtNom.setText(ClientTest.getNom());
+				 }
+			}
+			
+		});
+		btnEnvoyer.setBackground(new Color(60, 179, 113));
+		btnEnvoyer.setForeground(Color.WHITE);
+		btnEnvoyer.setFont(new Font("Verdana", Font.PLAIN, 16));
+		btnEnvoyer.setBounds(131, 68, 99, 29);
+		Mid.add(btnEnvoyer);
 	}
 }
