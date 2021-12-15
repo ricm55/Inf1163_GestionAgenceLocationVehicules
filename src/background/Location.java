@@ -33,7 +33,7 @@ public class Location
 	
 	public Paiement setPremierVersement() 
 	{
-		
+		return null;
 	}
 	
 	public void setDeuxiemeVersement(double deuxiemeVersement)
