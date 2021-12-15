@@ -36,7 +36,12 @@ public class Vehicule
 	{
 		return marque;
 	}
-	
+    
+    public void setDisponible(boolean disponible)
+    {
+    	this.disponible = disponible;
+    }
+    
 	public void setMarque(String marque)
 	{
 		this.marque = marque;
@@ -76,6 +81,11 @@ public class Vehicule
 	{
 		return kilometrage;
 	}
+	
+	public boolean getDisponible()
+    {
+    	return this.disponible;
+    }
 	
 	public void setKilometrage(int kilometrage)
 	{
