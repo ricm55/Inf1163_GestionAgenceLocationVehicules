@@ -37,10 +37,11 @@ public class Location
 		
 	}
 	
-	public Paiement setDeuxiemeVersement()
+	public void setDeuxiemeVersement(double deuxiemeVersement)
 	{
-		return null;
-		
+
+		this.deuxiemeVersement.setMontant(deuxiemeVersement);
+
 	}
 	
 	public Paiement getPremierVersement()
