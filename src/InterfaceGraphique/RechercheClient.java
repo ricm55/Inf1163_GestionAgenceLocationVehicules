@@ -25,6 +25,7 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.SystemColor;
 
 public class RechercheClient extends JFrame {
 
@@ -63,7 +64,7 @@ public class RechercheClient extends JFrame {
 		setContentPane(contentPane);
 		
 		JPanel Left = new JPanel();
-		Left.setBackground(Color.WHITE);
+		Left.setBackground(new Color(255, 140, 0));
 		contentPane.add(Left, BorderLayout.WEST);
 		
 		JButton btnNewButton = new JButton("Location");
@@ -79,14 +80,24 @@ public class RechercheClient extends JFrame {
 		btnNewButton_1.setBackground(Color.DARK_GRAY);
 		btnNewButton_1.setForeground(Color.WHITE);
 		btnNewButton_1.setFont(new Font("Verdana", Font.PLAIN, 16));
+		
+		JButton btnNewButton_1_1 = new JButton("Retour");
+		btnNewButton_1_1.setForeground(Color.WHITE);
+		btnNewButton_1_1.setFont(new Font("Verdana", Font.PLAIN, 16));
+		btnNewButton_1_1.setBackground(Color.DARK_GRAY);
 		GroupLayout gl_Left = new GroupLayout(Left);
 		gl_Left.setHorizontalGroup(
 			gl_Left.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_Left.createSequentialGroup()
-					.addGap(5)
 					.addGroup(gl_Left.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
-						.addComponent(btnNewButton, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addGroup(gl_Left.createSequentialGroup()
+							.addGap(5)
+							.addGroup(gl_Left.createParallelGroup(Alignment.LEADING)
+								.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
+								.addComponent(btnNewButton, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)))
+						.addGroup(gl_Left.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(btnNewButton_1_1, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap())
 		);
 		gl_Left.setVerticalGroup(
@@ -96,7 +107,9 @@ public class RechercheClient extends JFrame {
 					.addComponent(btnNewButton)
 					.addGap(18)
 					.addComponent(btnNewButton_1)
-					.addGap(245))
+					.addGap(191)
+					.addComponent(btnNewButton_1_1, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+					.addGap(23))
 		);
 		Left.setLayout(gl_Left);
 		
@@ -105,6 +118,8 @@ public class RechercheClient extends JFrame {
 		Up.setLayout(new BorderLayout(0, 0));
 		
 		txtRechercheDeClient = new JTextField();
+		txtRechercheDeClient.setForeground(new Color(255, 255, 255));
+		txtRechercheDeClient.setBackground(new Color(25, 25, 112));
 		txtRechercheDeClient.setEditable(false);
 		txtRechercheDeClient.setFont(new Font("Verdana", Font.PLAIN, 16));
 		txtRechercheDeClient.setHorizontalAlignment(SwingConstants.CENTER);
@@ -113,7 +128,7 @@ public class RechercheClient extends JFrame {
 		txtRechercheDeClient.setColumns(10);
 		
 		JPanel Mid = new JPanel();
-		Mid.setBackground(Color.WHITE);
+		Mid.setBackground(SystemColor.textHighlight);
 		contentPane.add(Mid, BorderLayout.CENTER);
 		Mid.setLayout(null);
 		
@@ -123,7 +138,7 @@ public class RechercheClient extends JFrame {
 		textField.setColumns(10);
 		
 		JButton btnEnvoyer = new JButton("Envoyer");
-		btnEnvoyer.setBackground(Color.DARK_GRAY);
+		btnEnvoyer.setBackground(new Color(60, 179, 113));
 		btnEnvoyer.setForeground(Color.WHITE);
 		btnEnvoyer.setFont(new Font("Verdana", Font.PLAIN, 16));
 		btnEnvoyer.setBounds(131, 68, 99, 29);
@@ -163,15 +178,15 @@ public class RechercheClient extends JFrame {
 		Mid.add(txtContinuerAvecCe);
 		
 		JButton btnOui = new JButton("Oui");
-		btnOui.setForeground(Color.WHITE);
-		btnOui.setBackground(new Color(64, 64, 64));
+		btnOui.setForeground(new Color(255, 255, 255));
+		btnOui.setBackground(new Color(60, 179, 113));
 		btnOui.setFont(new Font("Verdana", Font.PLAIN, 16));
 		btnOui.setBounds(131, 182, 122, 29);
 		Mid.add(btnOui);
 		
 		JButton btnNon = new JButton("Non");
 		btnNon.setForeground(Color.WHITE);
-		btnNon.setBackground(Color.DARK_GRAY);
+		btnNon.setBackground(new Color(165, 42, 42));
 		btnNon.setFont(new Font("Verdana", Font.PLAIN, 16));
 		btnNon.setBounds(322, 182, 122, 29);
 		Mid.add(btnNon);
