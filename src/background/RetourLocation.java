@@ -20,6 +20,7 @@ public class RetourLocation {
 		this.location.getVehicule().setNiveauReservoir(niveauReservoir);;
 		this.location.getVehicule().setKilometrage(kilometrage);
 		this.location.getDeuxiemeVersement().addDommages(dommages);
+		this.dommages = this.dommages + dommages;
 		
 	}
 	
@@ -28,7 +29,7 @@ public class RetourLocation {
 		return this.deuxiemeVersement;
 	}
 	
-	public boolean paiement(double montant)
+	public boolean payer(double montant)
 	{
 		this.deuxiemeVersement.setMontant(this.deuxiemeVersement.getMontant() - montant);
 		
@@ -46,7 +47,7 @@ public class RetourLocation {
 		
 	}
 	
-	public double recu()
+	public double retourMonnaie()
 	{
 		if (this.deuxiemeVersement.getMontant() < 0 )
 		{
