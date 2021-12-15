@@ -11,7 +11,7 @@ import background.Client;
 import background.Forfait;
 import background.Location;
 import background.PermisDeConduire;
-import controleur.creerLocation;
+import controleur.CreerLocationControleur;
 
 public class Main {
 
@@ -22,7 +22,7 @@ public class Main {
         Forfait forfait = new Forfait("Forfait 1", 32.55);
         
         try {
-            creerLocation loc = new creerLocation(vehicule,client, forfait );    
+            CreerLocationControleur loc = new CreerLocationControleur(vehicule,client, forfait );    
         }catch(Exception err){
           System.out.println(err);
         }

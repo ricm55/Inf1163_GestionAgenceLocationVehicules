@@ -11,10 +11,10 @@ import background.PermisDeConduire;
 import background.Vehicule;
 import constante.ClasseVehicule;
 
-public class creerLocation {
+public class CreerLocationControleur {
     private Location location;
     
-    public creerLocation(Vehicule vehicule, Client client, Forfait forfait) throws Exception {
+    public CreerLocationControleur(Vehicule vehicule, Client client, Forfait forfait) throws Exception {
         
         //Creer location
         PermisDeConduire permiClient = client.getPermis();

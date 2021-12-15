@@ -34,10 +34,7 @@ public class Location
 	public Paiement setPremierVersement() 
 	{
 		return null;
-<<<<<<< HEAD
-=======
-		
->>>>>>> master
+
 	}
 	
 	public void setDeuxiemeVersement(double deuxiemeVersement)
