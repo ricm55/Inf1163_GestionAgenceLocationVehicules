@@ -28,6 +28,7 @@ public class InterfaceAccueil extends JFrame {
 	private JPanel contentPane;
 	private JTextField locationAccueil;
 	private static InterfaceAccueil frame ;
+	private static RechercheClient rc ;
 
 	/**
 	 * Launch the application.
@@ -57,7 +58,7 @@ public class InterfaceAccueil extends JFrame {
 		setContentPane(contentPane);
 		
 		JPanel leftPanel = new JPanel();
-		leftPanel.setBackground(new Color(255, 140, 0));
+		leftPanel.setBackground(new Color(255, 165, 0));
 		contentPane.add(leftPanel, BorderLayout.WEST);
 		
 		JButton btnNewButton_1 = new JButton("Location");
@@ -79,6 +80,17 @@ public class InterfaceAccueil extends JFrame {
 		logout.setForeground(Color.WHITE);
 		logout.setFont(new Font("Verdana", Font.PLAIN, 12));
 		logout.setBackground(Color.DARK_GRAY);
+		
+		JButton btnCreerLocation = new JButton("Creer Location");
+		btnCreerLocation.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				rc.launch();
+			}
+		});
+		btnCreerLocation.setForeground(Color.WHITE);
+		btnCreerLocation.setFont(new Font("Verdana", Font.PLAIN, 10));
+		btnCreerLocation.setBackground(Color.DARK_GRAY);
 		GroupLayout gl_leftPanel = new GroupLayout(leftPanel);
 		gl_leftPanel.setHorizontalGroup(
 			gl_leftPanel.createParallelGroup(Alignment.LEADING)
@@ -93,11 +105,17 @@ public class InterfaceAccueil extends JFrame {
 							.addGap(15)
 							.addComponent(logout, GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)))
 					.addGap(33))
+				.addGroup(gl_leftPanel.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(btnCreerLocation, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(49, Short.MAX_VALUE))
 		);
 		gl_leftPanel.setVerticalGroup(
 			gl_leftPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_leftPanel.createSequentialGroup()
-					.addGap(170)
+					.addGap(20)
+					.addComponent(btnCreerLocation, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+					.addGap(121)
 					.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addComponent(btnNewButton_1_1, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)

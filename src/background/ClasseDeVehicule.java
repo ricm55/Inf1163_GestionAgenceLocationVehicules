@@ -1,8 +1,8 @@
 package background;
 
-class ClasseDeVehicule
+public class ClasseDeVehicule
 {
-	private enum Classe {ECONOMIQUE, MOYENNE, CONFORT, LUXE, UTILITAIRE};
+	public enum Classe {ECONOMIQUE, MOYENNE, CONFORT, LUXE, UTILITAIRE};
 	
 	private Classe classe;
 	private String typePermis;
