@@ -16,6 +16,7 @@ import controleur.CreerLocationControleur;
 public class Main {
 
     public static void main( String[] args ) {
+        /*
         Vehicule vehicule = new Vehicule("Hyndai","Accent",2011, "Rouge",320000,34.65, true,ClasseVehicule.CLASSE1);
         PermisDeConduire permi = new PermisDeConduire(new Date(2023,6,22), ClasseVehicule.CLASSE1);
         Client client = new Client("Jonhson", new Date(1999,4,12),"123 rue des Johnsons", "123-1234-5678",true, permi);
