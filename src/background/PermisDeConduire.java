@@ -1,5 +1,6 @@
 package background;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import constante.ClasseVehicule;
@@ -7,12 +8,12 @@ import constante.ClasseVehicule;
 public class PermisDeConduire
 {	
 	private Date dateExpiration;
-	private ClasseVehicule classe;
+	private ArrayList<String> type;
 	
-	public PermisDeConduire(Date dateExpiration, ClasseVehicule classe)
+	public PermisDeConduire(Date dateExpiration, ArrayList<String> type)
 	{
 		this.dateExpiration = dateExpiration;
-		this.classe = classe;
+		this.type = type;
 	}
 	
 	public Date getDateExpiration()
@@ -25,14 +26,14 @@ public class PermisDeConduire
 		this.dateExpiration = dateExpiration;
 	}
 	
-	public ClasseVehicule getClasse()
+	public ArrayList<String> getClasse()
 	{
-		return classe;
+		return type;
 	}
 	
-	public void setClasse(ClasseVehicule classe)
+	public void setClasse(ArrayList<String> type)
 	{
-		this.classe = classe;
+		this.type = type;
 	}
 
     @Override

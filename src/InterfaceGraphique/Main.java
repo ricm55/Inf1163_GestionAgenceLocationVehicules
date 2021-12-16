@@ -3,8 +3,9 @@ package InterfaceGraphique;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
-import database.Database;
+
 import models.ModeleClient;
+import stockage.StockageBasic;
 import background.Vehicule;
 import constante.ClasseVehicule;
 import background.Client;
