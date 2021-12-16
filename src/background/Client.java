@@ -1,7 +1,11 @@
 package background;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+
 
 public class Client
 {
@@ -15,6 +19,7 @@ public class Client
 	private String adresse;
 	private boolean assurancePersonnelle;
 	private PermisDeConduire permis;
+	private List<Location> listeLocationsEnPossession;
 
 	public Client(int id, String nom, String prenom, String numTelephone, LocalDate dateCreation,String courriel,Date dateDeNaissance, String adresse, boolean assurancePersonnelle)
 	{
@@ -27,11 +32,22 @@ public class Client
 		this.setDateCreation( dateCreation );
 		this.setCourriel( courriel );
 		this.setAssurancePersonnelle(assurancePersonnelle);
+		List<Location> listeLocationsEnPossession = new ArrayList<Location>();
 	}
 	
 	public String getNom()
 	{
 		return nom;
+	}
+	
+	public List<Location> getListeLocationEnPossession()
+	{
+		return this.listeLocationsEnPossession;
+	}
+	
+	public void setListeLocationEnPossession(Location location)
+	{
+		this.listeLocationsEnPossession.add(location);
 	}
 	
 

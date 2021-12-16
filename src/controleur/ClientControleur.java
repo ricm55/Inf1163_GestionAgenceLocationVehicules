@@ -12,14 +12,30 @@ public class ClientControleur {
 	
 	public ClientControleur(String nom, String telephone) {
 		
+		
 		this.client = this.identifierClient(nom, telephone);
 	}
 	
-	
-	public Client identifierClient(String Nom, String telephone)
+	public boolean rechercheClient(String nom, String telephone)
 	{
-		//Recherche d'un client
-		return null;
+		//if client exist
+		return true;
+		//else
+			//return false;
+	}
+	//Si le client existe, return le client
+	//Si le client n'existe pas, return null (devrait afficher un message d'erreur)
+	public Client identifierClient(String nom, String telephone)
+	{
+		if (this.rechercheClient(nom, telephone) == true)
+		{
+			return client;
+		}
+		else
+		{
+			return null;
+		}
+		
 	}
 	
 	public Client getClient()
