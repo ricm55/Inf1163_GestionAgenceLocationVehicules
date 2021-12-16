@@ -12,7 +12,7 @@ public class ClientControleur {
 	
 	public ClientControleur(String nom, String telephone) {
 		
-		Client client = this.identifierClient(nom, telephone);
+		this.client = this.identifierClient(nom, telephone);
 	}
 	
 	
@@ -20,6 +20,11 @@ public class ClientControleur {
 	{
 		//Recherche d'un client
 		return null;
+	}
+	
+	public Client getClient()
+	{
+		return this.client;
 	}
 	
 	public void setPrenomClient(String prenom)
