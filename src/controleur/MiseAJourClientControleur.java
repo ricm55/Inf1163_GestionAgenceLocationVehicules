@@ -14,6 +14,7 @@ public class MiseAJourClientControleur {
 		Client client = this.identifierClient(nom, telephone);
 	}
 	
+	
 	public Client identifierClient(String Nom, String telephone)
 	{
 		//Recherche d'un client
@@ -25,29 +26,59 @@ public class MiseAJourClientControleur {
 		this.client.setNom(nom);
 	}
 	
-	public void modifierDateDeNaissance(Date dateDeNaissance)
+	public String getNomClient()
+	{
+		return this.client.getNom();
+	}
+	
+	public void modifierDateDeNaissanceClient(Date dateDeNaissance)
 	{
 		this.client.setDateDeNaissance(dateDeNaissance);
 	}
 	
-	public void modifierAdresse(String adresse)
+	public java.util.Date getDateNaissanceClient()
+	{
+		return this.client.getDateDeNaissance();
+	}
+	
+	public void modifierAdresseClient(String adresse)
 	{
 		this.client.setAdresse(adresse);
 	}
 	
-	public void modifierNumTelephone(String numTelephone)
+	public String getAdresseClient()
+	{
+		return this.client.getAdresse();
+	}
+	
+	public void modifierNumTelephoneClient(String numTelephone)
 	{
 		this.client.setNumTelephone(numTelephone);
 	}
 	
-	public void modifierAssurancePersonnelle(boolean assurancePersonnelle) 
+	public String getNumTelephoneClient()
+	{
+		return this.client.getNumTelephone();
+	}
+	
+	public void modifierAssurancePersonnelleClient(boolean assurancePersonnelle) 
 	{
 		this.client.setAssurancePersonnelle(assurancePersonnelle);
 	}
 	
-	public void modifierPermis(PermisDeConduire permis)
+	public boolean isAssurancePersonnelleClient()
+	{
+		return this.client.isAssurancePersonnelle();
+	}
+	
+	public void modifierPermisClient(PermisDeConduire permis)
 	{
 		this.client.setPermis(permis);
+	}
+	
+	public PermisDeConduire getPermisClient()
+	{
+		return this.client.getPermis();
 	}
 	
 	
