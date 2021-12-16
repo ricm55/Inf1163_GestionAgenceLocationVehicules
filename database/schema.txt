@@ -1,55 +1,55 @@
 
+
 PRAGMA foreign_keys = ON;
 
 CREATE TABLE Client(
-    id INTEGER CONSTRAINT pk_client PRIMARY KEY AUTOINCREMENT,
+    ClientId INTEGER CONSTRAINT pk_client PRIMARY KEY AUTOINCREMENT,
     nom varchar(50),
     prenom varchar(50),
     numTelephone varchar(30),
     dateCreation DATE,
     courriel varchar(50),
-    permisDeConduire_id INTEGER REFERENCES PermisConduire(id),
     dateDeNaissance Date,
     adresse varchar(50),
     assurancePersonnelle BIT
 );
 
 CREATE TABLE PermisConduire(
-    id INTEGER CONSTRAINT pk_permisConduire PRIMARY KEY AUTOINCREMENT,
+    client_id INTEGER UNIQUE CONSTRAINT fk_PermisConduire_Client REFERENCES Client(ClientId),
     dateExpiration DATE
 );
 
 CREATE TABLE ClassePermis(
-    id INTEGER CONSTRAINT pk_ClassePermis PRIMARY KEY AUTOINCREMENT,
+    ClassePermisId INTEGER CONSTRAINT pk_ClassePermis PRIMARY KEY AUTOINCREMENT,
     type varchar(30)
 );
 
 CREATE TABLE PermisConduireClassePermis(
-    permisConduire_id INTEGER CONSTRAINT fk_PermisConduireClassePermis_permisConduire REFERENCES PermisConduire(id),
-    classePermis_id INTEGER CONSTRAINT fk_PermisConduireClassePermis_classePermis REFERENCES ClassePermis(id),
+    permisConduire_id INTEGER CONSTRAINT fk_PermisConduireClassePermis_permisConduire REFERENCES PermisConduire(client_id),
+    classePermis_id INTEGER CONSTRAINT fk_PermisConduireClassePermis_classePermis REFERENCES ClassePermis(ClassePermisId),
     CONSTRAINT pk_PermisConduireClassePermis PRIMARY KEY (permisConduire_id,classePermis_id)
 );
 
 CREATE TABLE Paiement(
-    id INTEGER CONSTRAINT pk_paiement PRIMARY KEY AUTOINCREMENT,
+    PaiementId INTEGER CONSTRAINT pk_paiement PRIMARY KEY AUTOINCREMENT,
     paiementDebut DOUBLE,
     paiementFinal DOUBLE
 );
 
 CREATE TABLE Tarif(
-    id INTEGER CONSTRAINT pk_tarif PRIMARY KEY AUTOINCREMENT,
+    TarifId INTEGER CONSTRAINT pk_tarif PRIMARY KEY AUTOINCREMENT,
     type varchar(30),
     prix DOUBLE
 );
 
 CREATE TABLE Forfait(
-    id INTEGER CONSTRAINT pk_paiement PRIMARY KEY AUTOINCREMENT,
+    ForfaitId INTEGER CONSTRAINT pk_paiement PRIMARY KEY AUTOINCREMENT,
     type varchar(30),
     prix DOUBLE
 );
 
  CREATE TABLE Vehicule(
-     id INTEGER CONSTRAINT pk_vehicule PRIMARY KEY AUTOINCREMENT,
+     VehiculeId INTEGER CONSTRAINT pk_vehicule PRIMARY KEY AUTOINCREMENT,
      marque varchar(50),
      modele varchar(50),
      annee INTEGER,
@@ -57,18 +57,52 @@ CREATE TABLE Forfait(
      kilometrage INTEGER,
      quantiteEssence INTEGER,
      disponible BIT,
-     classePermis_id INTEGER CONSTRAINT fk_vehicule_classePermis REFERENCES ClassePermis(id)
+     classePermis_id INTEGER CONSTRAINT fk_vehicule_classePermis REFERENCES ClassePermis(ClassePermisId)
  );
 
  CREATE TABLE Location(
-     id INTEGER CONSTRAINT pk_location PRIMARY KEY AUTOINCREMENT,
-     client_id INTEGER CONSTRAINT fk_location_client REFERENCES Client(id),
-     vehicule_id INTEGER CONSTRAINT fk_location_vehicule REFERENCES Vehicule(id),
+     LocationId INTEGER CONSTRAINT pk_location PRIMARY KEY AUTOINCREMENT,
+     client_id INTEGER CONSTRAINT fk_location_client REFERENCES Client(ClientId),
+     vehicule_id INTEGER CONSTRAINT fk_location_vehicule REFERENCES Vehicule(VehiculeId),
      dateDebut DATE,
      kiloDebut INTEGER,
      distanceParcourue INTEGER,
      dateFin DATE,
-     forfait_id INTEGER CONSTRAINT fk_location_forfait REFERENCES Forfait(id),
-     tarif_id INTEGER CONSTRAINT fk_location_tarif REFERENCES Tarif(id),
-     pairement_id INTEGER CONSTRAINT fk_location_paiement REFERENCES Paiement(id)
+     forfait_id INTEGER CONSTRAINT fk_location_forfait REFERENCES Forfait(ForfaitId),
+     tarif_id INTEGER CONSTRAINT fk_location_tarif REFERENCES Tarif(TarifId),
+     pairement_id INTEGER CONSTRAINT fk_location_paiement REFERENCES Paiement(PaiementId)
  );
+
+
+
+
+
+ -- Autre test --
+
+ -- Inserer des permis de conduire
+insert into PermisConduire values
+    (?,"CLASSE1","2023-02-04"),
+    (?,"CLASSE2","2022-01-22");
+
+ -- Inserer des clients
+INSERT INTO Client VALUES
+    ( ?, "Bananna", "Joe","819-556-4525","2021-05-02","joe.bannana@gmail.com", (SELECT id from PermisConduire WHERE id=1),"1999-05-22","Jean rue des Jeans",1),
+    ( ?, "Le Gros", "Denis","819-234-5428","2021-04-01","legros.Denis123@gmail.com", (SELECT id from PermisConduire WHERE id=2),"1995-11-23","rue des Denis",0);
+
+
+
+select nom,prenom, classeVoiture from client
+    inner join PermisConduire on Client.permisDeConduire_id = PermisConduire.id;
+
+-- Inserer une liaison entre un permis existant et une classe
+insert into PermisConduireClassePermis values
+    ((SELECT id from PermisConduire where id=1),(SELECT id from ClassePermis where type="CLASSE1")),
+    ((SELECT id from PermisConduire where id=2),(SELECT id from ClassePermis where type="CLASSE2"));
+
+-- Get Classes d'un permis
+select type from PermisConduireClassePermis
+    inner join ClassePermis ON PermisConduireClassePermis.classePermis_id = classePermis.id
+    WHERE permisConduire_id = 1;
+
+ -- Get les id des classes d'un permis
+SELECT classePermis_id FROM PermisConduireClassePermis WHERE permisConduire_id = 1;

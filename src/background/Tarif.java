@@ -24,6 +24,8 @@ public class Tarif
 		this.classeEconomique = classeEconomique;
 	}
 	
+	
+	
 	public double getAssurance()
 	{
 		return assurance;

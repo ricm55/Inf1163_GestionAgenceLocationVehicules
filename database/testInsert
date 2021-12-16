@@ -1,0 +1,20 @@
+
+-- **************************** test insert **************************** --
+
+-- *********** client ************
+
+--1: inserer le client
+INSERT INTO Client VALUES
+    ( ?, "Bananna", "Joe","819-556-4525","2021-05-02","joe.bannana@gmail.com","1999-05-22","Jean rue des Jeans",1);
+
+-- 2: Recuperer l'id du client (param: num de telephone)
+select ClientId from Client where numTelephone="819-556-4525";
+
+-- 3: inserer un permis (param: l'id du client)
+INSERT INTO PermisConduire VALUES
+    ((select ClientId from Client where numTelephone="819-556-4525"),"2025-05-02");
+
+-- 4: Mettre une classe au permis (param: ClientId select dans l'etape 2)
+insert into PermisConduireClassePermis values
+    ((SELECT client_id from PermisConduire where client_id=1),(SELECT ClassePermisId from ClassePermis where type="CLASSE1")),
+    ((SELECT client_id from PermisConduire where client_id=1),(SELECT ClassePermisId from ClassePermis where type="CLASSE2"));

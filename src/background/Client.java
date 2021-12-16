@@ -1,25 +1,32 @@
 package background;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Client
 {
+    private int id;
 	private String nom;
-	private Date dateDeNaissance;
-	private String adresse;
+	private String prenom;
 	private String numTelephone;
+	private LocalDate dateCreation;
+	private String courriel;
+    private Date dateDeNaissance;
+	private String adresse;
 	private boolean assurancePersonnelle;
 	private PermisDeConduire permis;
-	
-	public Client(String nom, Date dateDeNaissance, String adresse, String numTelephone, boolean assurancePersonnelle,
-			PermisDeConduire permis)
+
+	public Client(int id, String nom, String prenom, String numTelephone, LocalDate dateCreation,String courriel,Date dateDeNaissance, String adresse, boolean assurancePersonnelle)
 	{
-		this.nom = nom;
-		this.dateDeNaissance = dateDeNaissance;
-		this.adresse = adresse;
-		this.numTelephone = numTelephone;
-		this.assurancePersonnelle = assurancePersonnelle;
-		this.permis = permis;
+	    this.setId( id );
+		this.setNom( nom );
+		this.setPrenom( prenom );
+		this.setDateDeNaissance( dateDeNaissance );
+		this.setAdresse(adresse);
+		this.setNumTelephone( numTelephone);
+		this.setDateCreation( dateCreation );
+		this.setCourriel( courriel );
+		this.setAssurancePersonnelle(assurancePersonnelle);
 	}
 	
 	public String getNom()
@@ -83,6 +90,62 @@ public class Client
 		this.permis = permis;
 	}
 	
+    /**
+     * @return the prenom
+     */
+    public String getPrenom() {
+        return prenom;
+    }
+
+    /**
+     * @param prenom the prenom to set
+     */
+    public void setPrenom( String prenom ) {
+        this.prenom = prenom;
+    }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId( int id ) {
+        this.id = id;
+    }
+
+    /**
+     * @return the dateCreation
+     */
+    public LocalDate getDateCreation() {
+        return dateCreation;
+    }
+
+    /**
+     * @param dateCreation the dateCreation to set
+     */
+    public void setDateCreation( LocalDate dateCreation ) {
+        this.dateCreation = dateCreation;
+    }
+
+    /**
+     * @return the courriel
+     */
+    public String getCourriel() {
+        return courriel;
+    }
+
+    /**
+     * @param courriel the courriel to set
+     */
+    public void setCourriel( String courriel ) {
+        this.courriel = courriel;
+    }
+
     @Override
     public String toString() {
         return "Client [getNom()=" + getNom() + ", getDateDeNaissance()=" + getDateDeNaissance() + ", getAdresse()="
