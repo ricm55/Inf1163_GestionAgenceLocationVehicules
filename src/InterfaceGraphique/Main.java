@@ -11,7 +11,7 @@ import background.Client;
 import background.Forfait;
 import background.Location;
 import background.PermisDeConduire;
-import controleur.creerLocation;
+import controleur.CreerLocationControleur;
 
 public class Main {
 
@@ -22,11 +22,20 @@ public class Main {
         Forfait forfait = new Forfait("Forfait 1", 32.55);
         
         try {
-            creerLocation loc = new creerLocation(vehicule,client, forfait );    
+            CreerLocationControleur loc = new CreerLocationControleur(vehicule,client, forfait );    
         }catch(Exception err){
           System.out.println(err);
         }
         
+        RechercheClient rc = new RechercheClient();
+        InterfaceAccueil frame = new InterfaceAccueil();
+        rc.launch();
+        //frame.launch();
+        
+       /* ClasseVehicule Cv = ClasseVehicule.CLASSE1 ;
+        PermisDeConduire Ptest = new PermisDeConduire(new Date(2023,8,8),Cv);
+        Client ClientTest = new Client("Marilou Fugere", new Date(1997,01,01),"123 Chemin Chelsea","8191234567",false, Ptest);*/
+        		 
         
         /*
         //Creer vehicule

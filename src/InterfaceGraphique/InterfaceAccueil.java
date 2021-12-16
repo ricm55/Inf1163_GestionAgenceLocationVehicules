@@ -1,4 +1,4 @@
-package InterfaceGraphique;
+  package InterfaceGraphique;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -21,20 +21,22 @@ import javax.swing.JTextPane;
 import javax.swing.JTextArea;
 import java.awt.TextArea;
 import java.awt.Color;
+import java.awt.SystemColor;
 
 public class InterfaceAccueil extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField Titre;
+	private JTextField locationAccueil;
+	private static InterfaceAccueil frame ;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void launch() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					InterfaceAccueil frame = new InterfaceAccueil();
+					 frame = new InterfaceAccueil();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -54,99 +56,61 @@ public class InterfaceAccueil extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.YELLOW);
-		contentPane.add(panel, BorderLayout.NORTH);
-		
-		Titre = new JTextField();
-		Titre.setEditable(false);
-		Titre.setHorizontalAlignment(SwingConstants.CENTER);
-		Titre.setFont(new Font("Verdana", Font.BOLD, 16));
-		Titre.setText("Location en cours");
-		panel.add(Titre);
-		Titre.setColumns(10);
-		
 		JPanel leftPanel = new JPanel();
-		leftPanel.setBackground(Color.WHITE);
+		leftPanel.setBackground(new Color(255, 140, 0));
 		contentPane.add(leftPanel, BorderLayout.WEST);
 		
-		JButton locationBouton_1 = new JButton("Location");
-		locationBouton_1.setBackground(Color.CYAN);
-		locationBouton_1.setFont(new Font("Verdana", Font.PLAIN, 16));
-		locationBouton_1.addActionListener(new ActionListener() {
+		JButton btnNewButton_1 = new JButton("Location");
+		btnNewButton_1.setForeground(Color.WHITE);
+		btnNewButton_1.setFont(new Font("Verdana", Font.PLAIN, 16));
+		btnNewButton_1.setBackground(Color.DARK_GRAY);
+		
+		JButton btnNewButton_1_1 = new JButton("Location");
+		btnNewButton_1_1.setForeground(Color.WHITE);
+		btnNewButton_1_1.setFont(new Font("Verdana", Font.PLAIN, 16));
+		btnNewButton_1_1.setBackground(Color.DARK_GRAY);
+		
+		JButton logout = new JButton("Deconnexion");
+		logout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
 			}
 		});
-		
-		JButton locationBouton_1_1 = new JButton("Location");
-		locationBouton_1_1.setBackground(Color.CYAN);
-		locationBouton_1_1.setFont(new Font("Verdana", Font.PLAIN, 16));
-		
-		JButton locationBouton_1_2 = new JButton("Location");
-		locationBouton_1_2.setBackground(Color.CYAN);
-		locationBouton_1_2.setFont(new Font("Verdana", Font.PLAIN, 16));
-		
-		JTextArea textArea = new JTextArea();
-		textArea.setBackground(Color.BLACK);
+		logout.setForeground(Color.WHITE);
+		logout.setFont(new Font("Verdana", Font.PLAIN, 12));
+		logout.setBackground(Color.DARK_GRAY);
 		GroupLayout gl_leftPanel = new GroupLayout(leftPanel);
 		gl_leftPanel.setHorizontalGroup(
 			gl_leftPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_leftPanel.createSequentialGroup()
-					.addGap(18)
 					.addGroup(gl_leftPanel.createParallelGroup(Alignment.LEADING)
-						.addComponent(locationBouton_1_2, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-						.addComponent(locationBouton_1_1, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-						.addComponent(locationBouton_1, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-					.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 5, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
+						.addGroup(gl_leftPanel.createSequentialGroup()
+							.addContainerGap()
+							.addGroup(gl_leftPanel.createParallelGroup(Alignment.LEADING)
+								.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnNewButton_1_1, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)))
+						.addGroup(gl_leftPanel.createSequentialGroup()
+							.addGap(15)
+							.addComponent(logout, GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)))
+					.addGap(33))
 		);
 		gl_leftPanel.setVerticalGroup(
 			gl_leftPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_leftPanel.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(locationBouton_1, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addGap(170)
+					.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
-					.addComponent(locationBouton_1_1, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(locationBouton_1_2, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(241, Short.MAX_VALUE))
-				.addComponent(textArea, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
+					.addComponent(btnNewButton_1_1, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+					.addGap(107)
+					.addComponent(logout, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(19, Short.MAX_VALUE))
 		);
 		leftPanel.setLayout(gl_leftPanel);
 		
 		JPanel midPanel = new JPanel();
-		midPanel.setBackground(Color.WHITE);
+		midPanel.setBackground(SystemColor.textHighlight);
 		contentPane.add(midPanel, BorderLayout.CENTER);
 		midPanel.setLayout(null);
-		
-		JPanel rightPanel = new JPanel();
-		rightPanel.setBackground(Color.WHITE);
-		rightPanel.setBounds(496, 0, 174, 393);
-		midPanel.add(rightPanel);
-		
-		JButton locationBouton_1_3 = new JButton("Cr\u00E9er Location");
-		locationBouton_1_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		locationBouton_1_3.setFont(new Font("Verdana", Font.PLAIN, 16));
-		GroupLayout gl_rightPanel = new GroupLayout(rightPanel);
-		gl_rightPanel.setHorizontalGroup(
-			gl_rightPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_rightPanel.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(locationBouton_1_3, GroupLayout.PREFERRED_SIZE, 123, Short.MAX_VALUE)
-					.addContainerGap())
-		);
-		gl_rightPanel.setVerticalGroup(
-			gl_rightPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_rightPanel.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(locationBouton_1_3, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(347, Short.MAX_VALUE))
-		);
-		rightPanel.setLayout(gl_rightPanel);
 		
 		JTextArea txtrPrnomEtNom = new JTextArea();
 		txtrPrnomEtNom.setFont(new Font("Verdana", Font.PLAIN, 16));
@@ -181,9 +145,14 @@ public class InterfaceAccueil extends JFrame {
 		locationBouton_1_6.setBounds(362, 112, 110, 35);
 		midPanel.add(locationBouton_1_6);
 		
-		JTextArea textArea_1 = new JTextArea();
-		textArea_1.setBackground(Color.BLACK);
-		textArea_1.setBounds(481, 0, 5, 393);
-		midPanel.add(textArea_1);
+		locationAccueil = new JTextField();
+		locationAccueil.setText("Location en cours");
+		locationAccueil.setHorizontalAlignment(SwingConstants.CENTER);
+		locationAccueil.setForeground(Color.WHITE);
+		locationAccueil.setFont(new Font("Verdana", Font.PLAIN, 16));
+		locationAccueil.setEditable(false);
+		locationAccueil.setColumns(10);
+		locationAccueil.setBackground(new Color(25, 25, 112));
+		contentPane.add(locationAccueil, BorderLayout.NORTH);
 	}
 }

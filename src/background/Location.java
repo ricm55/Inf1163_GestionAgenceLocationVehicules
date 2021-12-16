@@ -31,6 +31,19 @@ public class Location
 	
 	}
 	
+	public Paiement setPremierVersement() 
+	{
+		return null;
+
+	}
+	
+	public void setDeuxiemeVersement(double deuxiemeVersement)
+	{
+
+		this.deuxiemeVersement.setMontant(deuxiemeVersement);
+
+	}
+	
 	public Paiement getPremierVersement()
 	{
 		return this.premierVersement;

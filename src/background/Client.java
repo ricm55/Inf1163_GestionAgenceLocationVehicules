@@ -83,6 +83,8 @@ public class Client
 		this.permis = permis;
 	}
 	
+	
+	
     @Override
     public String toString() {
         return "Client [getNom()=" + getNom() + ", getDateDeNaissance()=" + getDateDeNaissance() + ", getAdresse()="
