@@ -2,9 +2,12 @@ package controleur;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 
 import background.Client;
+import background.Location;
 import background.PermisDeConduire;
+import background.Reservation;
 
 public class ClientControleur {
 
@@ -38,7 +41,22 @@ public class ClientControleur {
 		
 	}
 	
-	public Client getClient()
+	public List<Reservation> getListeReservationEnPossessionClientControleur()
+	{
+		return this.client.getListeReservationEnPossession();
+	}
+	
+	public void setListeReservationEnPossessionClientControleur(Reservation reservation)
+	{
+		this.client.setListeReservationEnPossession(reservation);
+	}
+	
+	public void enleverReservationClientControleur(Reservation reservation)
+	{
+		this.client.enleverReservation(reservation);
+	}
+	
+	public Client getClientControleur()
 	{
 		return this.client;
 	}
