@@ -1,36 +1,27 @@
 package InterfaceGraphique;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JTextField;
-import java.awt.Font;
-import javax.swing.JComboBox;
-import javax.swing.SwingConstants;
-import javax.swing.JButton;
-import javax.swing.BoxLayout;
-import javax.swing.JTextArea;
 import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionListener;
-import java.util.Date;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Date;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
 import background.Client;
 import background.PermisDeConduire;
 import constante.ClasseVehicule;
-import net.miginfocom.swing.MigLayout;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.SystemColor;
 
 public class RechercheClient extends JFrame {
 
@@ -41,6 +32,7 @@ public class RechercheClient extends JFrame {
 	private JTextField txtNom;
 	private JTextField txtContinuerAvecCe;
 	private static RechercheClient frame ;
+	private static VehiculeDispo vd ;
 	
 	/**
 	 * Launch the application.
@@ -57,8 +49,10 @@ public class RechercheClient extends JFrame {
 			}
 		});
 		ClasseVehicule Cv = ClasseVehicule.CLASSE1 ;
-        PermisDeConduire Ptest = new PermisDeConduire(new Date(2023,8,8),Cv);
-        Client ClientTest = new Client("Marilou Fugere", new Date(1997,01,01),"123 Chemin Chelsea","8191234567",false, Ptest);
+       // PermisDeConduire Ptest = new PermisDeConduire(new Date(2023,8,8),Cv);
+       // Client ClientTest = new Client("Marilou Fugere", new Date(1997,01,01),"123 Chemin Chelsea","8191234567",false, Ptest);
+		Client c = new Client(-1,"TestNom","TestPrenom","1234567890",java.time.LocalDate.now(),"test@gmail.com",new Date(1999,8,11),"Rue des Benoits",true);
+        PermisDeConduire permis = new PermisDeConduire(new Date(2025,06,22), new ArrayList<String>() { {add("CLASSE1");add("CLASSE2");add("CLASSE6B");} } );
         
 	}
 
@@ -74,8 +68,10 @@ public class RechercheClient extends JFrame {
 		setContentPane(contentPane);
 		
 		ClasseVehicule Cv = ClasseVehicule.CLASSE1 ;
-        PermisDeConduire Ptest = new PermisDeConduire(new Date(2023,8,8),Cv);
-        Client ClientTest = new Client("Marilou Fugere", new Date(1997,01,01),"123 Chemin Chelsea","8191234567",false, Ptest);
+       // PermisDeConduire Ptest = new PermisDeConduire(new Date(2023,8,8),Cv);
+        //Client ClientTest = new Client("Marilou Fugere", new Date(1997,01,01),"123 Chemin Chelsea","8191234567",false, Ptest);
+		Client c = new Client(-1,"TestNom","TestPrenom","1234567890",java.time.LocalDate.now(),"test@gmail.com",new Date(1999,8,11),"Rue des Benoits",true);
+        PermisDeConduire permis = new PermisDeConduire(new Date(2025,06,22), new ArrayList<String>() { {add("CLASSE1");add("CLASSE2");add("CLASSE6B");} } );
         
 		JPanel Left = new JPanel();
 		Left.setBackground(new Color(255, 140, 0));
@@ -99,7 +95,9 @@ public class RechercheClient extends JFrame {
 		btnBackToHome.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				InterfaceAccueil ia = new InterfaceAccueil();
+				frame.dispose();
 				ia.launch();
+				
 			}
 		});
 		btnBackToHome.setForeground(Color.WHITE);
@@ -198,10 +196,10 @@ public class RechercheClient extends JFrame {
 		btnOui.setEnabled(false);
 		btnOui.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VehiculeDisponible vd = new VehiculeDisponible();
+				VehiculeDispo vd = new VehiculeDispo();
 				frame.dispose();
 				vd.launch();
-				vd.setVisible(true);
+				
 			}
 		});
 		btnOui.setForeground(Color.WHITE);
@@ -227,8 +225,8 @@ public class RechercheClient extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				btnOui.setEnabled(true);
 				btnNon.setEnabled(true);
-				if(textField.getText().equals(ClientTest.getNumTelephone())){
-					txtNom.setText(ClientTest.getNom());
+				if(textField.getText().equals(c.getNumTelephone())){
+					txtNom.setText(c.getNom());
 				 }
 			}
 			
