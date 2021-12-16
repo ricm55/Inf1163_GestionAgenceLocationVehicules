@@ -1,5 +1,6 @@
 package background;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Client
@@ -8,14 +9,14 @@ public class Client
 	private String nom;
 	private String prenom;
 	private String numTelephone;
-	private Date dateCreation;
+	private LocalDate dateCreation;
 	private String courriel;
     private Date dateDeNaissance;
 	private String adresse;
 	private boolean assurancePersonnelle;
 	private PermisDeConduire permis;
-	
-	public Client(int id, String nom, String prenom, String numTelephone, Date dateCreation,String courriel,Date dateDeNaissance, String adresse, boolean assurancePersonnelle)
+
+	public Client(int id, String nom, String prenom, String numTelephone, LocalDate dateCreation,String courriel,Date dateDeNaissance, String adresse, boolean assurancePersonnelle)
 	{
 	    this.setId( id );
 		this.setNom( nom );
@@ -120,14 +121,14 @@ public class Client
     /**
      * @return the dateCreation
      */
-    public Date getDateCreation() {
+    public LocalDate getDateCreation() {
         return dateCreation;
     }
 
     /**
      * @param dateCreation the dateCreation to set
      */
-    public void setDateCreation( Date dateCreation ) {
+    public void setDateCreation( LocalDate dateCreation ) {
         this.dateCreation = dateCreation;
     }
 

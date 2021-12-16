@@ -73,60 +73,8 @@ CREATE TABLE Forfait(
      pairement_id INTEGER CONSTRAINT fk_location_paiement REFERENCES Paiement(PaiementId)
  );
 
--- feed DB --
-insert into ClassePermis values
- (?,"CLASSE1"),
- (?,"CLASSE2"),
- (?,"CLASSE3"),
- (?,"CLASSE4A"),
- (?,"CLASSE4B"),
- (?,"CLASSE5"),
- (?,"CLASSE6A"),
- (?,"CLASSE6B"),
- (?,"CLASSE6C"),
- (?,"CLASSE6D"),
- (?,"CLASSE6E"),
- (?,"CLASSE8");
 
 
-
--- ******************** test select **************************** --
-
--- Obtenir les informations du client (param: numTelephone)
-SELECT ClientId, nom,prenom,numTelephone,dateCreation,courriel,dateDeNaissance,adresse,assurancePersonnelle,dateExpiration
-    from Client
-    inner join PermisConduire on Client.ClientId = PermisConduire.client_id
-    WHERE numTelephone="819-556-4525";
-
--- 2: Recuperer l'id du client (param: num de telephone)
-select ClientId from Client where numTelephone="819-556-4525";
-
--- Obtenir les classes de permis (param: id du client)
-SELECT type FROM PermisConduireClassePermis
-    inner join ClassePermis on PermisConduireClassePermis.classePermis_id = ClassePermis.ClassePermisId
-    where permisConduire_id=1;
-
--- Obtenir le permis du client
-
--- **************************** test insert **************************** --
-
--- Inserer un client
-
---1: inserer le client
-INSERT INTO Client VALUES
-    ( ?, "Bananna", "Joe","819-556-4525","2021-05-02","joe.bannana@gmail.com","1999-05-22","Jean rue des Jeans",1);
-
--- 2: Recuperer l'id du client (param: num de telephone)
-select ClientId from Client where numTelephone="819-556-4525";
-
--- 3: inserer un permis (param: l'id du client)
-INSERT INTO PermisConduire VALUES
-    ((select ClientId from Client where numTelephone="819-556-4525"),"2025-05-02");
-
--- 4: Mettre une classe au permis (param: ClientId select dans l'etape 2)
-insert into PermisConduireClassePermis values
-    ((SELECT client_id from PermisConduire where client_id=1),(SELECT ClassePermisId from ClassePermis where type="CLASSE1")),
-    ((SELECT client_id from PermisConduire where client_id=1),(SELECT ClassePermisId from ClassePermis where type="CLASSE2"));
 
 
  -- Autre test --
