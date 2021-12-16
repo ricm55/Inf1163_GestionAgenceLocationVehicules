@@ -7,6 +7,8 @@ import java.sql.Statement;
 import java.text.MessageFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -160,7 +162,7 @@ public class StockageClients{
                 result_getClient.getString( "nom" ),
                 result_getClient.getString( "prenom" ),
                 result_getClient.getString( "numTelephone" ),
-                converterStringDate( result_getClient.getString( "dateCreation" ) ),
+                converterStringDate( result_getClient.getString( "dateCreation" ) ).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
                 result_getClient.getString( "courriel" ),
                 converterStringDate( result_getClient.getString( "dateDeNaissance" ) ),
                 result_getClient.getString( "adresse" ),
@@ -182,6 +184,63 @@ public class StockageClients{
         //Se deconnection de la base de donnee
         StockageBasic.disconnect();
         return client;
+    }
+    
+    public static void insertClient(Client client) throws SQLException{
+        //Connection a la base de donnee
+        StockageBasic.connect();
+        Statement statement = StockageBasic.storage.createStatement();
+        int annee = client.getDateDeNaissance().getYear();
+        
+        //Commande pour inserer un client
+        String query_insertClient = MessageFormat.format( 
+                "INSERT INTO Client VALUES " + 
+                "( ?, \"{0}\", \"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}-{6}-{7}\",\"{8}\",{9});", 
+                client.getNom(),
+                client.getPrenom(),
+                client.getNumTelephone(),
+                client.getDateCreation(),
+                client.getCourriel(),
+                String.valueOf( client.getDateDeNaissance().getYear()),
+                client.getDateDeNaissance().getMonth(),
+                client.getDateDeNaissance().getDay(),
+                client.getAdresse(),
+                client.isAssurancePersonnelle());
+        
+        //Inserer le client
+        ResultSet result_insertClient = statement.executeQuery(query_insertClient);
+        System.out.println("=> "+query_insertClient);
+        
+        //Recuperer l'id du client
+        String query_getClientId = MessageFormat.format( "select ClientId from Client where numTelephone=\"{0}\";", client.getNumTelephone() );
+        ResultSet result_getClientId= statement.executeQuery(query_insertClient);
+        int ClientId = result_getClientId.getInt( "ClientId" );
+        //int ClientId =2;
+        System.out.println( "=> " + query_getClientId );
+        
+        //Inserer le permis du client
+        String query_insertPermisClient = MessageFormat.format( 
+                "INSERT INTO PermisConduire VALUES "
+                + "((select ClientId from Client where numTelephone=\"{0}\"),\"{1}-{2}-{3}\");",  
+                client.getNumTelephone(),String.valueOf( client.getPermis().getDateExpiration().getYear() ),
+                client.getPermis().getDateExpiration().getMonth(),
+                client.getPermis().getDateExpiration().getDay());
+        
+        statement.executeQuery(query_insertPermisClient);
+        System.out.println("=> "+query_insertPermisClient);
+        
+        //Mettre une classe au permis
+        //String query_insertClassePermis = MessageFormat.format( "", arguments )
+        String query_insertClassePermis = "insert into PermisConduireClassePermis values ";
+        for (String type : client.getPermis().getClasse()) {
+            String query_suite = MessageFormat.format( "((SELECT client_id from PermisConduire where client_id={0}),(SELECT ClassePermisId from ClassePermis where type=\"{1}\")),", ClientId,type );
+            query_insertClassePermis = query_insertClassePermis + query_suite;
+        }
+        //Finir la query avec un ;
+        query_insertClassePermis = query_insertClassePermis.substring(0,query_insertClassePermis.length() - 1) + ';';
+        statement.executeQuery(query_insertClassePermis);
+        System.out.println("=> "+query_insertClassePermis);
+        
     }
     
     private static Date converterStringDate(String chaine) {

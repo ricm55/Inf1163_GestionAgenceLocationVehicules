@@ -1,7 +1,4 @@
--- Remplir la DB de valeurs --
-
-
- -- Ajouter les classes de permis
+-- feed DB --
 insert into ClassePermis values
  (?,"CLASSE1"),
  (?,"CLASSE2"),
@@ -15,5 +12,3 @@ insert into ClassePermis values
  (?,"CLASSE6D"),
  (?,"CLASSE6E"),
  (?,"CLASSE8");
- 
-
