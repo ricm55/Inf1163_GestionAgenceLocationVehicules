@@ -1,0 +1,34 @@
+ -- Inserer clients
+ INSERT INTO Client VALUES
+    ( ?, "Bananna", "Joe","819-556-4525","2021-05-02","joe.bannana@gmail.com","1999-05-22","Jean rue des Jeans",1),
+    ( ?, "Le Gros", "Denis","819-234-5428","2021-04-01","legros.Denis123@gmail.com","1995-11-23","rue des Denis",0);
+
+ 
+ -- Inserer des permis de conduire
+     (?,(select ClientId from client where="joe.bannana@gmail.com"),"2023-02-04"),
+     (?,(select ClientId from client where="legros.Denis123@gmail.com"),"2024-07-22");
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ -- Inserer des permis de conduire
+insert into PermisConduire values
+    (?,"2023-02-04"),
+    (?,"2022-01-22");
+
+-- Get id du permis
+select PermisConduireId from client
+
+-- Inserer les classes du permis
+insert into PermisConduireClassePermis values
+	(?,(select id from permisConduire where id=1),(select id from ClassePermis where type="CLASSE1" OR type="CLASSE2")),
+	(?,(select id from permisConduire where id=2),(select id from ClassePermis where type="CLASSE1" OR type="CLASSE4B"))
+
+ -- Inserer des clients
+INSERT INTO Client VALUES
+    ( ?, "Bananna", "Joe","819-556-4525","2021-05-02","joe.bannana@gmail.com", (SELECT id from PermisConduire WHERE id=1),"1999-05-22","Jean rue des Jeans",1),
+    ( ?, "Le Gros", "Denis","819-234-5428","2021-04-01","legros.Denis123@gmail.com", (SELECT id from PermisConduire WHERE id=2),"1995-11-23","rue des Denis",0);

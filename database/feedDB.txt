@@ -1,14 +1,5 @@
--- test --
+-- Remplir la DB de valeurs --
 
- -- Inserer des permis de conduire
-insert into PermisConduire values
-    (?,"CLASSE1","2023-02-04"),
-    (?,"CLASSE2","2022-01-22");
-
- -- Inserer des clients
-INSERT INTO Client VALUES
-    ( ?, "Bananna", "Joe","819-556-4525","2021-05-02","joe.bannana@gmail.com", (SELECT id from PermisConduire WHERE id=1),"1999-05-22","Jean rue des Jeans",1),
-    ( ?, "Le Gros", "Denis","819-234-5428","2021-04-01","legros.Denis123@gmail.com", (SELECT id from PermisConduire WHERE id=2),"1995-11-23","rue des Denis",0);
 
  -- Ajouter les classes de permis
 insert into ClassePermis values
@@ -24,19 +15,5 @@ insert into ClassePermis values
  (?,"CLASSE6D"),
  (?,"CLASSE6E"),
  (?,"CLASSE8");
+ 
 
-select nom,prenom, classeVoiture from client
-    inner join PermisConduire on Client.permisDeConduire_id = PermisConduire.id;
-
--- Inserer une liaison entre un permis existant et une classe
-insert into PermisConduireClassePermis values
-    ((SELECT id from PermisConduire where id=1),(SELECT id from ClassePermis where type="CLASSE1")),
-    ((SELECT id from PermisConduire where id=2),(SELECT id from ClassePermis where type="CLASSE2"));
-
--- Get Classes d'un permis
-select type from PermisConduireClassePermis
-    inner join ClassePermis ON PermisConduireClassePermis.classePermis_id = classePermis.id
-    WHERE permisConduire_id = 1;
-
- -- Get les id des classes d'un permis
-SELECT classePermis_id FROM PermisConduireClassePermis WHERE permisConduire_id = 1;
