@@ -1,15 +1,16 @@
 package controleur;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 import background.Client;
 import background.PermisDeConduire;
 
-public class MiseAJourClientControleur {
+public class ClientControleur {
 
 	private Client client;
 	
-	public MiseAJourClientControleur(String nom, String telephone) {
+	public ClientControleur(String nom, String telephone) {
 		
 		Client client = this.identifierClient(nom, telephone);
 	}
@@ -20,8 +21,48 @@ public class MiseAJourClientControleur {
 		//Recherche d'un client
 		return null;
 	}
+	
+	public void setPrenomClient(String prenom)
+	{
+		this.client.setPrenom(prenom);
+	}
+	
+	public String getPrenomClient()
+	{
+		return this.client.getPrenom();
+	}
+	
+	public void setCourrrielClient(String courriel)
+	{
+		this.client.setCourriel(courriel);
+	}
+	
+	public LocalDate getDateCreationClient()
+	{
+		return this.client.getDateCreation();
+	}
+	
+	public void setDateCreationClient(LocalDate date)
+	{
+		this.client.setDateCreation(date);
+	}
+	
+	public int getIdClient()
+	{
+		return this.client.getId();
+	}
+	
+	public void setIdClient(int id)
+	{
+		this.client.setId(id);
+	}
+	
+	public String getCourrielClient()
+	{
+		return this.client.getCourriel();
+	}
 		
-	public void modifierNomClient(String nom)
+	public void setNomClient(String nom)
 	{
 		this.client.setNom(nom);
 	}
@@ -31,7 +72,7 @@ public class MiseAJourClientControleur {
 		return this.client.getNom();
 	}
 	
-	public void modifierDateDeNaissanceClient(Date dateDeNaissance)
+	public void setDateDeNaissanceClient(Date dateDeNaissance)
 	{
 		this.client.setDateDeNaissance(dateDeNaissance);
 	}
@@ -41,7 +82,7 @@ public class MiseAJourClientControleur {
 		return this.client.getDateDeNaissance();
 	}
 	
-	public void modifierAdresseClient(String adresse)
+	public void setAdresseClient(String adresse)
 	{
 		this.client.setAdresse(adresse);
 	}
@@ -51,7 +92,7 @@ public class MiseAJourClientControleur {
 		return this.client.getAdresse();
 	}
 	
-	public void modifierNumTelephoneClient(String numTelephone)
+	public void setNumTelephoneClient(String numTelephone)
 	{
 		this.client.setNumTelephone(numTelephone);
 	}
@@ -61,7 +102,7 @@ public class MiseAJourClientControleur {
 		return this.client.getNumTelephone();
 	}
 	
-	public void modifierAssurancePersonnelleClient(boolean assurancePersonnelle) 
+	public void setAssurancePersonnelleClient(boolean assurancePersonnelle) 
 	{
 		this.client.setAssurancePersonnelle(assurancePersonnelle);
 	}
@@ -71,7 +112,7 @@ public class MiseAJourClientControleur {
 		return this.client.isAssurancePersonnelle();
 	}
 	
-	public void modifierPermisClient(PermisDeConduire permis)
+	public void setPermisClient(PermisDeConduire permis)
 	{
 		this.client.setPermis(permis);
 	}
