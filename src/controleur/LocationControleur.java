@@ -10,6 +10,7 @@ import background.ClasseDeVehicule;
 import background.Client;
 import background.Forfait;
 import background.Location;
+import background.Paiement;
 import background.PermisDeConduire;
 import background.Vehicule;
 import constante.ClasseVehicule;
@@ -82,11 +83,12 @@ public class LocationControleur {
 
     }
     
-    public Location nouvelleLocationControleur(Vehicule vehicule, Client client, Forfait forfait, Date dateDebut, Date dateFin)
+    public Paiement nouvelleLocationControleur(Vehicule vehicule, Client client, Forfait forfait, Date dateDebut, Date dateFin)
     {	
     	Location location = new Location(client, dateDebut, dateFin, forfait, vehicule);
     	this.client.setListeLocationEnPossessionClientControleur(location);
-    	return location;
+    	
+    	return location.getPremierVersement();
     
     }
 }
