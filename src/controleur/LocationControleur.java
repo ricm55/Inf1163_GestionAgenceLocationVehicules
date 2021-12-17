@@ -25,38 +25,28 @@ public class LocationControleur {
     	
     	
         //Creer location
-        PermisDeConduire permiClient = client.getPermis();
-        
-        if( !this.validePermiConduire( vehicule, permiClient )) {
-            throw new Exception("Permi de conduite invalide !");
-        }
         
         
-        this.location = new Location(client, new Date(),new Date(2021,12,4),forfait, vehicule);
+        //this.location = new Location(client, new Date(),new Date(2021,12,4),forfait, vehicule);
         
         //Mettre la location dans la db
     }
     
-    public boolean validePermiConduire(Vehicule vehicule, PermisDeConduire permi) {
+    public boolean VerificationValidePermisConduire(Client client) {
         
         //Permi valide
         LocalDate ld = java.time.LocalDate.now();
         ZoneId defaultZoneId = ZoneId.systemDefault();
-        
         Date todayDate = Date.from(ld.atStartOfDay(defaultZoneId).toInstant());
-        System.out.println( todayDate );
-        boolean permiValideDate = permi.getDateExpiration().before( todayDate );
-        boolean classeVehiculeValide = false;
         
-        //Classe du permi
-        ClasseVehicule classe = permi.getClasse();
-        if( vehicule.getClasseDeVehicule() == permi.getClasse()) {
-            classeVehiculeValide = true;
+        boolean permiValideDate = client.getPermis().getDateExpiration().before( todayDate );
+        
+        if (permiValideDate == true) 
+        {
+        	return true;
         }
-        System.out.println(classeVehiculeValide);
-        System.out.println(permiValideDate);
+        return false;
         
-        return  permiValideDate && classeVehiculeValide;   
     }
     
     public void premierPaiement() {
@@ -83,12 +73,31 @@ public class LocationControleur {
 
     }
     
-    public Paiement nouvelleLocationControleur(Vehicule vehicule, Client client, Forfait forfait, Date dateDebut, Date dateFin)
-    {	
-    	Location location = new Location(client, dateDebut, dateFin, forfait, vehicule);
-    	this.client.setListeLocationEnPossessionClientControleur(location);
+    public boolean verificationExpirationPermisControleur(Client client,Vehicule vehicule)
+    {
+    	for (int classe = 0 ; classe <= client.getPermis().getClasse().size(); classe ++)
+    	{
+    		if (client.getPermis().getClasse().get(classe) == vehicule.getTypeDePermisNecessaire())
+        	
+        		return true;
+    	}
     	
-    	return location.getPremierVersement();
+    	return false;
+    }
     
+    
+   
+    
+    //date expiration permis,classe valide,  age
+    public double nouvelleLocationControleur(Vehicule vehicule, Client client, Forfait forfait, Date dateDebut, Date dateFin)
+    {	
+    	if (this.verificationExpirationPermisControleur(client, vehicule) && this.VerificationValidePermisConduire(client)) {
+    		Location location = new Location(client, dateDebut, dateFin, forfait, vehicule);
+        	this.client.setListeLocationEnPossessionClientControleur(location);
+        	
+        	return location.getPremierVersement();
+    	}
+    	return 0.0;
+    	
     }
 }
