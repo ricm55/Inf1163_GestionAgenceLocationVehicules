@@ -31,42 +31,43 @@ public class Location
 	
 	}
 	
-	public Paiement setPremierVersement(int premierVersement ) 
+	public double setPremierVersement(double premierVersement ) 
 	{
 		return premierVersement;
 
 	}
 	
-	public void setDeuxiemeVersement(double deuxiemeVersement)
+	public double setDeuxiemeVersement(double deuxiemeVersement)
 	{
 
-		this.deuxiemeVersement.setMontant(deuxiemeVersement);
+		return deuxiemeVersement;
 
 	}
 	
-	public void definitionPremierVersement(Vehicule vehicule)
+	public double definitionPremierVersement(Vehicule vehicule)
 	{
 		switch (vehicule.getClasseDeVehicule().getClasse())
 		{
 		
 		case ECONOMIQUE:
-			this.setPremierVersement(61);
-			break;
+			return this.setPremierVersement(61.0);
+			
 		case MOYENNE:
-			this.setPremierVersement(72);
-			break;
+			return this.setPremierVersement(72.0);
+			
 		case CONFORT:
-			this.setPremierVersement(83);
-			break;
+			return this.setPremierVersement(83.0);
+			
 		case LUXE:
-			this.setPremierVersement(114);
-			break;
+			return this.setPremierVersement(114.0);
+			
 		case UTILITAIRE:
-			this.setPremierVersement(99);
-			break;
+			return this.setPremierVersement(99.0);
+			
 		default:
-			break;
+			return null;
 		}
+		
 	}
 	
 	public Paiement getPremierVersement()
