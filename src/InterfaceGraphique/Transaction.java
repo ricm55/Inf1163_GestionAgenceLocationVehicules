@@ -16,33 +16,44 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JLabel;
 
 public class Transaction extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtTransactiondetransaction;
-	private JTextField txtForfaitType;
+	private JTextField txtTransaction;
+	private JTextField forfait_textField;
+	private JTextField txtForfait;
+	private JTextField assurance_textField;
 	private JTextField txtAssurance;
-	private JTextField txtDureLocationjour;
-	private JTextField txtLocationClassType;
+	private JTextField duree_textField;
+	private JTextField txtDure;
+	private JTextField classe_textField;
+	private JTextField txtClasse;
+	private JTextField total_textField;
 	private JTextField txtTotal;
-	private JTextField txtPremierVersement;
-	private JTextField txtTotalForfait;
-	private JTextField txtTotalAssurance;
-	private JTextField txtLocationtotal;
-	private JTextField textField_3;
-	private JTextField txtTotaltotal;
-	private JTextField txtPremierversementtotal;
-	private JTextField txtDurtotal;
+	private JTextField forfaitTotalTxt;
+	private JTextField assuranceTotalTxt;
+	private JTextField dureeTotalTxt;
+	private JTextField classeTotalTxt;
+	private JTextField totalTxt;
+	private JTextField versement_textfield;
+	private JTextField pVersementTotal;
+	private JTextField money;
+	public static int cash = 1 ;
+	private static Transaction frame;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void launch() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Transaction frame = new Transaction();
+					frame = new Transaction();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -55,6 +66,7 @@ public class Transaction extends JFrame {
 	 * Create the frame.
 	 */
 	public Transaction() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 878, 477);
 		contentPane = new JPanel();
@@ -66,253 +78,273 @@ public class Transaction extends JFrame {
 		contentPane.add(Top, BorderLayout.NORTH);
 		Top.setLayout(new BorderLayout(0, 0));
 		
-		txtTransactiondetransaction = new JTextField();
-		txtTransactiondetransaction.setForeground(new Color(255, 255, 255));
-		txtTransactiondetransaction.setBackground(new Color(25, 25, 112));
-		txtTransactiondetransaction.setFont(new Font("Verdana", Font.PLAIN, 16));
-		txtTransactiondetransaction.setEditable(false);
-		txtTransactiondetransaction.setText("Transaction: #DeTransaction");
-		txtTransactiondetransaction.setHorizontalAlignment(SwingConstants.CENTER);
-		Top.add(txtTransactiondetransaction, BorderLayout.NORTH);
-		txtTransactiondetransaction.setColumns(10);
+		txtTransaction = new JTextField();
+		txtTransaction.setText("Transaction #");
+		txtTransaction.setHorizontalAlignment(SwingConstants.CENTER);
+		txtTransaction.setForeground(Color.WHITE);
+		txtTransaction.setFont(new Font("Verdana", Font.PLAIN, 16));
+		txtTransaction.setEditable(false);
+		txtTransaction.setColumns(10);
+		txtTransaction.setBackground(new Color(25, 25, 112));
+		Top.add(txtTransaction, BorderLayout.NORTH);
 		
 		JPanel Left = new JPanel();
-		Left.setBackground(SystemColor.textHighlight);
+		Left.setBackground(new Color(255, 165, 0));
 		contentPane.add(Left, BorderLayout.WEST);
 		
-		JButton inventaireBouton = new JButton("Inventaire");
-		inventaireBouton.setForeground(Color.WHITE);
-		inventaireBouton.setFont(new Font("Verdana", Font.PLAIN, 16));
-		inventaireBouton.setBackground(Color.DARK_GRAY);
+		JButton reservationBtn = new JButton("R\u00E9servation");
+		reservationBtn.setForeground(Color.WHITE);
+		reservationBtn.setFont(new Font("Verdana", Font.PLAIN, 16));
+		reservationBtn.setBackground(Color.DARK_GRAY);
 		
-		JButton locationBouton_1_1_2_1 = new JButton("Location");
-		locationBouton_1_1_2_1.setForeground(Color.WHITE);
-		locationBouton_1_1_2_1.setFont(new Font("Verdana", Font.PLAIN, 16));
-		locationBouton_1_1_2_1.setBackground(Color.DARK_GRAY);
+		JButton locationBtn = new JButton("Location");
+		locationBtn.setForeground(Color.WHITE);
+		locationBtn.setFont(new Font("Verdana", Font.PLAIN, 16));
+		locationBtn.setBackground(Color.DARK_GRAY);
 		
-		JButton locationBouton_1_1_2_2 = new JButton("Location");
-		locationBouton_1_1_2_2.setForeground(Color.WHITE);
-		locationBouton_1_1_2_2.setFont(new Font("Verdana", Font.PLAIN, 16));
-		locationBouton_1_1_2_2.setBackground(Color.DARK_GRAY);
+		JButton btnBackToHome = new JButton("Retour");
+		btnBackToHome.setForeground(Color.WHITE);
+		btnBackToHome.setFont(new Font("Verdana", Font.PLAIN, 16));
+		btnBackToHome.setBackground(Color.DARK_GRAY);
+		btnBackToHome.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				frame.dispose();
+				LocationVehicule.rendreVisible(true);
+			}
+		});
 		
-		JButton locationBouton_1_1_2_3 = new JButton("Location");
-		locationBouton_1_1_2_3.setForeground(Color.WHITE);
-		locationBouton_1_1_2_3.setFont(new Font("Verdana", Font.PLAIN, 16));
-		locationBouton_1_1_2_3.setBackground(Color.DARK_GRAY);
+		JButton catalogueBtn = new JButton("Catalogue");
+		catalogueBtn.setForeground(Color.WHITE);
+		catalogueBtn.setFont(new Font("Verdana", Font.PLAIN, 16));
+		catalogueBtn.setBackground(Color.DARK_GRAY);
 		
-		JButton locationBouton_1_1_2_3_2 = new JButton("Retour");
-		locationBouton_1_1_2_3_2.setForeground(Color.WHITE);
-		locationBouton_1_1_2_3_2.setFont(new Font("Verdana", Font.PLAIN, 16));
-		locationBouton_1_1_2_3_2.setBackground(Color.DARK_GRAY);
+		JButton compteClientBtn = new JButton("Compte Client");
+		compteClientBtn.setForeground(Color.WHITE);
+		compteClientBtn.setFont(new Font("Verdana", Font.PLAIN, 16));
+		compteClientBtn.setBackground(Color.DARK_GRAY);
 		GroupLayout gl_Left = new GroupLayout(Left);
 		gl_Left.setHorizontalGroup(
 			gl_Left.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_Left.createSequentialGroup()
-					.addGap(5)
-					.addGroup(gl_Left.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(inventaireBouton, GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
-						.addComponent(locationBouton_1_1_2_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(locationBouton_1_1_2_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(locationBouton_1_1_2_3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(locationBouton_1_1_2_3_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addContainerGap(63, Short.MAX_VALUE))
+				.addGroup(Alignment.TRAILING, gl_Left.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_Left.createParallelGroup(Alignment.TRAILING)
+						.addComponent(locationBtn, GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+						.addComponent(reservationBtn, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 122, Short.MAX_VALUE)
+						.addComponent(compteClientBtn, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+						.addComponent(catalogueBtn, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+						.addComponent(btnBackToHome, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE))
+					.addContainerGap())
 		);
 		gl_Left.setVerticalGroup(
 			gl_Left.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_Left.createSequentialGroup()
-					.addGap(22)
-					.addComponent(locationBouton_1_1_2_1, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(inventaireBouton, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addGap(19)
+					.addComponent(locationBtn)
+					.addGap(18)
+					.addComponent(reservationBtn)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(locationBouton_1_1_2_2, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(locationBouton_1_1_2_3, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
-					.addComponent(locationBouton_1_1_2_3_2, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
+					.addComponent(catalogueBtn, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(compteClientBtn, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+					.addGap(168)
+					.addComponent(btnBackToHome, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+					.addGap(22))
 		);
 		Left.setLayout(gl_Left);
 		
+		
+		
 		JPanel Mid = new JPanel();
-		Mid.setBackground(new Color(255, 140, 0));
+		Mid.setLayout(null);
+		Mid.setBackground(SystemColor.textHighlight);
 		contentPane.add(Mid, BorderLayout.CENTER);
 		
-		txtForfaitType = new JTextField();
-		txtForfaitType.setFont(new Font("Verdana", Font.PLAIN, 16));
-		txtForfaitType.setText("Forfait: TYPE");
-		txtForfaitType.setEditable(false);
-		txtForfaitType.setColumns(10);
+		forfait_textField = new JTextField();
+		forfait_textField.setColumns(10);
+		forfait_textField.setBounds(167, 22, 156, 27);
+		Mid.add(forfait_textField);
+		
+		txtForfait = new JTextField();
+		txtForfait.setText("Forfait");
+		txtForfait.setHorizontalAlignment(SwingConstants.CENTER);
+		txtForfait.setForeground(Color.WHITE);
+		txtForfait.setFont(new Font("Verdana", Font.PLAIN, 16));
+		txtForfait.setEditable(false);
+		txtForfait.setColumns(10);
+		txtForfait.setBackground(Color.DARK_GRAY);
+		txtForfait.setBounds(26, 22, 131, 27);
+		Mid.add(txtForfait);
+		
+		JButton btnComptant = new JButton("Comptant");
+		btnComptant.setForeground(Color.WHITE);
+		btnComptant.setFont(new Font("Verdana", Font.PLAIN, 16));
+		btnComptant.setBackground(new Color(60, 179, 113));
+		btnComptant.setBounds(87, 310, 122, 29);
+		Mid.add(btnComptant);
+		
+		assurance_textField = new JTextField();
+		assurance_textField.setColumns(10);
+		assurance_textField.setBounds(167, 60, 156, 27);
+		Mid.add(assurance_textField);
 		
 		txtAssurance = new JTextField();
+		txtAssurance.setText("Assurance");
+		txtAssurance.setHorizontalAlignment(SwingConstants.CENTER);
+		txtAssurance.setForeground(Color.WHITE);
 		txtAssurance.setFont(new Font("Verdana", Font.PLAIN, 16));
-		txtAssurance.setText("ASSurance");
 		txtAssurance.setEditable(false);
 		txtAssurance.setColumns(10);
+		txtAssurance.setBackground(Color.DARK_GRAY);
+		txtAssurance.setBounds(26, 60, 131, 27);
+		Mid.add(txtAssurance);
 		
-		txtDureLocationjour = new JTextField();
-		txtDureLocationjour.setFont(new Font("Verdana", Font.PLAIN, 16));
-		txtDureLocationjour.setText("Dur\u00E9e location (jour");
-		txtDureLocationjour.setEditable(false);
-		txtDureLocationjour.setColumns(10);
+		duree_textField = new JTextField();
+		duree_textField.setColumns(10);
+		duree_textField.setBounds(167, 98, 156, 27);
+		Mid.add(duree_textField);
 		
-		txtLocationClassType = new JTextField();
-		txtLocationClassType.setFont(new Font("Verdana", Font.PLAIN, 16));
-		txtLocationClassType.setText("Location class: TYPE");
-		txtLocationClassType.setEditable(false);
-		txtLocationClassType.setColumns(10);
+		txtDure = new JTextField();
+		txtDure.setText("Dur\u00E9e");
+		txtDure.setHorizontalAlignment(SwingConstants.CENTER);
+		txtDure.setForeground(Color.WHITE);
+		txtDure.setFont(new Font("Verdana", Font.PLAIN, 16));
+		txtDure.setEditable(false);
+		txtDure.setColumns(10);
+		txtDure.setBackground(Color.DARK_GRAY);
+		txtDure.setBounds(26, 98, 131, 27);
+		Mid.add(txtDure);
+		
+		classe_textField = new JTextField();
+		classe_textField.setColumns(10);
+		classe_textField.setBounds(167, 136, 156, 27);
+		Mid.add(classe_textField);
+		
+		txtClasse = new JTextField();
+		txtClasse.setText("Classe");
+		txtClasse.setHorizontalAlignment(SwingConstants.CENTER);
+		txtClasse.setForeground(Color.WHITE);
+		txtClasse.setFont(new Font("Verdana", Font.PLAIN, 16));
+		txtClasse.setEditable(false);
+		txtClasse.setColumns(10);
+		txtClasse.setBackground(Color.DARK_GRAY);
+		txtClasse.setBounds(26, 136, 131, 27);
+		Mid.add(txtClasse);
+		
+		total_textField = new JTextField();
+		total_textField.setColumns(10);
+		total_textField.setBounds(167, 221, 156, 27);
+		Mid.add(total_textField);
 		
 		txtTotal = new JTextField();
-		txtTotal.setFont(new Font("Verdana", Font.PLAIN, 16));
 		txtTotal.setText("Total");
+		txtTotal.setHorizontalAlignment(SwingConstants.CENTER);
+		txtTotal.setForeground(Color.WHITE);
+		txtTotal.setFont(new Font("Verdana", Font.PLAIN, 16));
 		txtTotal.setEditable(false);
 		txtTotal.setColumns(10);
+		txtTotal.setBackground(Color.DARK_GRAY);
+		txtTotal.setBounds(26, 221, 131, 27);
+		Mid.add(txtTotal);
 		
-		txtPremierVersement = new JTextField();
-		txtPremierVersement.setFont(new Font("Verdana", Font.PLAIN, 16));
-		txtPremierVersement.setText("Premier versement \u00E0 payer");
-		txtPremierVersement.setEditable(false);
-		txtPremierVersement.setColumns(10);
+		forfaitTotalTxt = new JTextField();
+		forfaitTotalTxt.setColumns(10);
+		forfaitTotalTxt.setBounds(359, 22, 156, 27);
+		Mid.add(forfaitTotalTxt);
 		
-		txtTotalForfait = new JTextField();
-		txtTotalForfait.setText("forfaitTotal");
-		txtTotalForfait.setFont(new Font("Verdana", Font.PLAIN, 16));
-		txtTotalForfait.setEditable(false);
-		txtTotalForfait.setColumns(10);
+		assuranceTotalTxt = new JTextField();
+		assuranceTotalTxt.setColumns(10);
+		assuranceTotalTxt.setBounds(359, 60, 156, 27);
+		Mid.add(assuranceTotalTxt);
 		
-		txtTotalAssurance = new JTextField();
-		txtTotalAssurance.setText("assuranceTotal");
-		txtTotalAssurance.setFont(new Font("Verdana", Font.PLAIN, 16));
-		txtTotalAssurance.setEditable(false);
-		txtTotalAssurance.setColumns(10);
+		dureeTotalTxt = new JTextField();
+		dureeTotalTxt.setColumns(10);
+		dureeTotalTxt.setBounds(359, 98, 156, 27);
+		Mid.add(dureeTotalTxt);
 		
-		txtLocationtotal = new JTextField();
-		txtLocationtotal.setText("locationTotal");
-		txtLocationtotal.setFont(new Font("Verdana", Font.PLAIN, 16));
-		txtLocationtotal.setEditable(false);
-		txtLocationtotal.setColumns(10);
+		classeTotalTxt = new JTextField();
+		classeTotalTxt.setColumns(10);
+		classeTotalTxt.setBounds(359, 136, 156, 27);
+		Mid.add(classeTotalTxt);
 		
-		textField_3 = new JTextField();
-		textField_3.setText("Forfait: TYPE");
-		textField_3.setFont(new Font("Verdana", Font.PLAIN, 16));
-		textField_3.setEditable(false);
-		textField_3.setColumns(10);
+		totalTxt = new JTextField();
+		totalTxt.setColumns(10);
+		totalTxt.setBounds(359, 221, 156, 27);
+		Mid.add(totalTxt);
 		
-		txtTotaltotal = new JTextField();
-		txtTotaltotal.setText("totalTotal");
-		txtTotaltotal.setFont(new Font("Verdana", Font.PLAIN, 16));
-		txtTotaltotal.setEditable(false);
-		txtTotaltotal.setColumns(10);
+		versement_textfield = new JTextField();
+		versement_textfield.setText("Premier versement \u00E0 payer");
+		versement_textfield.setHorizontalAlignment(SwingConstants.CENTER);
+		versement_textfield.setForeground(Color.WHITE);
+		versement_textfield.setFont(new Font("Verdana", Font.PLAIN, 16));
+		versement_textfield.setEditable(false);
+		versement_textfield.setColumns(10);
+		versement_textfield.setBackground(Color.DARK_GRAY);
+		versement_textfield.setBounds(26, 259, 297, 27);
+		Mid.add(versement_textfield);
 		
-		txtPremierversementtotal = new JTextField();
-		txtPremierversementtotal.setText("premierVersementTotal");
-		txtPremierversementtotal.setFont(new Font("Verdana", Font.PLAIN, 16));
-		txtPremierversementtotal.setEditable(false);
-		txtPremierversementtotal.setColumns(10);
+		pVersementTotal = new JTextField();
+		pVersementTotal.setColumns(10);
+		pVersementTotal.setBounds(359, 259, 156, 27);
+		Mid.add(pVersementTotal);
 		
-		txtDurtotal = new JTextField();
-		txtDurtotal.setText("dur\u00E9LocationTotal");
-		txtDurtotal.setFont(new Font("Verdana", Font.PLAIN, 16));
-		txtDurtotal.setEditable(false);
-		txtDurtotal.setColumns(10);
+		JLabel lblNewLabel = new JLabel("=");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 19));
+		lblNewLabel.setBounds(333, 28, 46, 14);
+		Mid.add(lblNewLabel);
 		
-		JButton locationBouton_1_1_2_3_1 = new JButton("Comptant");
-		locationBouton_1_1_2_3_1.setForeground(new Color(255, 255, 0));
-		locationBouton_1_1_2_3_1.setFont(new Font("Verdana", Font.PLAIN, 16));
-		locationBouton_1_1_2_3_1.setBackground(new Color(0, 128, 0));
+		JLabel lblNewLabel_1 = new JLabel("=");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 19));
+		lblNewLabel_1.setBounds(333, 66, 46, 14);
+		Mid.add(lblNewLabel_1);
 		
-		JButton locationBouton_1_1_2_3_1_1 = new JButton("Interac");
-		locationBouton_1_1_2_3_1_1.setForeground(new Color(255, 255, 0));
-		locationBouton_1_1_2_3_1_1.setFont(new Font("Verdana", Font.PLAIN, 16));
-		locationBouton_1_1_2_3_1_1.setBackground(new Color(0, 128, 0));
+		JLabel lblNewLabel_2 = new JLabel("=");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 19));
+		lblNewLabel_2.setBounds(333, 104, 46, 14);
+		Mid.add(lblNewLabel_2);
 		
-		JButton locationBouton_1_1_2_3_1_2 = new JButton("Cr\u00E9dit");
-		locationBouton_1_1_2_3_1_2.setForeground(new Color(255, 255, 0));
-		locationBouton_1_1_2_3_1_2.setFont(new Font("Verdana", Font.PLAIN, 16));
-		locationBouton_1_1_2_3_1_2.setBackground(new Color(0, 128, 0));
-		GroupLayout gl_Mid = new GroupLayout(Mid);
-		gl_Mid.setHorizontalGroup(
-			gl_Mid.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_Mid.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_Mid.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_Mid.createSequentialGroup()
-							.addGroup(gl_Mid.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_Mid.createParallelGroup(Alignment.LEADING)
-									.addGroup(gl_Mid.createSequentialGroup()
-										.addGroup(gl_Mid.createParallelGroup(Alignment.LEADING)
-											.addComponent(txtForfaitType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-											.addComponent(txtAssurance, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-											.addComponent(txtDureLocationjour, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE)
-											.addComponent(txtPremierVersement, GroupLayout.PREFERRED_SIZE, 259, GroupLayout.PREFERRED_SIZE))
-										.addGap(16))
-									.addGroup(gl_Mid.createSequentialGroup()
-										.addComponent(txtLocationClassType)
-										.addPreferredGap(ComponentPlacement.RELATED)))
-								.addGroup(gl_Mid.createSequentialGroup()
-									.addComponent(txtTotal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addGap(119)))
-							.addGroup(gl_Mid.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_Mid.createParallelGroup(Alignment.LEADING, false)
-									.addComponent(txtLocationtotal, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE)
-									.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE)
-									.addComponent(txtTotaltotal, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE)
-									.addComponent(txtTotalAssurance, GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
-									.addComponent(txtTotalForfait)
-									.addComponent(txtPremierversementtotal)
-									.addGroup(Alignment.TRAILING, gl_Mid.createSequentialGroup()
-										.addPreferredGap(ComponentPlacement.RELATED)
-										.addComponent(locationBouton_1_1_2_3_1_2, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)))
-								.addComponent(txtDurtotal, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE))
-							.addGap(128))
-						.addGroup(gl_Mid.createSequentialGroup()
-							.addComponent(locationBouton_1_1_2_3_1, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
-							.addGap(31)
-							.addComponent(locationBouton_1_1_2_3_1_1, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap())
-		);
-		gl_Mid.setVerticalGroup(
-			gl_Mid.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_Mid.createSequentialGroup()
-					.addGap(29)
-					.addGroup(gl_Mid.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_Mid.createSequentialGroup()
-							.addComponent(txtForfaitType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(4)
-							.addComponent(txtAssurance, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_Mid.createSequentialGroup()
-							.addComponent(txtTotalForfait, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtTotalAssurance, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_Mid.createParallelGroup(Alignment.LEADING)
-						.addComponent(txtDurtotal, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtDureLocationjour, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_Mid.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_Mid.createParallelGroup(Alignment.BASELINE)
-							.addComponent(txtLocationClassType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_Mid.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtLocationtotal, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)))
-					.addGap(35)
-					.addGroup(gl_Mid.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_Mid.createSequentialGroup()
-							.addComponent(txtTotal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(txtPremierVersement, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_Mid.createSequentialGroup()
-							.addComponent(txtTotaltotal, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(txtPremierversementtotal, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)))
-					.addPreferredGap(ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-					.addGroup(gl_Mid.createParallelGroup(Alignment.LEADING)
-						.addComponent(locationBouton_1_1_2_3_1, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(locationBouton_1_1_2_3_1_1, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-						.addComponent(locationBouton_1_1_2_3_1_2, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-					.addGap(54))
-		);
-		Mid.setLayout(gl_Mid);
+		JLabel lblNewLabel_3 = new JLabel("=");
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 19));
+		lblNewLabel_3.setBounds(333, 142, 46, 14);
+		Mid.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("=");
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 19));
+		lblNewLabel_4.setBounds(333, 227, 46, 14);
+		Mid.add(lblNewLabel_4);
+		
+		JLabel lblNewLabel_4_1 = new JLabel("=");
+		lblNewLabel_4_1.setFont(new Font("Tahoma", Font.BOLD, 19));
+		lblNewLabel_4_1.setBounds(333, 268, 46, 14);
+		Mid.add(lblNewLabel_4_1);
+		
+		JButton btnInteract = new JButton("Interact");
+		btnInteract.setForeground(Color.WHITE);
+		btnInteract.setFont(new Font("Verdana", Font.PLAIN, 16));
+		btnInteract.setBackground(new Color(60, 179, 113));
+		btnInteract.setBounds(239, 310, 122, 29);
+		Mid.add(btnInteract);
+		
+		JButton btnCredit = new JButton("Cr\u00E9dit");
+		btnCredit.setForeground(Color.WHITE);
+		btnCredit.setFont(new Font("Verdana", Font.PLAIN, 16));
+		btnCredit.setBackground(new Color(60, 179, 113));
+		btnCredit.setBounds(393, 310, 122, 29);
+		Mid.add(btnCredit);
+		
+		money = new JTextField();
+		money.setColumns(10);
+		money.setBounds(508, 363, 156, 27);
+		Mid.add(money);
+		
+		btnComptant.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				cash++;
+				money.setText(String.valueOf(cash)+ " patate");
+				
+			}
+		});
 	}
 }
