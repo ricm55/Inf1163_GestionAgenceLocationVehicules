@@ -83,7 +83,20 @@ public class LocationControleur {
 
     }
     
-    public Paiement nouvelleLocationControleur(Vehicule vehicule, Client client, Forfait forfait, Date dateDebut, Date dateFin)
+    public boolean verificationExpirationPermisControleur(Client client,Vehicule vehicule)
+    {
+    	for (int classe = 0 ; classe <= client.getPermis().getClasse().size(); classe ++)
+    	{
+    		if (client.getPermis().getClasse().get(classe) == vehicule.getTypeDePermisNecessaire())
+        	
+        		return true;
+    	}
+    	
+    	return false;
+    }
+    
+    //date expiration permis,classe valide,  age
+    public double nouvelleLocationControleur(Vehicule vehicule, Client client, Forfait forfait, Date dateDebut, Date dateFin)
     {	
     	Location location = new Location(client, dateDebut, dateFin, forfait, vehicule);
     	this.client.setListeLocationEnPossessionClientControleur(location);

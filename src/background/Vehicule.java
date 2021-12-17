@@ -12,8 +12,9 @@ public class Vehicule
 	private double niveauReservoir;
 	private boolean disponible;
 	private ClasseDeVehicule classe;
+	private String typeDePermisNecessaire;
 	
-	public Vehicule(String marque, String modele, int annee, String couleur, int kilometrage, double niveauReservoir, boolean disponible, ClasseDeVehicule classe)
+	public Vehicule(String typeDePermisNecessaire,String marque, String modele, int annee, String couleur, int kilometrage, double niveauReservoir, boolean disponible, ClasseDeVehicule classe)
 	{
 		this.marque = marque;
 		this.modele = modele;
@@ -23,6 +24,7 @@ public class Vehicule
 		this.niveauReservoir = niveauReservoir;
 		this.disponible = disponible;
 		this.setClasse( classe );
+		this.typeDePermisNecessaire = typeDePermisNecessaire;
 	}
 	
 	@Override
@@ -115,4 +117,14 @@ public class Vehicule
     public void setClasse( ClasseDeVehicule classe ) {
         this.classe = classe;
     }
+
+	public String getTypeDePermisNecessaire() {
+		// TODO Auto-generated method stub
+		return this.typeDePermisNecessaire;
+	}
+	
+	public void setTypeDePermisNecessaire(String typeDePermisNecessaire)
+	{
+		this.typeDePermisNecessaire = typeDePermisNecessaire;
+	}
 }
