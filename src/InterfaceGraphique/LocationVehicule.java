@@ -36,12 +36,12 @@ import javax.swing.JCheckBox;
 import javax.swing.JRadioButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-public class VehiculeDispo extends JFrame {
+public class LocationVehicule extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtClasse;
 	private JTextField txtVehiculeDisponible;
-	private static VehiculeDispo frame;
+	private static LocationVehicule frame;
 	private JTextField txtModele;
 	private JTextField textField;
 	private JTextField textField_1;
@@ -53,7 +53,7 @@ public class VehiculeDispo extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frame = new VehiculeDispo();
+					frame = new LocationVehicule();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -65,7 +65,7 @@ public class VehiculeDispo extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VehiculeDispo() {
+	public LocationVehicule() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 875, 478);
 		contentPane = new JPanel();
