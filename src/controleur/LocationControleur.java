@@ -49,7 +49,7 @@ public class LocationControleur {
         
         //Classe du permi
         ClasseVehicule classe = permi.getClasse();
-        if( vehicule.getClasse() == permi.getClasse()) {
+        if( vehicule.getClasseDeVehicule() == permi.getClasse()) {
             classeVehiculeValide = true;
         }
         System.out.println(classeVehiculeValide);
@@ -72,7 +72,7 @@ public class LocationControleur {
     		Vehicule vehicule = catalogue.getListeDeVehicule().get(vehicules);
     		if(vehicule.getDisponible())
     		{
-    			if (vehicule.getClasse() == classe);
+    			if (vehicule.getClasseDeVehicule() == classe);
     			{
     				return vehicule;
     			}	
@@ -82,9 +82,11 @@ public class LocationControleur {
 
     }
     
-    public void nouvelleLocationControleur(Vehicule vehicule, Client client, Forfait forfait, Date dateDebut, Date dateFin)
-    {
-    	
-    	
+    public Location nouvelleLocationControleur(Vehicule vehicule, Client client, Forfait forfait, Date dateDebut, Date dateFin)
+    {	
+    	Location location = new Location(client, dateDebut, dateFin, forfait, vehicule);
+    	this.client.setListeLocationEnPossessionClientControleur(location);
+    	return location;
+    
     }
 }

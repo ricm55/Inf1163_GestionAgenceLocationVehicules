@@ -105,7 +105,7 @@ public class Vehicule
     /**
      * @return the classe
      */
-    public ClasseDeVehicule getClasse() {
+    public ClasseDeVehicule getClasseDeVehicule() {
         return classe;
     }
 

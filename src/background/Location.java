@@ -13,8 +13,8 @@ public class Location
 	private Forfait forfait;
 	private int kilometrageInitial;
 	private boolean estEnCours;
-	private Paiement premierVersement;
-	private Paiement deuxiemeVersement;
+	private double premierVersement;
+	private double deuxiemeVersement;
 	
 	public Location(Client client, Date dateDebut, Date dateFin, Forfait forfait, Vehicule vehicule)
 	{
@@ -26,14 +26,14 @@ public class Location
 		this.forfait = forfait;
 		this.kilometrageInitial = this.vehicule.getKilometrage();
 		this.estEnCours = true;
-		this.premierVersement = premierVersement;
+		this.premierVersement = definitionPremierVersement(vehicule);
 		this.deuxiemeVersement = deuxiemeVersement;
 	
 	}
 	
-	public Paiement setPremierVersement() 
+	public Paiement setPremierVersement(int premierVersement ) 
 	{
-		return null;
+		return premierVersement;
 
 	}
 	
@@ -42,6 +42,31 @@ public class Location
 
 		this.deuxiemeVersement.setMontant(deuxiemeVersement);
 
+	}
+	
+	public void definitionPremierVersement(Vehicule vehicule)
+	{
+		switch (vehicule.getClasseDeVehicule().getClasse())
+		{
+		
+		case ECONOMIQUE:
+			this.setPremierVersement(61);
+			break;
+		case MOYENNE:
+			this.setPremierVersement(72);
+			break;
+		case CONFORT:
+			this.setPremierVersement(83);
+			break;
+		case LUXE:
+			this.setPremierVersement(114);
+			break;
+		case UTILITAIRE:
+			this.setPremierVersement(99);
+			break;
+		default:
+			break;
+		}
 	}
 	
 	public Paiement getPremierVersement()
