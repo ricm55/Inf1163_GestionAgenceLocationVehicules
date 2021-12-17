@@ -3,6 +3,7 @@ package controleur;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.List;
 
 import background.CatalogueVehicule;
 import background.ClasseDeVehicule;
@@ -61,9 +62,11 @@ public class LocationControleur {
         
     }
     
+    
     public Vehicule rechercherInventaireLocationControleur(ClasseDeVehicule classe, Date dateDebut, Date dateFin, CatalogueVehicule catalogue)
     {	
-    	//consulter inventaire
+    	//consulter inventaire et return le vehicule disponible ayant la classe correspondante
+    	//Return null si vehicule 0 valide
     	for (int vehicules = 0; vehicules <= catalogue.getListeDeVehicule().size(); vehicules ++)
     	{
     		Vehicule vehicule = catalogue.getListeDeVehicule().get(vehicules);
@@ -76,10 +79,12 @@ public class LocationControleur {
     		}  		
     	}
     	return null;
-    	
 
+    }
+    
+    public void nouvelleLocationControleur(Vehicule vehicule, Client client, Forfait forfait, Date dateDebut, Date dateFin)
+    {
     	
     	
-    	//Verification
     }
 }

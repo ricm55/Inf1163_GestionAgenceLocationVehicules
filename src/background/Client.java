@@ -20,6 +20,7 @@ public class Client
 	private boolean assurancePersonnelle;
 	private PermisDeConduire permis;
 	private List<Reservation> listeReservationEnPossession;
+	private List<Location> listeLocationEnPossession;
 
 
 	public Client(int id, String nom, String prenom, String numTelephone, LocalDate dateCreation,String courriel,Date dateDeNaissance, String adresse, boolean assurancePersonnelle)
@@ -40,6 +41,23 @@ public class Client
 	public String getNom()
 	{
 		return nom;
+	}
+	
+	
+	
+	public boolean enleverLocation(Location location)
+	{
+		return this.listeLocationEnPossession.remove(location);
+	}
+	
+	public List<Location> getListeLocationEnPossession()
+	{
+		return this.listeLocationEnPossession;
+	}
+	
+	public void setListeLocationEnPossession(Location location)
+	{
+		this.listeLocationEnPossession.add(location);
 	}
 	
 	public boolean enleverReservation(Reservation reservation)

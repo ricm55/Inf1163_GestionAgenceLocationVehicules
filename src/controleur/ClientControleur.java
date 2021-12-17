@@ -40,6 +40,22 @@ public class ClientControleur  {
 		
 	}
 	
+	public List<Location> getListeLocationEnPossessionClientControleur()
+	{
+		return this.client.getListeLocationEnPossession();
+	}
+	
+	public void setListeLocationEnPossessionClientControleur(Location location)
+	{
+		this.client.setListeLocationEnPossession(location);
+	}
+	
+	public boolean enleverLocationClientControleur(Location location)
+	{
+		return this.client.enleverLocation(location);
+		
+	}
+	
 	public List<Reservation> getListeReservationEnPossessionClientControleur()
 	{
 		return this.client.getListeReservationEnPossession();
