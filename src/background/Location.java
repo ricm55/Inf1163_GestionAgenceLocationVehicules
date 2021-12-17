@@ -65,17 +65,18 @@ public class Location
 			return this.setPremierVersement(99.0);
 			
 		default:
-			return null;
+			break;
 		}
+		return 0;
 		
 	}
 	
-	public Paiement getPremierVersement()
+	public double getPremierVersement()
 	{
 		return this.premierVersement;
 	}
 	
-	public Paiement getDeuxiemeVersement()
+	public double getDeuxiemeVersement()
 	{
 		return this.deuxiemeVersement;
 	}

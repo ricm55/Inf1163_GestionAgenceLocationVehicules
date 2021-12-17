@@ -45,6 +45,7 @@ public class LocationVehicule extends JFrame {
 	private JTextField txtModele;
 	private JTextField textField;
 	private JTextField textField_1;
+	
 
 	/**
 	 * Launch the application.
@@ -55,6 +56,7 @@ public class LocationVehicule extends JFrame {
 				try {
 					frame = new LocationVehicule();
 					frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -143,6 +145,15 @@ public class LocationVehicule extends JFrame {
 		btnEnvoyer.setBackground(new Color(60, 179, 113));
 		btnEnvoyer.setBounds(517, 362, 173, 29);
 		Mid.add(btnEnvoyer);
+		btnEnvoyer.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				frame.dispose();
+				Transaction.launch();
+			}
+
+		});
 		
 		Icon icon = new ImageIcon("editButton.jpg");
 		
@@ -320,5 +331,11 @@ public class LocationVehicule extends JFrame {
 		txtVehiculeDisponible.setColumns(10);
 		txtVehiculeDisponible.setBackground(new Color(25, 25, 112));
 		contentPane.add(txtVehiculeDisponible, BorderLayout.NORTH);
+		
+		
+	}
+	
+	public static void rendreVisible(boolean visible) {
+		 frame.setVisible(visible);
 	}
 }
