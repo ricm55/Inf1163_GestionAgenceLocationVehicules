@@ -12,11 +12,13 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import InterfaceGraphique.InterfaceAccueil.Action;
 import controleur.ClientControleur;
 
 public class RechercheClient extends JFrame
@@ -29,13 +31,13 @@ public class RechercheClient extends JFrame
 	private JTextField txtNom;
 	private JTextField txtContinuerAvecCe;
 	private static RechercheClient frame;
-	private static ClientControleur clientControl;
-	private static LocationVehicule vd;
+	private static ClientControleur controleurClient;
+	private static Action actionEnCours;
 
 	/**
 	 * Launch the frame.
 	 */
-	public static void launch()
+	public static void launch(Action action)
 	{
 		EventQueue.invokeLater(new Runnable()
 		{
@@ -45,6 +47,7 @@ public class RechercheClient extends JFrame
 				{
 					frame = new RechercheClient();
 					frame.setVisible(true);
+					actionEnCours = action;
 				} catch (Exception e)
 				{
 					e.printStackTrace();
@@ -161,10 +164,22 @@ public class RechercheClient extends JFrame
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				LocationVehicule vd = new LocationVehicule();
 				frame.dispose();
-				vd.launch();
-
+				
+				switch(actionEnCours)
+				{
+					case LOCATION:
+						LocationVehicule.launch();
+						break;
+					case RESERVATION:
+						//interface reservation
+						break;
+					case VOIR_COMPTE_CLIENT:
+						//interface compte client
+						break;
+					default:
+						break;
+				}
 			}
 		});
 		btnOui.setForeground(Color.WHITE);
@@ -192,10 +207,18 @@ public class RechercheClient extends JFrame
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				btnOui.setEnabled(true);
-				btnNon.setEnabled(true);
+				controleurClient = new ClientControleur(textTelephone.getText());
 				
-				
+				if(controleurClient.getClientControleur() == null)
+				{
+					JOptionPane.showMessageDialog(null, "Ce num\u00E9ro n'est pas li\u00E9 \u00E0 un compte client.");
+				}
+				else
+				{
+					textTelephone.setText(controleurClient.getNomClient() + ", " + controleurClient.getPrenomClient());
+					btnOui.setEnabled(true);
+					btnNon.setEnabled(true);
+				}
 			}
 
 		});

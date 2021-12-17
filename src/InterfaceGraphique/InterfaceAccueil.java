@@ -26,12 +26,13 @@ import javax.swing.JList;
 
 public class InterfaceAccueil extends JFrame
 {
-
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField locationAccueil;
 	private static InterfaceAccueil frame;
 	private JTextField txtLocationEnCours;
+	
+	public enum Action {LOCATION, RESERVATION, CONSULTER_INVENTAIRE, VOIR_COMPTE_CLIENT}
 
 	/**
 	 * Launch the frame.
@@ -94,7 +95,7 @@ public class InterfaceAccueil extends JFrame
 			public void actionPerformed(ActionEvent e)
 			{
 				frame.dispose();
-				RechercheClient.launch();
+				RechercheClient.launch(Action.LOCATION);
 			}
 		});
 		btnLocation.setForeground(Color.WHITE);
@@ -104,17 +105,29 @@ public class InterfaceAccueil extends JFrame
 		/**
 		 * Bouton de reservation
 		 */
-		JButton btnRservation = new JButton("R\u00E9servation");
-		btnRservation.setForeground(Color.WHITE);
-		btnRservation.setFont(new Font("Verdana", Font.PLAIN, 16));
-		btnRservation.setBackground(Color.DARK_GRAY);
+		JButton btnReservation = new JButton("R\u00E9servation");
+		btnReservation.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				frame.dispose();
+				RechercheClient.launch(Action.RESERVATION);
+			}
+		});
+		btnReservation.setForeground(Color.WHITE);
+		btnReservation.setFont(new Font("Verdana", Font.PLAIN, 16));
+		btnReservation.setBackground(Color.DARK_GRAY);
 
+		/**
+		 * Bouton catalogue
+		 */
 		JButton btnCatalogue = new JButton("Catalogue");
 		btnCatalogue.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				
+				frame.dispose();
+				RechercheClient.launch(Action.CONSULTER_INVENTAIRE);
 			}
 		});
 		btnCatalogue.setForeground(Color.WHITE);
@@ -129,12 +142,14 @@ public class InterfaceAccueil extends JFrame
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				
+				frame.dispose();
+				RechercheClient.launch(Action.VOIR_COMPTE_CLIENT);
 			}
 		});
 		btnCompteClient.setForeground(Color.WHITE);
 		btnCompteClient.setFont(new Font("Verdana", Font.PLAIN, 16));
 		btnCompteClient.setBackground(Color.DARK_GRAY);
+		
 		GroupLayout gl_leftPanel = new GroupLayout(leftPanel);
 		gl_leftPanel.setHorizontalGroup(gl_leftPanel.createParallelGroup(Alignment.TRAILING).addGroup(gl_leftPanel
 				.createSequentialGroup()
@@ -143,7 +158,7 @@ public class InterfaceAccueil extends JFrame
 								GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE))
 						.addGroup(gl_leftPanel.createSequentialGroup().addContainerGap().addComponent(btnLocation,
 								GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))
-						.addGroup(gl_leftPanel.createSequentialGroup().addContainerGap().addComponent(btnRservation,
+						.addGroup(gl_leftPanel.createSequentialGroup().addContainerGap().addComponent(btnReservation,
 								GroupLayout.PREFERRED_SIZE, 161, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_leftPanel.createSequentialGroup().addContainerGap().addComponent(btnCatalogue,
 								GroupLayout.PREFERRED_SIZE, 161, GroupLayout.PREFERRED_SIZE))
@@ -153,7 +168,7 @@ public class InterfaceAccueil extends JFrame
 		gl_leftPanel.setVerticalGroup(gl_leftPanel.createParallelGroup(Alignment.LEADING).addGroup(gl_leftPanel
 				.createSequentialGroup().addGap(20)
 				.addComponent(btnLocation, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE).addGap(18)
-				.addComponent(btnRservation, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE).addGap(18)
+				.addComponent(btnReservation, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE).addGap(18)
 				.addComponent(btnCatalogue, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE).addGap(18)
 				.addComponent(btnCompteClient, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE).addGap(143)
 				.addComponent(btnDeconnextion, GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE).addContainerGap()));

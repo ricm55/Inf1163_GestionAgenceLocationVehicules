@@ -22,7 +22,7 @@ import java.awt.event.ActionEvent;
 public class VerifierInformationClient extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtVeuillezVrifierQue;
+	private JTextField txtVeuillezVerifierQue;
 
 	/**
 	 * Launch the application.
@@ -55,13 +55,13 @@ public class VerifierInformationClient extends JFrame {
 		contentPane.add(up, BorderLayout.NORTH);
 		up.setLayout(new BoxLayout(up, BoxLayout.X_AXIS));
 		
-		txtVeuillezVrifierQue = new JTextField();
-		txtVeuillezVrifierQue.setHorizontalAlignment(SwingConstants.CENTER);
-		txtVeuillezVrifierQue.setEditable(false);
-		txtVeuillezVrifierQue.setFont(new Font("Verdana", Font.PLAIN, 16));
-		txtVeuillezVrifierQue.setText("Veuillez v\u00E9rifier que les informations du client sont exactes");
-		txtVeuillezVrifierQue.setColumns(10);
-		up.add(txtVeuillezVrifierQue);
+		txtVeuillezVerifierQue = new JTextField();
+		txtVeuillezVerifierQue.setHorizontalAlignment(SwingConstants.CENTER);
+		txtVeuillezVerifierQue.setEditable(false);
+		txtVeuillezVerifierQue.setFont(new Font("Verdana", Font.PLAIN, 16));
+		txtVeuillezVerifierQue.setText("Veuillez v\u00E9rifier que les informations du client sont exactes");
+		txtVeuillezVerifierQue.setColumns(10);
+		up.add(txtVeuillezVerifierQue);
 		
 		JPanel left = new JPanel();
 		contentPane.add(left, BorderLayout.WEST);
