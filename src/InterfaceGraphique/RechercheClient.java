@@ -165,8 +165,9 @@ public class RechercheClient extends JFrame
 			public void actionPerformed(ActionEvent e)
 			{
 				frame.dispose();
+				VerifierInformationClient.launch(actionEnCours, controleurClient);
 				
-				switch(actionEnCours)
+				/*switch(actionEnCours)
 				{
 					case LOCATION:
 						LocationVehicule.launch();
@@ -179,7 +180,7 @@ public class RechercheClient extends JFrame
 						break;
 					default:
 						break;
-				}
+				}*/
 			}
 		});
 		btnOui.setForeground(Color.WHITE);
@@ -209,7 +210,7 @@ public class RechercheClient extends JFrame
 			{
 				controleurClient = new ClientControleur(textTelephone.getText());
 				
-				if(controleurClient.getClientControleur() == null)
+				if(controleurClient.getClient() == null)
 				{
 					JOptionPane.showMessageDialog(null, "Ce num\u00E9ro n'est pas li\u00E9 \u00E0 un compte client.");
 				}

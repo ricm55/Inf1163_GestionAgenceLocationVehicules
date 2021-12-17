@@ -14,7 +14,7 @@ public class ReservationControleur {
 	
 	public boolean annulerReservationControleur(Reservation reservation)
 	{
-		return this.client.enleverReservationClientControleur(reservation);
+		return this.client.enleverReservation(reservation);
 
 	}
 	

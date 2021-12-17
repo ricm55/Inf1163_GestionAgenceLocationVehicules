@@ -93,7 +93,7 @@ public class LocationControleur {
     {	
     	if (this.verificationExpirationPermisControleur(client, vehicule) && this.VerificationValidePermisConduire(client)) {
     		Location location = new Location(client, dateDebut, dateFin, forfait, vehicule);
-        	this.client.setListeLocationEnPossessionClientControleur(location);
+        	this.client.setListeLocationEnPossession(location);
         	
         	return location.getPremierVersement();
     	}
