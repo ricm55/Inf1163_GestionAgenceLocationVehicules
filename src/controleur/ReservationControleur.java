@@ -12,10 +12,12 @@ public class ReservationControleur {
 		this.client = new ClientControleur(nom, telephone);
 	}
 	
-	public void annulerReservationControleur(Reservation reservation)
+	public boolean annulerReservationControleur(Reservation reservation)
 	{
-		this.client.enleverReservation(reservation);
+		return this.client.enleverReservationClientControleur(reservation);
+
 	}
+	
 	
 	
 	

@@ -34,6 +34,7 @@ public class Client
 		this.setCourriel( courriel );
 		this.setAssurancePersonnelle(assurancePersonnelle);
 		List<Reservation> listeReservationEnPossession = new ArrayList<Reservation>();
+		List <Location> listeLocationEnPossession = new ArrayList<Location>();
 	}
 	
 	public String getNom()
@@ -41,9 +42,9 @@ public class Client
 		return nom;
 	}
 	
-	public void enleverReservation(Reservation reservation)
+	public boolean enleverReservation(Reservation reservation)
 	{
-		this.listeReservationEnPossession.remove(reservation);
+		return this.listeReservationEnPossession.remove(reservation);
 	}
 	
 	public List<Reservation> getListeReservationEnPossession()

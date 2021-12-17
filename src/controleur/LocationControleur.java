@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 
+import background.CatalogueVehicule;
+import background.ClasseDeVehicule;
 import background.Client;
 import background.Forfait;
 import background.Location;
@@ -11,11 +13,15 @@ import background.PermisDeConduire;
 import background.Vehicule;
 import constante.ClasseVehicule;
 
-public class CreerLocationControleur {
+public class LocationControleur {
     private Location location;
+    private ClientControleur client;
     
-    public CreerLocationControleur(Vehicule vehicule, Client client, Forfait forfait) throws Exception {
+    public LocationControleur(String telephone) throws Exception {
         
+    	this.client = new ClientControleur(telephone);
+    	
+    	
         //Creer location
         PermisDeConduire permiClient = client.getPermis();
         
@@ -53,5 +59,27 @@ public class CreerLocationControleur {
     
     public void premierPaiement() {
         
+    }
+    
+    public Vehicule rechercherInventaireLocationControleur(ClasseDeVehicule classe, Date dateDebut, Date dateFin, CatalogueVehicule catalogue)
+    {	
+    	//consulter inventaire
+    	for (int vehicules = 0; vehicules <= catalogue.getListeDeVehicule().size(); vehicules ++)
+    	{
+    		Vehicule vehicule = catalogue.getListeDeVehicule().get(vehicules);
+    		if(vehicule.getDisponible())
+    		{
+    			if (vehicule.getClasse() == classe);
+    			{
+    				return vehicule;
+    			}	
+    		}  		
+    	}
+    	return null;
+    	
+
+    	
+    	
+    	//Verification
     }
 }
