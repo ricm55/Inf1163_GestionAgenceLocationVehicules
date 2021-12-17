@@ -53,9 +53,7 @@ public class Location
 	{
 		return this.deuxiemeVersement;
 	}
-	
-	
-	
+
 	public int getDuree() 
 	{
 		return this.duree;
