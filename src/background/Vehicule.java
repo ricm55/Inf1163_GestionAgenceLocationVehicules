@@ -11,9 +11,9 @@ public class Vehicule
 	private int kilometrage;
 	private double niveauReservoir;
 	private boolean disponible;
-	private ClasseVehicule classe;
+	private ClasseDeVehicule classe;
 	
-	public Vehicule(String marque, String modele, int annee, String couleur, int kilometrage, double niveauReservoir, boolean disponible, ClasseVehicule classe)
+	public Vehicule(String marque, String modele, int annee, String couleur, int kilometrage, double niveauReservoir, boolean disponible, ClasseDeVehicule classe)
 	{
 		this.marque = marque;
 		this.modele = modele;
@@ -105,14 +105,14 @@ public class Vehicule
     /**
      * @return the classe
      */
-    public ClasseVehicule getClasse() {
+    public ClasseDeVehicule getClasseDeVehicule() {
         return classe;
     }
 
     /**
      * @param classe the classe to set
      */
-    public void setClasse( ClasseVehicule classe ) {
+    public void setClasse( ClasseDeVehicule classe ) {
         this.classe = classe;
     }
 }

@@ -9,13 +9,15 @@ public class ReservationControleur {
 	
 	public ReservationControleur(String nom, String telephone) 
 	{
-		this.client = new ClientControleur(nom, telephone);
+		this.client = new ClientControleur(telephone);
 	}
 	
-	public void annulerReservationControleur(Reservation reservation)
+	public boolean annulerReservationControleur(Reservation reservation)
 	{
-		this.client.enleverReservation(reservation);
+		return this.client.enleverReservationClientControleur(reservation);
+
 	}
+	
 	
 	
 	

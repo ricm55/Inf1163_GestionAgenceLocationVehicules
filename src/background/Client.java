@@ -20,6 +20,7 @@ public class Client
 	private boolean assurancePersonnelle;
 	private PermisDeConduire permis;
 	private List<Reservation> listeReservationEnPossession;
+	private List<Location> listeLocationEnPossession;
 
 
 	public Client(int id, String nom, String prenom, String numTelephone, LocalDate dateCreation,String courriel,Date dateDeNaissance, String adresse, boolean assurancePersonnelle)
@@ -34,6 +35,7 @@ public class Client
 		this.setCourriel( courriel );
 		this.setAssurancePersonnelle(assurancePersonnelle);
 		List<Reservation> listeReservationEnPossession = new ArrayList<Reservation>();
+		List <Location> listeLocationEnPossession = new ArrayList<Location>();
 	}
 	
 	public String getNom()
@@ -41,9 +43,26 @@ public class Client
 		return nom;
 	}
 	
-	public void enleverReservation(Reservation reservation)
+	
+	
+	public boolean enleverLocation(Location location)
 	{
-		this.listeReservationEnPossession.remove(reservation);
+		return this.listeLocationEnPossession.remove(location);
+	}
+	
+	public List<Location> getListeLocationEnPossession()
+	{
+		return this.listeLocationEnPossession;
+	}
+	
+	public void setListeLocationEnPossession(Location location)
+	{
+		this.listeLocationEnPossession.add(location);
+	}
+	
+	public boolean enleverReservation(Reservation reservation)
+	{
+		return this.listeReservationEnPossession.remove(reservation);
 	}
 	
 	public List<Reservation> getListeReservationEnPossession()

@@ -9,17 +9,16 @@ import background.Location;
 import background.PermisDeConduire;
 import background.Reservation;
 
-public class ClientControleur {
+public class ClientControleur  {
 
 	private Client client;
 	
-	public ClientControleur(String nom, String telephone) {
+	public ClientControleur(String telephone) {
+		this.client = this.identifierClient(telephone);
 		
-		
-		this.client = this.identifierClient(nom, telephone);
 	}
 	
-	public boolean rechercheClient(String nom, String telephone)
+	public boolean rechercheClient(String telephone)
 	{
 		//if client exist
 		return true;
@@ -28,9 +27,9 @@ public class ClientControleur {
 	}
 	//Si le client existe, return le client
 	//Si le client n'existe pas, return null (devrait afficher un message d'erreur)
-	public Client identifierClient(String nom, String telephone)
+	public Client identifierClient(String telephone)
 	{
-		if (this.rechercheClient(nom, telephone) == true)
+		if (this.rechercheClient(telephone) == true)
 		{
 			return client;
 		}
@@ -38,6 +37,22 @@ public class ClientControleur {
 		{
 			return null;
 		}
+		
+	}
+	
+	public List<Location> getListeLocationEnPossessionClientControleur()
+	{
+		return this.client.getListeLocationEnPossession();
+	}
+	
+	public void setListeLocationEnPossessionClientControleur(Location location)
+	{
+		this.client.setListeLocationEnPossession(location);
+	}
+	
+	public boolean enleverLocationClientControleur(Location location)
+	{
+		return this.client.enleverLocation(location);
 		
 	}
 	
@@ -51,9 +66,10 @@ public class ClientControleur {
 		this.client.setListeReservationEnPossession(reservation);
 	}
 	
-	public void enleverReservationClientControleur(Reservation reservation)
+	public boolean enleverReservationClientControleur(Reservation reservation)
 	{
-		this.client.enleverReservation(reservation);
+		return this.client.enleverReservation(reservation);
+		
 	}
 	
 	public Client getClientControleur()
@@ -64,6 +80,7 @@ public class ClientControleur {
 	public void setPrenomClient(String prenom)
 	{
 		this.client.setPrenom(prenom);
+			
 	}
 	
 	public String getPrenomClient()
@@ -71,7 +88,7 @@ public class ClientControleur {
 		return this.client.getPrenom();
 	}
 	
-	public void setCourrrielClient(String courriel)
+	public void setCourrielClient(String courriel)
 	{
 		this.client.setCourriel(courriel);
 	}
