@@ -32,26 +32,6 @@ public class LocationControleur {
         //Mettre la location dans la db
     }
     
-    public boolean VerificationExpirationPermisConduire(Client client) {
-        
-        //Permi valide
-        LocalDate ld = java.time.LocalDate.now();
-        ZoneId defaultZoneId = ZoneId.systemDefault();
-        Date todayDate = Date.from(ld.atStartOfDay(defaultZoneId).toInstant());
-        
-        boolean permiValideDate = client.getPermis().getDateExpiration().before( todayDate );
-        
-        if (permiValideDate == true) 
-        {
-        	return true;
-        }
-        return false;
-        
-    }
-    
- 
-    
-    
     public Vehicule rechercherInventaireLocationControleur(ClasseDeVehicule classe, Date dateDebut, Date dateFin, CatalogueVehicule catalogue)
     {	
     	//consulter inventaire et return le vehicule disponible ayant la classe correspondante
@@ -83,25 +63,6 @@ public class LocationControleur {
     	return false;
     }
     
-    public boolean verificationAgeClient(Client client)
-    {
-    	if (this.client.getAge()  < 25)
-    	{
-    		return false;
-    	}
-    	return true;
-    }
-    
-    public boolean verificationGeneraleClient(Client client, Vehicule vehicule)
-    {
-    	if (this.verificationValidePermisControleur(client, vehicule) && this.VerificationExpirationPermisConduire(client) && this.verificationAgeClient(client))
-    	{
-    		return true;
-    	}
-    	return false;
-    	
-    }
-    
     private double paiement(double paiement, double versement)
     {
     	double difference = 0.0;
@@ -117,7 +78,7 @@ public class LocationControleur {
     //date expiration permis,classe valide,  age
     public double nouvelleLocationControleur(Vehicule vehicule, Client client, Forfait forfait, Date dateDebut, Date dateFin)
     {	
-    	this.verificationGeneraleClient(client, vehicule);
+    	this.verificationValidePermisControleur(client, vehicule);
     	Location location = new Location(client, dateDebut, dateFin, forfait, vehicule);
         this.client.setListeLocationEnPossession(location);
         return location.getPremierVersement();
