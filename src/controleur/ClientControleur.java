@@ -44,7 +44,7 @@ public class ClientControleur
 
 	public boolean verificationExpirationPermisConduire()
 	{
-		// Permi valide
+		// Permis valide
 		LocalDate ld = java.time.LocalDate.now();
 		ZoneId defaultZoneId = ZoneId.systemDefault();
 		Date todayDate = Date.from(ld.atStartOfDay(defaultZoneId).toInstant());
