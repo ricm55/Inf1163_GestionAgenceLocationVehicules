@@ -35,7 +35,8 @@ public class ClientControleur
 		if (this.rechercheClient(telephone) == true)
 		{
 			return client;
-		} else
+		} 
+		else
 		{
 			return null;
 		}
