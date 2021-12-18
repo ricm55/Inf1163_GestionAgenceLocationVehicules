@@ -12,3 +12,5 @@ insert into ClassePermis values
  (?,"CLASSE6D"),
  (?,"CLASSE6E"),
  (?,"CLASSE8");
+
+ 

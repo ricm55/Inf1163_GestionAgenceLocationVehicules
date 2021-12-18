@@ -16,7 +16,7 @@ import background.Vehicule;
 import constante.ClasseVehicule;
 
 public class LocationControleur {
-    private Location location;
+    
     private ClientControleur client;
     
     public LocationControleur(String telephone) throws Exception {
@@ -32,7 +32,7 @@ public class LocationControleur {
         //Mettre la location dans la db
     }
     
-    public boolean VerificationValidePermisConduire(Client client) {
+    public boolean VerificationExpirationPermisConduire(Client client) {
         
         //Permi valide
         LocalDate ld = java.time.LocalDate.now();
@@ -73,7 +73,7 @@ public class LocationControleur {
 
     }
     
-    public boolean verificationExpirationPermisControleur(Client client,Vehicule vehicule)
+    public boolean verificationValidePermisControleur(Client client,Vehicule vehicule)
     {
     	for (int classe = 0 ; classe <= client.getPermis().getClasse().size(); classe ++)
     	{
@@ -85,19 +85,46 @@ public class LocationControleur {
     	return false;
     }
     
+    public boolean verificationAgeClient(Client client)
+    {
+    	if (this.client.getAge()  < 25)
+    	{
+    		return false;
+    	}
+    	return true;
+    }
     
-   
+    public boolean verificationGeneraleClient(Client client, Vehicule vehicule)
+    {
+    	if (this.verificationValidePermisControleur(client, vehicule) && this.VerificationExpirationPermisConduire(client) && this.verificationAgeClient(client))
+    	{
+    		return true;
+    	}
+    	return false;
+    	
+    }
+    
+    private double paiementPremierVersement(double paiement, double versement)
+    {
+    	double difference = 0.0;
+    	if (versement > paiement)
+    	{
+    		difference = (paiement - versement) * -1;
+    		
+    	}
+    	return difference;
+    }
+    
     
     //date expiration permis,classe valide,  age
     public double nouvelleLocationControleur(Vehicule vehicule, Client client, Forfait forfait, Date dateDebut, Date dateFin)
     {	
-    	if (this.verificationExpirationPermisControleur(client, vehicule) && this.VerificationValidePermisConduire(client)) {
-    		Location location = new Location(client, dateDebut, dateFin, forfait, vehicule);
-        	this.client.setListeLocationEnPossession(location);
-        	
-        	return location.getPremierVersement();
-    	}
-    	return 0.0;
+    	this.verificationGeneraleClient(client, vehicule);
+    	Location location = new Location(client, dateDebut, dateFin, forfait, vehicule);
+        this.client.setListeLocationEnPossession(location);
+        return location.getPremierVersement();
     	
     }
+    
+    
 }
