@@ -3,7 +3,7 @@ package background;
 public class RetourLocation {
 	
 	private Location location;
-	private Paiement deuxiemeVersement;
+	private double deuxiemeVersement;
 	private double dommages;
 	
 
@@ -14,6 +14,7 @@ public class RetourLocation {
 		this.dommages = 0.0;
 		
 	}
+	/*
 	
 	public void mettreAJourVehicule(double niveauReservoir, int kilometrage, double dommages) 
 	{
@@ -23,17 +24,23 @@ public class RetourLocation {
 		this.dommages = this.dommages + dommages;
 		
 	}
+	*/
 	
-	public Paiement getDeuxiemeVersement() 
+	public void setDeuxiemeVersement(double versement)
+	{
+		this.deuxiemeVersement = versement;
+	}
+	
+	public double getDeuxiemeVersement() 
 	{
 		return this.deuxiemeVersement;
 	}
 	
 	public boolean payer(double montant)
 	{
-		this.deuxiemeVersement.setMontant(this.deuxiemeVersement.getMontant() - montant);
+		this.setDeuxiemeVersement(this.deuxiemeVersement - montant);
 		
-		if (this.deuxiemeVersement.getMontant() > 0) 
+		if (this.deuxiemeVersement > 0) 
 		{
 			
 			return false;
@@ -49,9 +56,9 @@ public class RetourLocation {
 	
 	public double retourMonnaie()
 	{
-		if (this.deuxiemeVersement.getMontant() < 0 )
+		if (this.getDeuxiemeVersement() < 0 )
 		{
-			return this.deuxiemeVersement.getMontant() * -1;
+			return this.getDeuxiemeVersement() * -1;
 		}
 		else 
 		{

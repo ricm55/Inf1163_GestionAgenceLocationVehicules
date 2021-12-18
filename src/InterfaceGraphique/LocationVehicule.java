@@ -42,7 +42,7 @@ public class LocationVehicule extends JFrame {
 	private JTextField txtClasse;
 	private JTextField txtVehiculeDisponible;
 	private static LocationVehicule frame;
-	private JTextField txtModele;
+	private JTextField txtVehicule;
 	private JTextField textField;
 	private JTextField textField_1;
 	
@@ -79,47 +79,66 @@ public class LocationVehicule extends JFrame {
 		Left.setBackground(new Color(255, 165, 0));
 		contentPane.add(Left, BorderLayout.WEST);
 		
-		JButton btnNewButton_1 = new JButton("Location");
-		btnNewButton_1.setForeground(Color.WHITE);
-		btnNewButton_1.setFont(new Font("Verdana", Font.PLAIN, 16));
-		btnNewButton_1.setBackground(Color.DARK_GRAY);
-		
-		JButton btnNewButton = new JButton("Location");
-		btnNewButton.setForeground(Color.WHITE);
-		btnNewButton.setFont(new Font("Verdana", Font.PLAIN, 16));
-		btnNewButton.setBackground(Color.DARK_GRAY);
-		
 		JButton btnBackToHome = new JButton("Retour");
 		btnBackToHome.setForeground(Color.WHITE);
 		btnBackToHome.setFont(new Font("Verdana", Font.PLAIN, 16));
 		btnBackToHome.setBackground(Color.DARK_GRAY);
+		
+		JButton locationBtn = new JButton("Location");
+		locationBtn.setForeground(Color.WHITE);
+		locationBtn.setFont(new Font("Verdana", Font.PLAIN, 16));
+		locationBtn.setBackground(Color.DARK_GRAY);
+		
+		JButton reservationBtn = new JButton("R\u00E9servation");
+		reservationBtn.setForeground(Color.WHITE);
+		reservationBtn.setFont(new Font("Verdana", Font.PLAIN, 16));
+		reservationBtn.setBackground(Color.DARK_GRAY);
+		
+		JButton catalogueBtn = new JButton("Catalogue");
+		catalogueBtn.setForeground(Color.WHITE);
+		catalogueBtn.setFont(new Font("Verdana", Font.PLAIN, 16));
+		catalogueBtn.setBackground(Color.DARK_GRAY);
+		
+		JButton compteClientBtn = new JButton("Compte Client");
+		compteClientBtn.setForeground(Color.WHITE);
+		compteClientBtn.setFont(new Font("Verdana", Font.PLAIN, 16));
+		compteClientBtn.setBackground(Color.DARK_GRAY);
 		GroupLayout gl_Left = new GroupLayout(Left);
 		gl_Left.setHorizontalGroup(
 			gl_Left.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 137, Short.MAX_VALUE)
 				.addGroup(gl_Left.createSequentialGroup()
 					.addGroup(gl_Left.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_Left.createSequentialGroup()
+						.addGroup(Alignment.TRAILING, gl_Left.createSequentialGroup()
 							.addGap(5)
-							.addGroup(gl_Left.createParallelGroup(Alignment.LEADING)
-								.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
-								.addComponent(btnNewButton, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)))
-						.addGroup(gl_Left.createSequentialGroup()
+							.addComponent(locationBtn, GroupLayout.PREFERRED_SIZE, 158, GroupLayout.PREFERRED_SIZE))
+						.addGroup(Alignment.TRAILING, gl_Left.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(btnBackToHome, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(btnBackToHome, GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE))
+						.addGroup(Alignment.TRAILING, gl_Left.createSequentialGroup()
+							.addContainerGap(15, Short.MAX_VALUE)
+							.addComponent(catalogueBtn, GroupLayout.PREFERRED_SIZE, 158, GroupLayout.PREFERRED_SIZE))
+						.addGroup(Alignment.TRAILING, gl_Left.createSequentialGroup()
+							.addContainerGap(15, Short.MAX_VALUE)
+							.addComponent(compteClientBtn, GroupLayout.PREFERRED_SIZE, 158, GroupLayout.PREFERRED_SIZE))
+						.addGroup(Alignment.TRAILING, gl_Left.createSequentialGroup()
+							.addContainerGap(15, Short.MAX_VALUE)
+							.addComponent(reservationBtn, GroupLayout.PREFERRED_SIZE, 158, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap())
 		);
 		gl_Left.setVerticalGroup(
 			gl_Left.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 402, Short.MAX_VALUE)
 				.addGroup(gl_Left.createSequentialGroup()
-					.addGap(83)
-					.addComponent(btnNewButton)
+					.addContainerGap()
+					.addComponent(locationBtn, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+					.addGap(11)
+					.addComponent(reservationBtn, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(catalogueBtn, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
-					.addComponent(btnNewButton_1)
-					.addGap(191)
+					.addComponent(compteClientBtn, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+					.addGap(192)
 					.addComponent(btnBackToHome, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
-					.addGap(23))
+					.addGap(67))
 		);
 		Left.setLayout(gl_Left);
 		
@@ -174,21 +193,21 @@ public class LocationVehicule extends JFrame {
 		vehiculeBox.setBounds(144, 118, 230, 27);
 		Mid.add(vehiculeBox);
 		
-		txtModele = new JTextField();
-		txtModele.setText("Vehicule");
-		txtModele.setHorizontalAlignment(SwingConstants.CENTER);
-		txtModele.setForeground(Color.WHITE);
-		txtModele.setFont(new Font("Verdana", Font.PLAIN, 14));
-		txtModele.setEditable(false);
-		txtModele.setColumns(10);
-		txtModele.setBackground(Color.DARK_GRAY);
-		txtModele.setBounds(38, 118, 107, 27);
-		Mid.add(txtModele);
+		txtVehicule = new JTextField();
+		txtVehicule.setText("Vehicule");
+		txtVehicule.setHorizontalAlignment(SwingConstants.CENTER);
+		txtVehicule.setForeground(Color.WHITE);
+		txtVehicule.setFont(new Font("Verdana", Font.PLAIN, 14));
+		txtVehicule.setEditable(false);
+		txtVehicule.setColumns(10);
+		txtVehicule.setBackground(Color.DARK_GRAY);
+		txtVehicule.setBounds(38, 118, 107, 27);
+		Mid.add(txtVehicule);
 		
-		JLabel lblNewLabel = new JLabel("Assurance :");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblNewLabel.setBounds(404, 164, 107, 27);
-		Mid.add(lblNewLabel);
+		JLabel assuranceLabel = new JLabel("Assurance :");
+		assuranceLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+		assuranceLabel.setBounds(404, 164, 107, 27);
+		Mid.add(assuranceLabel);
 		
 		JRadioButton assurancePersonnelle = new JRadioButton("Assurance personnelle du client\r\n"); 
 		assurancePersonnelle.setForeground(Color.WHITE);
@@ -209,48 +228,48 @@ public class LocationVehicule extends JFrame {
 		  Mid.add(assurancePersonnelle);
 		  Mid.add(assuranceCompagnie);
 		  
-		  JLabel lblForfait = new JLabel("Forfait :");
-		  lblForfait.setFont(new Font("Tahoma", Font.BOLD, 16));
-		  lblForfait.setBounds(404, 56, 88, 27);
-		  Mid.add(lblForfait);
+		  JLabel labelForfait = new JLabel("Forfait :");
+		  labelForfait.setFont(new Font("Tahoma", Font.BOLD, 16));
+		  labelForfait.setBounds(404, 56, 88, 27);
+		  Mid.add(labelForfait);
 		  
-		  JRadioButton rdbtnForfait = new JRadioButton("Forfait A :\r\n21 cents/Km apres 500Km");
-		  rdbtnForfait.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		  rdbtnForfait.setForeground(Color.WHITE);
-		  rdbtnForfait.setBackground(Color.DARK_GRAY);
-		  rdbtnForfait.setBounds(455, 85, 235, 30);
-		  Mid.add(rdbtnForfait);
+		  JRadioButton rdbtnForfaitA = new JRadioButton("Forfait A :\r\n21 cents/Km apres 500Km");
+		  rdbtnForfaitA.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		  rdbtnForfaitA.setForeground(Color.WHITE);
+		  rdbtnForfaitA.setBackground(Color.DARK_GRAY);
+		  rdbtnForfaitA.setBounds(455, 85, 235, 30);
+		  Mid.add(rdbtnForfaitA);
 		  
-		  JRadioButton rdbtnForfait_1 = new JRadioButton("Forfait B : 18,45$ // Km illimitee");
-		  rdbtnForfait_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		  rdbtnForfait_1.setForeground(Color.WHITE);
-		  rdbtnForfait_1.setBackground(Color.DARK_GRAY);
-		  rdbtnForfait_1.setBounds(455, 115, 235, 30);
-		  Mid.add(rdbtnForfait_1);
+		  JRadioButton rdbtnForfaitB = new JRadioButton("Forfait B : 18,45$ // Km illimitee");
+		  rdbtnForfaitB.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		  rdbtnForfaitB.setForeground(Color.WHITE);
+		  rdbtnForfaitB.setBackground(Color.DARK_GRAY);
+		  rdbtnForfaitB.setBounds(455, 115, 235, 30);
+		  Mid.add(rdbtnForfaitB);
 		  
 		  ButtonGroup bg2 = new ButtonGroup(); 
-		  bg2.add(rdbtnForfait);
-		  bg2.add(rdbtnForfait_1);
+		  bg2.add(rdbtnForfaitA);
+		  bg2.add(rdbtnForfaitB);
 		  
 		  JPanel panel = new JPanel();
 		  panel.setBackground(Color.LIGHT_GRAY);
 		  panel.setBounds(38, 198, 336, 98);
 		  Mid.add(panel);
 		  
-		  JLabel lblNewLabel_1 = new JLabel("Couleur :");
-		  lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 13));
+		  JLabel couleurLabel = new JLabel("Couleur :");
+		  couleurLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
 		  
-		  JLabel lblNewLabel_2 = new JLabel("Kilom\u00E9trage :");
-		  lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 13));
+		  JLabel kiloLabel = new JLabel("Kilom\u00E9trage :");
+		  kiloLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
 		  
-		  JLabel lblNewLabel_3 = new JLabel("Ann\u00E9e :");
-		  lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 13));
+		  JLabel anneeLabel = new JLabel("Ann\u00E9e :");
+		  anneeLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
 		  
-		  JLabel lblNewLabel_4 = new JLabel("anneeVehicule");
+		  JLabel anneeValueTxt = new JLabel("anneeVehicule");
 		  
-		  JLabel lblNewLabel_4_1 = new JLabel("couleurVehicule");
+		  JLabel couleurValueTxt = new JLabel("couleurVehicule");
 		  
-		  JLabel lblNewLabel_4_1_1 = new JLabel("kiloVehicule");
+		  JLabel kiloValueTxt = new JLabel("kiloVehicule");
 		  GroupLayout gl_panel = new GroupLayout(panel);
 		  gl_panel.setHorizontalGroup(
 		  	gl_panel.createParallelGroup(Alignment.LEADING)
@@ -258,35 +277,35 @@ public class LocationVehicule extends JFrame {
 		  			.addGap(24)
 		  			.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 		  				.addGroup(gl_panel.createSequentialGroup()
-		  					.addComponent(lblNewLabel_3)
+		  					.addComponent(anneeLabel)
 		  					.addGap(18)
-		  					.addComponent(lblNewLabel_4))
+		  					.addComponent(anneeValueTxt))
 		  				.addGroup(gl_panel.createSequentialGroup()
-		  					.addComponent(lblNewLabel_1)
+		  					.addComponent(couleurLabel)
 		  					.addGap(18)
-		  					.addComponent(lblNewLabel_4_1, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE))
+		  					.addComponent(couleurValueTxt, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE))
 		  				.addGroup(gl_panel.createSequentialGroup()
-		  					.addComponent(lblNewLabel_2)
+		  					.addComponent(kiloLabel)
 		  					.addPreferredGap(ComponentPlacement.RELATED)
-		  					.addComponent(lblNewLabel_4_1_1, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)))
-		  			.addContainerGap(151, Short.MAX_VALUE))
+		  					.addComponent(kiloValueTxt, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)))
+		  			.addContainerGap(120, Short.MAX_VALUE))
 		  );
 		  gl_panel.setVerticalGroup(
 		  	gl_panel.createParallelGroup(Alignment.LEADING)
 		  		.addGroup(gl_panel.createSequentialGroup()
 		  			.addGap(16)
 		  			.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-		  				.addComponent(lblNewLabel_3)
-		  				.addComponent(lblNewLabel_4))
+		  				.addComponent(anneeLabel)
+		  				.addComponent(anneeValueTxt))
 		  			.addPreferredGap(ComponentPlacement.UNRELATED)
 		  			.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-		  				.addComponent(lblNewLabel_1)
-		  				.addComponent(lblNewLabel_4_1))
+		  				.addComponent(couleurLabel)
+		  				.addComponent(couleurValueTxt))
 		  			.addPreferredGap(ComponentPlacement.UNRELATED)
 		  			.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-		  				.addComponent(lblNewLabel_2)
-		  				.addComponent(lblNewLabel_4_1_1))
-		  			.addContainerGap(54, Short.MAX_VALUE))
+		  				.addComponent(kiloLabel)
+		  				.addComponent(kiloValueTxt))
+		  			.addContainerGap(12, Short.MAX_VALUE))
 		  );
 		  panel.setLayout(gl_panel);
 		  
@@ -300,16 +319,16 @@ public class LocationVehicule extends JFrame {
 		  textField_1.setBounds(258, 333, 86, 20);
 		  Mid.add(textField_1);
 		  
-		  JLabel lblNewLabel_4_2 = new JLabel("Date de Debut");
-		  lblNewLabel_4_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		  lblNewLabel_4_2.setBackground(Color.ORANGE);
-		  lblNewLabel_4_2.setBounds(38, 308, 107, 14);
-		  Mid.add(lblNewLabel_4_2);
+		  JLabel dateDebut = new JLabel("Date de Debut");
+		  dateDebut.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		  dateDebut.setBackground(Color.ORANGE);
+		  dateDebut.setBounds(38, 308, 107, 14);
+		  Mid.add(dateDebut);
 		  
-		  JLabel lblNewLabel_4_3 = new JLabel("Date de Fin");
-		  lblNewLabel_4_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		  lblNewLabel_4_3.setBounds(254, 307, 107, 14);
-		  Mid.add(lblNewLabel_4_3);
+		  JLabel dateFin = new JLabel("Date de Fin");
+		  dateFin.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		  dateFin.setBounds(254, 307, 107, 14);
+		  Mid.add(dateFin);
 		  
 		 
 		

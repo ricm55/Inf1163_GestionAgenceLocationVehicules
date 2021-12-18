@@ -4,9 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.text.ParseException;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -210,15 +213,26 @@ public class RechercheClient extends JFrame
 			{
 				controleurClient = new ClientControleur(textTelephone.getText());
 				
-				if(controleurClient.getClient() == null)
-				{
-					JOptionPane.showMessageDialog(null, "Ce num\u00E9ro n'est pas li\u00E9 \u00E0 un compte client.");
-				}
-				else
-				{
-					textTelephone.setText(controleurClient.getNomClient() + ", " + controleurClient.getPrenomClient());
-					btnOui.setEnabled(true);
-					btnNon.setEnabled(true);
+				try {
+					if(controleurClient.getClient() == null)
+					{
+						JOptionPane.showMessageDialog(null, "Ce num\u00E9ro n'est pas li\u00E9 \u00E0 un compte client.");
+					}
+					else
+					{
+						textTelephone.setText(controleurClient.getNomClient() + ", " + controleurClient.getPrenomClient());
+						btnOui.setEnabled(true);
+						btnNon.setEnabled(true);
+					}
+				} catch (HeadlessException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 			}
 

@@ -11,7 +11,7 @@ public class Location
 	private int duree;
 	private Vehicule vehicule;
 	private Forfait forfait;
-	private int kilometrageInitial;
+	private double kilometrageInitial;
 	private boolean estEnCours;
 	private double premierVersement;
 	private double deuxiemeVersement;
@@ -91,7 +91,7 @@ public class Location
 		//this.duree = ChronoUnit.DAYS.between(this.dateDebut, this.dateFin);
 	}
 	
-	public int getKilometrageParcouru() 
+	public double getKilometrageParcouru() 
 	{
 		return this.vehicule.getKilometrage() - this.kilometrageInitial ;
 	}
@@ -137,7 +137,7 @@ public class Location
 	}
 	
 	
-	public int getKilometrageInitial()
+	public double getKilometrageInitial()
 	{
 		return this.kilometrageInitial;
 	}
