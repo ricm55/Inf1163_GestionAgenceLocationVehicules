@@ -137,7 +137,8 @@ public class VerifierInformationClient extends JFrame
 		labelInformationsPermis.setBackground(Color.DARK_GRAY);
 		labelInformationsPermis.setFont(new Font("Verdana", Font.PLAIN, 11));
 		labelInformationsPermis.setText("Informations sur le permis de conduire");
-
+		
+	
 		JTextPane txtTelephone = new JTextPane();
         txtTelephone.setEditable(false);
         txtTelephone.setText(controleurClient.getNumTelephoneClient());

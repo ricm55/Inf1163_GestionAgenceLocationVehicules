@@ -44,12 +44,13 @@ public class Test {
 
         }*/
 
-       /* try {
+        /*try {
 
 
             
             Client c = new Client(-1,"TestNom","TestPrenom","6234562890",java.time.LocalDate.now(),"test@gmail.com",new Date(1999,8,11),"Rue des Benoits",true);
-
+             Client d = new Client(-1,"TestNom","TestPrenom","1234567890",java.time.LocalDate.now(),"test@gmail.com",new Date(1999,8,11),"Rue des Benoits",true);
+	
             PermisDeConduire permis = new PermisDeConduire(new Date(2025,06,22), new ArrayList<String>() { {add("CLASSE1");add("CLASSE2");add("CLASSE6B");} } );
             c.setPermis( permis );
             StockageClients.insertClient( c );

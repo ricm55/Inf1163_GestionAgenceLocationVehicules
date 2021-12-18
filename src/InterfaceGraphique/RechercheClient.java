@@ -160,6 +160,8 @@ public class RechercheClient extends JFrame
 		{
 			public void actionPerformed(ActionEvent e)
 			{
+				controleurClient = new ClientControleur(textTelephone.getText());
+				System.out.println(controleurClient.getPrenomClient()); 
 				frame.dispose();
 				VerifierInformationClient.launch(actionEnCours, controleurClient);
 			}

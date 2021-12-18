@@ -332,13 +332,6 @@ public class Transaction extends JFrame {
 		btnCredit.setBounds(393, 310, 122, 29);
 		Mid.add(btnCredit);
 		
-		btnComptant.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				cash++;
-				money.setText(String.valueOf(cash)+ " patate");
-				
-			}
-		});
+		
 	}
 }
