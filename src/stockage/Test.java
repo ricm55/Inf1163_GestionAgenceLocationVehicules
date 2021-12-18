@@ -30,7 +30,7 @@ public class Test {
         //StockageClients stk = new StockageClients();
         /*
         try {
-            Client c = StockageClients.getClient( "819-556-4525" );
+            Client c = StockageClients.getClient( "1234567890" );
             System.out.println(c);
             
         } catch ( SQLException e ) {
@@ -40,16 +40,18 @@ public class Test {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }*/
-        try {
+        /*try {
             
+
             Client c = new Client(-1,"TestNom","TestPrenom","1234567890",java.time.LocalDate.now(),"test@gmail.com",new Date(1999,8,11),"Rue des Benoits",true);
+
             PermisDeConduire permis = new PermisDeConduire(new Date(2025,06,22), new ArrayList<String>() { {add("CLASSE1");add("CLASSE2");add("CLASSE6B");} } );
             c.setPermis( permis );
             StockageClients.insertClient( c );
             
         } catch ( Exception e ) {
             // TODO Auto-generated catch block
-        }
+        }*/
         
     }
 
