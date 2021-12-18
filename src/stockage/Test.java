@@ -8,6 +8,7 @@ import java.util.List;
 
 import background.Client;
 import background.PermisDeConduire;
+import background.Vehicule;
 import models.ModeleClient;
 
 public class Test {
@@ -40,10 +41,9 @@ public class Test {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }*/
-        try {
+        /*try {
             
-
-            Client c = new Client(-1,"TestNom","TestPrenom","1234567890",java.time.LocalDate.now(),"test@gmail.com",new Date(1999,8,11),"Rue des Benoits",true);
+            Client c = new Client(-1,"TestNom","TestPrenom","6234562890",java.time.LocalDate.now(),"test@gmail.com",new Date(1999,8,11),"Rue des Benoits",true);
 
             PermisDeConduire permis = new PermisDeConduire(new Date(2025,06,22), new ArrayList<String>() { {add("CLASSE1");add("CLASSE2");add("CLASSE6B");} } );
             c.setPermis( permis );
@@ -51,6 +51,16 @@ public class Test {
             
         } catch ( Exception e ) {
             System.out.println(e.getMessage());
+        }*/
+        
+        try {
+            ArrayList<Vehicule> listeVehicules = StockageVehicule.getVehicules( "Economique" );
+            for(Vehicule v:listeVehicules) {
+                System.out.println(v);
+            }
+        } catch ( SQLException e ) {
+            // TODO Auto-generated catch block
+            System.out.println("ca plante");
         }
         
     }

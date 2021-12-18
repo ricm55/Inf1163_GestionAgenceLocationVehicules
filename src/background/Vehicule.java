@@ -8,13 +8,13 @@ public class Vehicule
 	private String modele;
 	private int annee;
 	private String couleur;
-	private int kilometrage;
+	private double kilometrage;
 	private double niveauReservoir;
 	private boolean disponible;
-	private ClasseDeVehicule classe;
+	private String classe;
 	private String typeDePermisNecessaire;
 	
-	public Vehicule(String typeDePermisNecessaire,String marque, String modele, int annee, String couleur, int kilometrage, double niveauReservoir, boolean disponible, ClasseDeVehicule classe)
+	public Vehicule(String typeDePermisNecessaire,String marque, String modele, int annee, String couleur, double kilometrage, double niveauReservoir, boolean disponible, String classe)
 	{
 		this.marque = marque;
 		this.modele = modele;
@@ -79,7 +79,7 @@ public class Vehicule
 		this.couleur = couleur;
 	}
 	
-	public int getKilometrage()
+	public double getKilometrage()
 	{
 		return kilometrage;
 	}
@@ -107,15 +107,15 @@ public class Vehicule
     /**
      * @return the classe
      */
-    public ClasseDeVehicule getClasseDeVehicule() {
+    public String getClasseDeVehicule() {
         return classe;
     }
 
     /**
-     * @param classe the classe to set
+     * @param classe2 the classe to set
      */
-    public void setClasse( ClasseDeVehicule classe ) {
-        this.classe = classe;
+    public void setClasse( String classe2 ) {
+        this.classe = classe2;
     }
 
 	public String getTypeDePermisNecessaire() {
