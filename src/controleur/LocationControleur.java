@@ -161,7 +161,7 @@ public class LocationControleur {
     	{
     		Location location = this.client.getListeLocationEnPossession().get(locations);
     		
-    		if(location == locationEnCours)
+    		if(location == locationEnCours)	
     		{	
     			return location.getDeuxiemeVersement();
     		}  	

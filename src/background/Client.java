@@ -25,7 +25,7 @@ public class Client
 	private int age;
 
 
-	public Client(int id, String nom, String prenom, String numTelephone, LocalDate dateCreation,String courriel,Date dateDeNaissance, String adresse, boolean assurancePersonnelle)
+	public Client(String nom, String prenom, String numTelephone, LocalDate dateCreation,String courriel,Date dateDeNaissance, String adresse, boolean assurancePersonnelle)
 	{
 	    this.setId( id );
 		this.setNom( nom );

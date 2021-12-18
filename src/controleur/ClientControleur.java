@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 
 import org.sqlite.util.StringUtils;
 
+import background.ClasseDeVehicule;
 import background.Client;
 import background.Location;
 import background.PermisDeConduire;
@@ -56,6 +57,17 @@ public class ClientControleur
 			return true;
 		}
 		return false;
+	}
+	
+	public Client creerNouveauClient(String nom, String prenom,Date naissance,String adresse, String telephone, ArrayList<String> type,
+			Date expiration, boolean assurance, String courriel  )
+	{
+		
+		LocalDate dateCreation= LocalDate.now();
+		PermisDeConduire permis = new PermisDeConduire(expiration, type);
+		Client client = new Client(nom, prenom, telephone, dateCreation, courriel, naissance, adresse, false);
+		client.setPermis(permis);
+		return client;
 	}
 
 	public boolean verificationAgeClient()
