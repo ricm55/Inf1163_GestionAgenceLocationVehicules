@@ -44,24 +44,23 @@ public class ClientControleur
 
 	}
 
-	private boolean verificationExpirationPermisConduire(Client client)
+	public boolean verificationExpirationPermisConduire()
 	{
 		// Permi valide
 		LocalDate ld = java.time.LocalDate.now();
 		ZoneId defaultZoneId = ZoneId.systemDefault();
 		Date todayDate = Date.from(ld.atStartOfDay(defaultZoneId).toInstant());
 
-		boolean permiValideDate = client.getPermis().getDateExpiration().before(todayDate);
+		boolean permisValideDate = client.getPermis().getDateExpiration().before(todayDate);
 
-		if (permiValideDate == true)
+		if (permisValideDate == true)
 		{
 			return true;
 		}
 		return false;
-
 	}
 
-	private boolean verificationAgeClient(Client client)
+	public boolean verificationAgeClient()
 	{
 		if (this.client.getAge() < 25)
 		{
@@ -69,11 +68,6 @@ public class ClientControleur
 		}
 		return true;
 	}
-	
-	public boolean verificationGeneraleClient(Client client, Vehicule vehicule)
-    {
-    	return verificationExpirationPermisConduire(client) && verificationAgeClient(client);
-    }
 
 	public List<Location> getListeLocationEnPossession()
 	{

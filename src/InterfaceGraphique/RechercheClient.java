@@ -141,7 +141,6 @@ public class RechercheClient extends JFrame
 
 		txtNom = new JTextField();
 		txtNom.setForeground(Color.WHITE);
-		txtNom.setText("Nom");
 		txtNom.setHorizontalAlignment(SwingConstants.CENTER);
 		txtNom.setFont(new Font("Verdana", Font.PLAIN, 16));
 		txtNom.setEditable(false);
@@ -169,21 +168,6 @@ public class RechercheClient extends JFrame
 			{
 				frame.dispose();
 				VerifierInformationClient.launch(actionEnCours, controleurClient);
-				
-				/*switch(actionEnCours)
-				{
-					case LOCATION:
-						LocationVehicule.launch();
-						break;
-					case RESERVATION:
-						//interface reservation
-						break;
-					case VOIR_COMPTE_CLIENT:
-						//interface compte client
-						break;
-					default:
-						break;
-				}*/
 			}
 		});
 		btnOui.setForeground(Color.WHITE);
@@ -198,6 +182,8 @@ public class RechercheClient extends JFrame
 		{
 			public void actionPerformed(ActionEvent e)
 			{
+				textTelephone.setText("");
+				txtNom.setText("");
 			}
 		});
 		btnNon.setForeground(Color.WHITE);

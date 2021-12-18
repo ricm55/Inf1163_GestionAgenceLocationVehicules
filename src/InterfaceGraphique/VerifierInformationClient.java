@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -168,7 +169,32 @@ public class VerifierInformationClient extends JFrame
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-				// controleur validation informations client
+				if(!controleurClient.verificationExpirationPermisConduire())
+				{
+					JOptionPane.showMessageDialog(null, "Le permis de conduire est expir\u00E9.");
+				}
+				else if(!controleurClient.verificationAgeClient())
+				{
+					JOptionPane.showMessageDialog(null, "Le client n'a pas 25 ans.");
+				}
+				else
+				{
+					frame.dispose();
+					switch(actionEnCours)
+					{
+						case LOCATION:
+							LocationVehicule.launch();
+							break;
+						case RESERVATION:
+							//interface reservation
+							break;
+						case VOIR_COMPTE_CLIENT:
+							//interface compte client
+							break;
+						default:
+							break;
+					}
+				}
 			}
 		});
 		btnValider.setFont(new Font("Verdana", Font.PLAIN, 16));
