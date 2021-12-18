@@ -168,11 +168,17 @@ public class LocationControleur {
     	return total;
     }
     
-    
-    
-    
-    
-    
-    
-    
+    private void retourVehicule(Location locationEnCours)
+    {
+    	for (int locations = 0; locations <= this.client.getListeLocationEnPossession().size(); locations ++)
+    	{
+    		Location location = this.client.getListeLocationEnPossession().get(locations);
+    		
+    		if(location == locationEnCours)
+    		{	
+    			this.client.enleverLocation(location);
+    		}  	
+    	}
+    }
+       
 }
