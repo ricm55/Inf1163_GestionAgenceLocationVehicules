@@ -49,6 +49,8 @@ public class VerifierInformationClient extends JFrame
 	
 	String pattern = "yyyy-MM-dd";
 	SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+	private JTextField txtEmail;
+	private JTextField txtAssurancePersonnelle;
 
 
 	/**
@@ -307,10 +309,38 @@ public class VerifierInformationClient extends JFrame
 		labelTelephone.setColumns(10);
 		labelTelephone.setBackground(Color.DARK_GRAY);
 		
+		txtEmail = new JTextField();
+		txtEmail.setText("Email");
+		txtEmail.setHorizontalAlignment(SwingConstants.CENTER);
+		txtEmail.setForeground(Color.WHITE);
+		txtEmail.setFont(new Font("Verdana", Font.PLAIN, 11));
+		txtEmail.setEditable(false);
+		txtEmail.setColumns(10);
+		txtEmail.setBackground(Color.DARK_GRAY);
+		
+		JTextPane txtTelephone_1 = new JTextPane();
+		txtTelephone_1.setText((String) null);
+		txtTelephone_1.setFont(new Font("Verdana", Font.PLAIN, 16));
+		txtTelephone_1.setEditable(false);
+		
+		txtAssurancePersonnelle = new JTextField();
+		txtAssurancePersonnelle.setText("Assurance personnelle");
+		txtAssurancePersonnelle.setHorizontalAlignment(SwingConstants.CENTER);
+		txtAssurancePersonnelle.setForeground(Color.WHITE);
+		txtAssurancePersonnelle.setFont(new Font("Verdana", Font.PLAIN, 11));
+		txtAssurancePersonnelle.setEditable(false);
+		txtAssurancePersonnelle.setColumns(10);
+		txtAssurancePersonnelle.setBackground(Color.DARK_GRAY);
+		
+		JTextPane txtTelephone_1_1 = new JTextPane();
+		txtTelephone_1_1.setText((String) null);
+		txtTelephone_1_1.setFont(new Font("Verdana", Font.PLAIN, 16));
+		txtTelephone_1_1.setEditable(false);
+		
 
 		GroupLayout gl_mid = new GroupLayout(mid);
 		gl_mid.setHorizontalGroup(
-			gl_mid.createParallelGroup(Alignment.LEADING)
+			gl_mid.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_mid.createSequentialGroup()
 					.addGap(38)
 					.addComponent(btnModifier, GroupLayout.PREFERRED_SIZE, 258, GroupLayout.PREFERRED_SIZE)
@@ -319,33 +349,45 @@ public class VerifierInformationClient extends JFrame
 					.addGap(51))
 				.addGroup(gl_mid.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_mid.createParallelGroup(Alignment.TRAILING, false)
+					.addComponent(txtEmail, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
+					.addGap(10)
+					.addComponent(txtTelephone_1, GroupLayout.PREFERRED_SIZE, 551, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(21, Short.MAX_VALUE))
+				.addGroup(gl_mid.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_mid.createParallelGroup(Alignment.LEADING)
+						.addComponent(labelInformationsPermis, GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE)
 						.addGroup(gl_mid.createSequentialGroup()
-							.addComponent(labelExpiration, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(txtExpiration))
-						.addGroup(gl_mid.createSequentialGroup()
-							.addComponent(labelClasses, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addComponent(txtClasses, GroupLayout.PREFERRED_SIZE, 551, GroupLayout.PREFERRED_SIZE))
-						.addComponent(labelInformationsPermis, Alignment.LEADING)
-						.addGroup(Alignment.LEADING, gl_mid.createSequentialGroup()
 							.addComponent(labelTelephone, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(txtTelephone))
-						.addGroup(Alignment.LEADING, gl_mid.createSequentialGroup()
+							.addComponent(txtTelephone, GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE))
+						.addGroup(gl_mid.createSequentialGroup()
+							.addComponent(txtAssurancePersonnelle, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE)
+							.addGap(59)
+							.addComponent(txtTelephone_1_1, GroupLayout.PREFERRED_SIZE, 479, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_mid.createSequentialGroup()
 							.addGroup(gl_mid.createParallelGroup(Alignment.LEADING)
-								.addComponent(labelNom, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
-								.addComponent(labelPrnom, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
-								.addComponent(labelDateDeNaissance, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
-								.addComponent(labelAdresse, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE))
+								.addGroup(gl_mid.createParallelGroup(Alignment.TRAILING)
+									.addComponent(labelAdresse, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
+									.addGroup(gl_mid.createParallelGroup(Alignment.LEADING)
+										.addComponent(labelNom, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
+										.addComponent(labelDateDeNaissance, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)))
+								.addComponent(labelPrnom, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE))
 							.addGap(10)
-							.addGroup(gl_mid.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(txtAdresse)
-								.addComponent(txtDateDeNaissance)
-								.addComponent(txtPrnom)
-								.addComponent(txtNom, GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE))))
-					.addContainerGap(21, Short.MAX_VALUE))
+							.addGroup(gl_mid.createParallelGroup(Alignment.LEADING)
+								.addComponent(txtPrnom, GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)
+								.addComponent(txtAdresse, GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)
+								.addComponent(txtDateDeNaissance, GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)
+								.addComponent(txtNom, GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)))
+						.addGroup(gl_mid.createSequentialGroup()
+							.addGroup(gl_mid.createParallelGroup(Alignment.LEADING)
+								.addComponent(labelExpiration, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
+								.addComponent(labelClasses, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+							.addGroup(gl_mid.createParallelGroup(Alignment.LEADING)
+								.addComponent(txtClasses, GroupLayout.PREFERRED_SIZE, 551, GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtExpiration, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+					.addGap(21))
 		);
 		gl_mid.setVerticalGroup(
 			gl_mid.createParallelGroup(Alignment.LEADING)
@@ -353,37 +395,44 @@ public class VerifierInformationClient extends JFrame
 					.addContainerGap()
 					.addGroup(gl_mid.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_mid.createSequentialGroup()
-							.addComponent(txtNom, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(txtPrnom, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(txtDateDeNaissance, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(txtAdresse, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_mid.createSequentialGroup()
 							.addGap(1)
-							.addComponent(labelNom, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-							.addGap(11)
-							.addComponent(labelPrnom, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-							.addGap(11)
-							.addComponent(labelDateDeNaissance, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-							.addGap(11)
-							.addComponent(labelAdresse, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(labelNom, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
+						.addComponent(txtNom, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_mid.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(txtPrnom, 0, 0, Short.MAX_VALUE)
+						.addComponent(labelPrnom, GroupLayout.PREFERRED_SIZE, 20, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_mid.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(txtDateDeNaissance, Alignment.TRAILING, 0, 0, Short.MAX_VALUE)
+						.addComponent(labelDateDeNaissance, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_mid.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(txtAdresse, 0, 0, Short.MAX_VALUE)
+						.addComponent(labelAdresse, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_mid.createParallelGroup(Alignment.TRAILING)
+						.addComponent(labelTelephone, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtTelephone, 0, 0, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+					.addGroup(gl_mid.createParallelGroup(Alignment.TRAILING)
+						.addComponent(txtTelephone_1, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtEmail, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_mid.createParallelGroup(Alignment.LEADING)
-						.addComponent(labelTelephone, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtTelephone, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
-					.addGap(20)
+						.addComponent(txtTelephone_1_1, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtAssurancePersonnelle, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
 					.addComponent(labelInformationsPermis, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(13)
+					.addGroup(gl_mid.createParallelGroup(Alignment.TRAILING, false)
+						.addComponent(txtClasses, 0, 0, Short.MAX_VALUE)
+						.addComponent(labelClasses, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_mid.createParallelGroup(Alignment.LEADING)
-						.addComponent(labelClasses, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtClasses, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_mid.createParallelGroup(Alignment.LEADING)
-						.addComponent(labelExpiration, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtExpiration, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+					.addGroup(gl_mid.createParallelGroup(Alignment.TRAILING, false)
+						.addComponent(txtExpiration, 0, 0, Short.MAX_VALUE)
+						.addComponent(labelExpiration, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
 					.addGroup(gl_mid.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnValider, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnModifier, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
