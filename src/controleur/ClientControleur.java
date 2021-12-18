@@ -1,14 +1,14 @@
 package controleur;
 
-
 import java.sql.SQLException;
 import java.text.ParseException;
-
-import java.util.Date;
-
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import javax.swing.JOptionPane;
 
 import org.sqlite.util.StringUtils;
 
@@ -16,47 +16,30 @@ import background.Client;
 import background.Location;
 import background.PermisDeConduire;
 import background.Reservation;
-
 import stockage.StockageClients;
-
-import background.Vehicule;
-
 
 public class ClientControleur
 {
 	private Client client;
 
-	public ClientControleur(String telephone) throws SQLException, ParseException
+	public ClientControleur(String telephone)
 	{
 		this.client = this.identifierClient(telephone);
 	}
 
-	public boolean rechercheClient(String telephone) throws SQLException, ParseException
-	{
-		// if client exist
-		if(StockageClients.getClient(telephone) != null) {
-			return true;
-		}
-		
-		// else
-		return false;
-	}
-
 	// Si le client existe, return le client
 	// Si le client n'existe pas, return null (devrait afficher un message d'erreur)
-	public Client identifierClient(String telephone) throws SQLException, ParseException
+	public Client identifierClient(String telephone)
 	{
-		if (this.rechercheClient(telephone) == true)
+		try
 		{
-
 			return StockageClients.getClient(telephone);
-			
-		} else
-
-		{
-			return null;
 		}
-
+		catch(SQLException | ParseException e)
+		{
+			JOptionPane.showMessageDialog(null, "Ce client n'existe pas.");
+		}
+		return null;
 	}
 
 	public boolean verificationExpirationPermisConduire()
@@ -116,9 +99,9 @@ public class ClientControleur
 
 	}
 
-	public Client getClient() throws SQLException, ParseException
+	public Client getClient()
 	{
-		return StockageClients.getClient(getNumTelephoneClient());
+		return this.client;
 	}
 
 	public void setPrenomClient(String prenom)
@@ -127,9 +110,9 @@ public class ClientControleur
 
 	}
 
-	public String getPrenomClient() throws SQLException, ParseException
+	public String getPrenomClient()
 	{
-		return StockageClients.getClient(getNumTelephoneClient()).toString();
+		return this.client.getPrenom();
 	}
 
 	public void setCourrielClient(String courriel)
@@ -167,9 +150,9 @@ public class ClientControleur
 		this.client.setNom(nom);
 	}
 
-	public String getNomClient() throws SQLException, ParseException
+	public String getNomClient()
 	{
-		return StockageClients.getClient(getNumTelephoneClient()).toString();
+		return this.client.getNom();
 	}
 
 	public void setDateDeNaissanceClient(Date dateDeNaissance)
@@ -197,7 +180,7 @@ public class ClientControleur
 		this.client.setNumTelephone(numTelephone);
 	}
 
-	public String getNumTelephoneClient() throws SQLException, ParseException
+	public String getNumTelephoneClient()
 	{
 		return this.client.getNumTelephone();
 	}
@@ -227,10 +210,26 @@ public class ClientControleur
 		List<String> listeClasse = this.client.getPermis().getClasses();
 		return StringUtils.join(listeClasse, ",");
 	}
+	
+	public void setClassesPermisClient(String classes)
+	{
+		ArrayList<String> listeClasses = new ArrayList<String>();
+		String [] arrayClasses = classes.split(",[ ]*");
+		for(String s : arrayClasses)
+		{
+			listeClasses.add(s);
+		}
+		this.client.getPermis().setClasses(listeClasses);
+	}
 
 	public String getDateExpirationPermisClient()
 	{
 		return this.client.getPermis().getDateExpiration().toString();
+	}
+	
+	public void setDateExpirationPermisClient(Date date)
+	{
+		this.client.getPermis().setDateExpiration(date);
 	}
 
 	public int getAge()

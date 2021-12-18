@@ -22,6 +22,9 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Color;
 import javax.swing.JTextPane;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 
@@ -41,6 +44,9 @@ public class VerifierInformationClient extends JFrame
 	private JTextField labelTelephone;
 	private JTextField labelClasses;
 	private JTextField labelExpiration;
+	
+	String pattern = "yyyy-MM-dd";
+	SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 
 	/**
 	 * Launch the application.
@@ -179,17 +185,31 @@ public class VerifierInformationClient extends JFrame
 				}
 				else
 				{
-					frame.dispose();
+					controleurClient.setNomClient(txtNom.getText());
+					controleurClient.setPrenomClient(txtPrnom.getText());
+					controleurClient.setAdresseClient(txtAdresse.getText());
+					controleurClient.setNumTelephoneClient(txtTelephone.getText());
+					controleurClient.setClassesPermisClient(txtClasses.getText());
+					try
+					{
+						controleurClient.setDateDeNaissanceClient(simpleDateFormat.parse(txtDateDeNaissance.getText()));
+						controleurClient.setDateExpirationPermisClient(simpleDateFormat.parse(txtExpiration.getText()));
+					} catch (ParseException e)
+					{
+						e.printStackTrace();
+					}
+					
 					switch(actionEnCours)
 					{
 						case LOCATION:
+							frame.dispose();
 							LocationVehicule.launch();
 							break;
 						case RESERVATION:
+							frame.dispose();
 							//interface reservation
 							break;
 						case VOIR_COMPTE_CLIENT:
-							//interface compte client
 							break;
 						default:
 							break;
