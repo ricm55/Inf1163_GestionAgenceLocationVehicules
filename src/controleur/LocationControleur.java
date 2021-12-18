@@ -49,9 +49,7 @@ public class LocationControleur {
         
     }
     
-    public void premierPaiement() {
-        
-    }
+ 
     
     
     public Vehicule rechercherInventaireLocationControleur(ClasseDeVehicule classe, Date dateDebut, Date dateFin, CatalogueVehicule catalogue)
@@ -104,7 +102,7 @@ public class LocationControleur {
     	
     }
     
-    private double paiementPremierVersement(double paiement, double versement)
+    private double paiement(double paiement, double versement)
     {
     	double difference = 0.0;
     	if (versement > paiement)
@@ -180,5 +178,48 @@ public class LocationControleur {
     		}  	
     	}
     }
-       
-}
+    
+    private double miseAJourDelai(Location location)
+    {
+    	long dateLocation = location.getDateDebut().getTime();
+    	
+    	Date dateNow=new Date();  
+    	
+		long timeDiff = dateLocation - dateNow.getTime();
+	
+		timeDiff = TimeUnit.HOURS.convert(timeDiff, TimeUnit.MICROSECONDS);
+		
+		return timeDiff + (timeDiff*0.10);
+		
+    }
+    
+    private double totalDeuxiemeVersement(Location locationEnCours)
+    {
+    	
+    	for (int locations = 0; locations <= this.client.getListeLocationEnPossession().size(); locations ++)
+    	{
+    		Location location = this.client.getListeLocationEnPossession().get(locations);
+    		
+    		if(location == locationEnCours)
+    		{	
+    			return location.getDeuxiemeVersement();
+    		}  	
+    	}
+    	return 0.0;
+    	
+    }
+
+    
+    private double paiementDeuxiemeVersement(double niveauReservoir,double kilometrage,Location location,double dommages)
+    {
+    	double total;
+    	total = this.miseAJourVehicule(niveauReservoir, kilometrage, dommages, location);
+    	total = total + totalDeuxiemeVersement(location);
+    	total = total + this.miseAJourDelai(location);
+    	
+    	return total;
+    	
+    }
+    
+}       
+
