@@ -1,4 +1,4 @@
-  package InterfaceGraphique;
+package InterfaceGraphique;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -22,23 +22,33 @@ import javax.swing.JTextArea;
 import java.awt.TextArea;
 import java.awt.Color;
 import java.awt.SystemColor;
+import javax.swing.JList;
 
-public class InterfaceAccueil extends JFrame {
-
+public class InterfaceAccueil extends JFrame
+{
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField locationAccueil;
-	private static InterfaceAccueil frame ;
+	private static InterfaceAccueil frame;
+	private JTextField txtLocationEnCours;
+	
+	public enum Action {LOCATION, RESERVATION, CONSULTER_INVENTAIRE, VOIR_COMPTE_CLIENT}
 
 	/**
-	 * Launch the application.
+	 * Launch the frame.
 	 */
-	public static void launch() {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					 frame = new InterfaceAccueil();
+	public static void launch()
+	{
+		EventQueue.invokeLater(new Runnable()
+		{
+			public void run()
+			{
+				try
+				{
+					frame = new InterfaceAccueil();
 					frame.setVisible(true);
-				} catch (Exception e) {
+				} catch (Exception e)
+				{
 					e.printStackTrace();
 				}
 			}
@@ -48,105 +58,149 @@ public class InterfaceAccueil extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public InterfaceAccueil() {
+	public InterfaceAccueil()
+	{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 875, 477);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		
+
 		JPanel leftPanel = new JPanel();
-		leftPanel.setBackground(new Color(255, 140, 0));
+		leftPanel.setBackground(new Color(255, 165, 0));
 		contentPane.add(leftPanel, BorderLayout.WEST);
-		
-		JButton btnNewButton_1 = new JButton("Location");
-		btnNewButton_1.setForeground(Color.WHITE);
-		btnNewButton_1.setFont(new Font("Verdana", Font.PLAIN, 16));
-		btnNewButton_1.setBackground(Color.DARK_GRAY);
-		
-		JButton btnNewButton_1_1 = new JButton("Location");
-		btnNewButton_1_1.setForeground(Color.WHITE);
-		btnNewButton_1_1.setFont(new Font("Verdana", Font.PLAIN, 16));
-		btnNewButton_1_1.setBackground(Color.DARK_GRAY);
-		
-		JButton logout = new JButton("Deconnexion");
-		logout.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+
+		/**
+		 * Bouton de deconnexion
+		 */
+		JButton btnDeconnextion = new JButton("D\u00E9connexion");
+		btnDeconnextion.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
 				frame.dispose();
 			}
 		});
-		logout.setForeground(Color.WHITE);
-		logout.setFont(new Font("Verdana", Font.PLAIN, 12));
-		logout.setBackground(Color.DARK_GRAY);
-		GroupLayout gl_leftPanel = new GroupLayout(leftPanel);
-		gl_leftPanel.setHorizontalGroup(
-			gl_leftPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_leftPanel.createSequentialGroup()
-					.addGroup(gl_leftPanel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_leftPanel.createSequentialGroup()
-							.addContainerGap()
-							.addGroup(gl_leftPanel.createParallelGroup(Alignment.LEADING)
-								.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnNewButton_1_1, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)))
-						.addGroup(gl_leftPanel.createSequentialGroup()
-							.addGap(15)
-							.addComponent(logout, GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)))
-					.addGap(33))
-		);
-		gl_leftPanel.setVerticalGroup(
-			gl_leftPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_leftPanel.createSequentialGroup()
-					.addGap(170)
-					.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(btnNewButton_1_1, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
-					.addGap(107)
-					.addComponent(logout, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(19, Short.MAX_VALUE))
-		);
-		leftPanel.setLayout(gl_leftPanel);
+		btnDeconnextion.setForeground(Color.WHITE);
+		btnDeconnextion.setFont(new Font("Verdana", Font.PLAIN, 16));
+		btnDeconnextion.setBackground(Color.DARK_GRAY);
+
+		/**
+		 * Bouton de location
+		 */
+		JButton btnLocation = new JButton("Location");
+		btnLocation.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				frame.dispose();
+				RechercheClient.launch(Action.LOCATION);
+			}
+		});
+		btnLocation.setForeground(Color.WHITE);
+		btnLocation.setFont(new Font("Verdana", Font.PLAIN, 16));
+		btnLocation.setBackground(Color.DARK_GRAY);
+
+		/**
+		 * Bouton de reservation
+		 */
+		JButton btnReservation = new JButton("R\u00E9servation");
+		btnReservation.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				frame.dispose();
+				RechercheClient.launch(Action.RESERVATION);
+			}
+		});
+		btnReservation.setForeground(Color.WHITE);
+		btnReservation.setFont(new Font("Verdana", Font.PLAIN, 16));
+		btnReservation.setBackground(Color.DARK_GRAY);
+
+		/**
+		 * Bouton catalogue
+		 */
+		JButton btnCatalogue = new JButton("Catalogue");
+		btnCatalogue.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				frame.dispose();
+				RechercheClient.launch(Action.CONSULTER_INVENTAIRE);
+			}
+		});
+		btnCatalogue.setForeground(Color.WHITE);
+		btnCatalogue.setFont(new Font("Verdana", Font.PLAIN, 16));
+		btnCatalogue.setBackground(Color.DARK_GRAY);
+
+		/**
+		 * Bouton de compte client
+		 */
+		JButton btnCompteClient = new JButton("Compte Client");
+		btnCompteClient.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				frame.dispose();
+				RechercheClient.launch(Action.VOIR_COMPTE_CLIENT);
+			}
+		});
+		btnCompteClient.setForeground(Color.WHITE);
+		btnCompteClient.setFont(new Font("Verdana", Font.PLAIN, 16));
+		btnCompteClient.setBackground(Color.DARK_GRAY);
 		
+		GroupLayout gl_leftPanel = new GroupLayout(leftPanel);
+		gl_leftPanel.setHorizontalGroup(gl_leftPanel.createParallelGroup(Alignment.TRAILING).addGroup(gl_leftPanel
+				.createSequentialGroup()
+				.addGroup(gl_leftPanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_leftPanel.createSequentialGroup().addGap(15).addComponent(btnDeconnextion,
+								GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE))
+						.addGroup(gl_leftPanel.createSequentialGroup().addContainerGap().addComponent(btnLocation,
+								GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))
+						.addGroup(gl_leftPanel.createSequentialGroup().addContainerGap().addComponent(btnReservation,
+								GroupLayout.PREFERRED_SIZE, 161, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_leftPanel.createSequentialGroup().addContainerGap().addComponent(btnCatalogue,
+								GroupLayout.PREFERRED_SIZE, 161, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_leftPanel.createSequentialGroup().addContainerGap().addComponent(btnCompteClient,
+								GroupLayout.PREFERRED_SIZE, 161, GroupLayout.PREFERRED_SIZE)))
+				.addContainerGap()));
+		gl_leftPanel.setVerticalGroup(gl_leftPanel.createParallelGroup(Alignment.LEADING).addGroup(gl_leftPanel
+				.createSequentialGroup().addGap(20)
+				.addComponent(btnLocation, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE).addGap(18)
+				.addComponent(btnReservation, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE).addGap(18)
+				.addComponent(btnCatalogue, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE).addGap(18)
+				.addComponent(btnCompteClient, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE).addGap(143)
+				.addComponent(btnDeconnextion, GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE).addContainerGap()));
+		leftPanel.setLayout(gl_leftPanel);
+
 		JPanel midPanel = new JPanel();
 		midPanel.setBackground(SystemColor.textHighlight);
 		contentPane.add(midPanel, BorderLayout.CENTER);
 		midPanel.setLayout(null);
-		
-		JTextArea txtrPrnomEtNom = new JTextArea();
-		txtrPrnomEtNom.setFont(new Font("Verdana", Font.PLAIN, 16));
-		txtrPrnomEtNom.setText("Pr\u00E9nom et nom");
-		txtrPrnomEtNom.setBounds(10, 11, 200, 38);
-		midPanel.add(txtrPrnomEtNom);
-		
-		JTextArea txtrPrnomEtNom_1 = new JTextArea();
-		txtrPrnomEtNom_1.setText("Pr\u00E9nom et nom");
-		txtrPrnomEtNom_1.setFont(new Font("Verdana", Font.PLAIN, 16));
-		txtrPrnomEtNom_1.setBounds(10, 60, 200, 38);
-		midPanel.add(txtrPrnomEtNom_1);
-		
-		JTextArea txtrPrnomEtNom_3 = new JTextArea();
-		txtrPrnomEtNom_3.setText("Pr\u00E9nom et nom");
-		txtrPrnomEtNom_3.setFont(new Font("Verdana", Font.PLAIN, 16));
-		txtrPrnomEtNom_3.setBounds(10, 109, 200, 38);
-		midPanel.add(txtrPrnomEtNom_3);
-		
-		JButton locationBouton_1_4 = new JButton("Location");
-		locationBouton_1_4.setFont(new Font("Verdana", Font.PLAIN, 16));
-		locationBouton_1_4.setBounds(362, 15, 110, 35);
-		midPanel.add(locationBouton_1_4);
-		
-		JButton locationBouton_1_5 = new JButton("Location");
-		locationBouton_1_5.setFont(new Font("Verdana", Font.PLAIN, 16));
-		locationBouton_1_5.setBounds(362, 64, 110, 35);
-		midPanel.add(locationBouton_1_5);
-		
-		JButton locationBouton_1_6 = new JButton("Location");
-		locationBouton_1_6.setFont(new Font("Verdana", Font.PLAIN, 16));
-		locationBouton_1_6.setBounds(362, 112, 110, 35);
-		midPanel.add(locationBouton_1_6);
-		
+
+		txtLocationEnCours = new JTextField();
+		txtLocationEnCours.setForeground(Color.WHITE);
+		txtLocationEnCours.setBackground(Color.DARK_GRAY);
+		txtLocationEnCours.setHorizontalAlignment(SwingConstants.CENTER);
+		txtLocationEnCours.setFont(new Font("Verdana", Font.PLAIN, 16));
+		txtLocationEnCours.setText("Locations en cours");
+		txtLocationEnCours.setBounds(30, 27, 609, 20);
+		midPanel.add(txtLocationEnCours);
+		txtLocationEnCours.setColumns(10);
+
+		JTextArea txtListeLocations = new JTextArea();
+		txtListeLocations.setEditable(false);
+		txtListeLocations.setForeground(Color.WHITE);
+		txtListeLocations.setBackground(SystemColor.textHighlight);
+		txtListeLocations.setLineWrap(true);
+		txtListeLocations.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtListeLocations.setText("C\u00F4t\u00E9, Gabriel : Mazda 5, 2015, Rouge, jusqu'au 2021-12-21");
+		txtListeLocations.setBounds(30, 58, 609, 318);
+		midPanel.add(txtListeLocations);
+
 		locationAccueil = new JTextField();
-		locationAccueil.setText("Location en cours");
+		locationAccueil.setText("Accueil");
 		locationAccueil.setHorizontalAlignment(SwingConstants.CENTER);
 		locationAccueil.setForeground(Color.WHITE);
 		locationAccueil.setFont(new Font("Verdana", Font.PLAIN, 16));

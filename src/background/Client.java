@@ -1,7 +1,12 @@
 package background;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+
 
 public class Client
 {
@@ -15,6 +20,10 @@ public class Client
 	private String adresse;
 	private boolean assurancePersonnelle;
 	private PermisDeConduire permis;
+	private List<Reservation> listeReservationEnPossession;
+	private List<Location> listeLocationEnPossession;
+	private int age;
+
 
 	public Client(int id, String nom, String prenom, String numTelephone, LocalDate dateCreation,String courriel,Date dateDeNaissance, String adresse, boolean assurancePersonnelle)
 	{
@@ -27,6 +36,9 @@ public class Client
 		this.setDateCreation( dateCreation );
 		this.setCourriel( courriel );
 		this.setAssurancePersonnelle(assurancePersonnelle);
+		List<Reservation> listeReservationEnPossession = new ArrayList<Reservation>();
+		List <Location> listeLocationEnPossession = new ArrayList<Location>();
+		this.age = this.calculAge();
 	}
 	
 	public String getNom()
@@ -34,7 +46,56 @@ public class Client
 		return nom;
 	}
 	
-
+	public void setAge(int age)
+	{
+		this.age = age;
+	}
+	
+	public int getAge()
+	{
+		return this.age;
+	}
+	
+	//besoins de calculer age
+	public int calculAge()
+	{
+		LocalDate ld = java.time.LocalDate.now();
+        ZoneId defaultZoneId = ZoneId.systemDefault();
+		Date todayDate = Date.from(ld.atStartOfDay(defaultZoneId).toInstant());
+		return 25;
+	}
+	
+	
+	public boolean enleverLocation(Location location)
+	{
+		return this.listeLocationEnPossession.remove(location);
+	}
+	
+	public List<Location> getListeLocationEnPossession()
+	{
+		return this.listeLocationEnPossession;
+	}
+	
+	public void setListeLocationEnPossession(Location location)
+	{
+		this.listeLocationEnPossession.add(location);
+	}
+	
+	public boolean enleverReservation(Reservation reservation)
+	{
+		return this.listeReservationEnPossession.remove(reservation);
+	}
+	
+	public List<Reservation> getListeReservationEnPossession()
+	{
+		return this.listeReservationEnPossession;
+	}
+	
+	public void setListeReservationEnPossession(Reservation reservation)
+	{
+		this.listeReservationEnPossession.add(reservation);
+	}
+	
     public void setNom(String nom)
 	{
 		this.nom = nom;
@@ -90,6 +151,7 @@ public class Client
 		this.permis = permis;
 	}
 	
+
     /**
      * @return the prenom
      */
@@ -145,6 +207,7 @@ public class Client
     public void setCourriel( String courriel ) {
         this.courriel = courriel;
     }
+
 
     @Override
     public String toString() {
