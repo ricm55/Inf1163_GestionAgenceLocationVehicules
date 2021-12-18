@@ -30,7 +30,7 @@ public class Test {
         //StockageClients stk = new StockageClients();
         /*
         try {
-            Client c = StockageClients.getClient( "819-556-4525" );
+            Client c = StockageClients.getClient( "819-332-5484" );
             System.out.println(c);
             
         } catch ( SQLException e ) {
@@ -42,7 +42,7 @@ public class Test {
         }*/
         /*try {
             
-            Client c = new Client(-1,"TestNom","TestPrenom","123-456-7890",java.time.LocalDate.now(),"test@gmail.com",new Date(1999,8,11),"Rue des Benoits",true);
+            Client c = new Client(-1,"Rivard","Jean-Denis","819-332-5484",java.time.LocalDate.now(),"DenisLeJean@gmail.com",new Date(1999,8,11),"La street des boeufs",true);
             PermisDeConduire permis = new PermisDeConduire(new Date(2025,06,22), new ArrayList<String>() { {add("CLASSE1");add("CLASSE2");add("CLASSE6B");} } );
             c.setPermis( permis );
             StockageClients.insertClient( c );

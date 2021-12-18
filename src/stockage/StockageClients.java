@@ -155,7 +155,11 @@ public class StockageClients{
         //Creation et execution de la commande
         String query_getClient = MessageFormat.format( "select * from client inner join PermisConduire on Client.ClientId = PermisConduire.client_id where numTelephone=\"{0}\";", numTelephone );
         ResultSet result_getClient = statement.executeQuery(query_getClient);
-       
+        
+        System.out.println(query_getClient);
+        
+        System.out.println(result_getClient.getInt("ClientId"));
+        
         //Obtenir le client
         Client client = new Client(
                 result_getClient.getInt("ClientId"),
@@ -168,7 +172,9 @@ public class StockageClients{
                 result_getClient.getString( "adresse" ),
                 result_getClient.getBoolean( "assurancePersonnelle" )
                 );
+        
         Date dateExpiration = converterStringDate(result_getClient.getString("dateExpiration"));
+
         
         //Obtenir le permis du client
         String query_getPermisType = MessageFormat.format( "select type from PermisConduireClassePermis inner join ClassePermis on PermisConduireClassePermis.classePermis_id = ClassePermis.ClassePermisId where permisConduire_id={0};",result_getClient.getInt("ClientId"));
@@ -187,6 +193,8 @@ public class StockageClients{
     }
     
     public static void insertClient(Client client) throws SQLException{
+        System.out.println("INSERTION d'un client");
+        
         //Connection a la base de donnee
         StockageBasic.connect();
         Statement statement = StockageBasic.storage.createStatement();
@@ -208,15 +216,15 @@ public class StockageClients{
                 client.isAssurancePersonnelle());
         
         //Inserer le client
-        ResultSet result_insertClient = statement.executeQuery(query_insertClient);
-        System.out.println("=> "+query_insertClient);
+        statement.executeUpdate(query_insertClient);
+        System.out.println("=> "+ query_insertClient);
         
         //Recuperer l'id du client
         String query_getClientId = MessageFormat.format( "select ClientId from Client where numTelephone=\"{0}\";", client.getNumTelephone() );
-        ResultSet result_getClientId= statement.executeQuery(query_insertClient);
+        ResultSet result_getClientId= statement.executeQuery(query_getClientId);
         int ClientId = result_getClientId.getInt( "ClientId" );
-        //int ClientId =2;
         System.out.println( "=> " + query_getClientId );
+        
         
         //Inserer le permis du client
         String query_insertPermisClient = MessageFormat.format( 
@@ -226,7 +234,7 @@ public class StockageClients{
                 client.getPermis().getDateExpiration().getMonth(),
                 client.getPermis().getDateExpiration().getDay());
         
-        statement.executeQuery(query_insertPermisClient);
+        statement.executeUpdate(query_insertPermisClient);
         System.out.println("=> "+query_insertPermisClient);
         
         //Mettre une classe au permis
