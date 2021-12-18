@@ -29,7 +29,7 @@ public class Test {
             e.printStackTrace();
         }*/
         //StockageClients stk = new StockageClients();
-        /*
+        
         try {
             Client c = StockageClients.getClient( "1234567890" );
             System.out.println(c);
@@ -40,7 +40,7 @@ public class Test {
         } catch ( ParseException e ) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }*/
+        }
         /*try {
             
 

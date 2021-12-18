@@ -1,6 +1,8 @@
 package controleur;
 
 import java.sql.Date;
+import java.sql.SQLException;
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -8,31 +10,35 @@ import background.Client;
 import background.Location;
 import background.PermisDeConduire;
 import background.Reservation;
+import stockage.StockageClients;
 
 public class ClientControleur
 {
 	private Client client;
 
-	public ClientControleur(String telephone)
+	public ClientControleur(String telephone) throws SQLException, ParseException
 	{
 		this.client = this.identifierClient(telephone);
 	}
 
-	public boolean rechercheClient(String telephone)
+	public boolean rechercheClient(String telephone) throws SQLException, ParseException
 	{
 		// if client exist
-		return true;
+		if(StockageClients.getClient(telephone) != null) {
+			return true;
+		}
+		
 		// else
-		// return false;
+		return false;
 	}
 
 	// Si le client existe, return le client
 	// Si le client n'existe pas, return null (devrait afficher un message d'erreur)
-	public Client identifierClient(String telephone)
+	public Client identifierClient(String telephone) throws SQLException, ParseException
 	{
 		if (this.rechercheClient(telephone) == true)
 		{
-			return client;
+			return StockageClients.getClient(telephone);
 		} 
 		else
 		{
@@ -73,9 +79,9 @@ public class ClientControleur
 
 	}
 
-	public Client getClient()
+	public Client getClient() throws SQLException, ParseException
 	{
-		return this.client;
+		return StockageClients.getClient(getNumTelephoneClient());
 	}
 
 	public void setPrenomClient(String prenom)
@@ -84,9 +90,9 @@ public class ClientControleur
 
 	}
 
-	public String getPrenomClient()
+	public String getPrenomClient() throws SQLException, ParseException
 	{
-		return this.client.getPrenom();
+		return StockageClients.getClient(getNumTelephoneClient()).toString();
 	}
 
 	public void setCourrielClient(String courriel)
@@ -124,9 +130,9 @@ public class ClientControleur
 		this.client.setNom(nom);
 	}
 
-	public String getNomClient()
+	public String getNomClient() throws SQLException, ParseException
 	{
-		return this.client.getNom();
+		return StockageClients.getClient(getNumTelephoneClient()).toString();
 	}
 
 	public void setDateDeNaissanceClient(Date dateDeNaissance)
@@ -154,7 +160,7 @@ public class ClientControleur
 		this.client.setNumTelephone(numTelephone);
 	}
 
-	public String getNumTelephoneClient()
+	public String getNumTelephoneClient() throws SQLException, ParseException
 	{
 		return this.client.getNumTelephone();
 	}

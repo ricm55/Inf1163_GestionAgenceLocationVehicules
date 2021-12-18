@@ -211,29 +211,49 @@ public class RechercheClient extends JFrame
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				controleurClient = new ClientControleur(textTelephone.getText());
-				
 				try {
-					if(controleurClient.getClient() == null)
-					{
-						JOptionPane.showMessageDialog(null, "Ce num\u00E9ro n'est pas li\u00E9 \u00E0 un compte client.");
-					}
-					else
-					{
-						textTelephone.setText(controleurClient.getNomClient() + ", " + controleurClient.getPrenomClient());
-						btnOui.setEnabled(true);
-						btnNon.setEnabled(true);
-					}
-				} catch (HeadlessException e1) {
+					controleurClient = new ClientControleur(textTelephone.getText());
+				} catch (SQLException e2) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (SQLException e1) {
+					e2.printStackTrace();
+				} catch (ParseException e2) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (ParseException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					e2.printStackTrace();
 				}
+				
+				
+					
+						try {
+							if(controleurClient.getClient() == null)
+							{
+								JOptionPane.showMessageDialog(null, "Ce num\u00E9ro n'est pas li\u00E9 \u00E0 un compte client.");
+							}
+							else
+							{
+								try {
+									textTelephone.setText(controleurClient.getNomClient() + ", " + controleurClient.getPrenomClient());
+								} catch (SQLException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								} catch (ParseException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
+								btnOui.setEnabled(true);
+								btnNon.setEnabled(true);
+							}
+						} catch (HeadlessException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (ParseException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					
+				
 			}
 
 		});
