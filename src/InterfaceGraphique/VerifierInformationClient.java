@@ -27,6 +27,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
+import javax.swing.JRadioButton;
 
 public class VerifierInformationClient extends JFrame
 {
@@ -175,6 +176,18 @@ public class VerifierInformationClient extends JFrame
 		txtExpiration.setEditable(false);
 		txtExpiration.setText(controleurClient.getDateExpirationPermisClient());
 		txtExpiration.setFont(new Font("Verdana", Font.PLAIN, 16));
+		
+		JTextPane txtCourriel = new JTextPane();
+		txtCourriel.setText((String) null);
+		txtCourriel.setFont(new Font("Verdana", Font.PLAIN, 16));
+		txtCourriel.setEditable(false);
+		
+		JRadioButton rdBtnAssurance = new JRadioButton("Oui");
+		rdBtnAssurance.setBackground(SystemColor.textHighlight);
+		rdBtnAssurance.setForeground(Color.WHITE);
+		JRadioButton rdbtnAssuranceNon = new JRadioButton("Non");
+		rdbtnAssuranceNon.setForeground(Color.WHITE);
+		rdbtnAssuranceNon.setBackground(SystemColor.textHighlight);
 
 		JButton btnValider = new JButton("Valider");
 		btnValider.setForeground(Color.WHITE);
@@ -197,6 +210,12 @@ public class VerifierInformationClient extends JFrame
 					controleurClient.setAdresseClient(txtAdresse.getText());
 					controleurClient.setNumTelephoneClient(txtTelephone.getText());
 					controleurClient.setClassesPermisClient(txtClasses.getText());
+					controleurClient.setCourrielClient(txtCourriel.getText());
+					controleurClient.setAssurancePersonnelleClient(rdBtnAssurance.isSelected()) ;
+					
+							
+						
+					
 					try
 					{
 						controleurClient.setDateDeNaissanceClient(simpleDateFormat.parse(txtDateDeNaissance.getText()));
@@ -241,6 +260,7 @@ public class VerifierInformationClient extends JFrame
 				txtAdresse.setEditable(true);
 				txtClasses.setEditable(true);
 				txtExpiration.setEditable(true);
+				txtCourriel.setEditable(true);
 			}
 		});
 		btnModifier.setFont(new Font("Verdana", Font.PLAIN, 16));
@@ -318,10 +338,7 @@ public class VerifierInformationClient extends JFrame
 		txtEmail.setColumns(10);
 		txtEmail.setBackground(Color.DARK_GRAY);
 		
-		JTextPane txtTelephone_1 = new JTextPane();
-		txtTelephone_1.setText((String) null);
-		txtTelephone_1.setFont(new Font("Verdana", Font.PLAIN, 16));
-		txtTelephone_1.setEditable(false);
+		
 		
 		txtAssurancePersonnelle = new JTextField();
 		txtAssurancePersonnelle.setText("Assurance personnelle");
@@ -332,10 +349,7 @@ public class VerifierInformationClient extends JFrame
 		txtAssurancePersonnelle.setColumns(10);
 		txtAssurancePersonnelle.setBackground(Color.DARK_GRAY);
 		
-		JTextPane txtTelephone_1_1 = new JTextPane();
-		txtTelephone_1_1.setText((String) null);
-		txtTelephone_1_1.setFont(new Font("Verdana", Font.PLAIN, 16));
-		txtTelephone_1_1.setEditable(false);
+		
 		
 
 		GroupLayout gl_mid = new GroupLayout(mid);
@@ -351,7 +365,7 @@ public class VerifierInformationClient extends JFrame
 					.addContainerGap()
 					.addComponent(txtEmail, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
 					.addGap(10)
-					.addComponent(txtTelephone_1, GroupLayout.PREFERRED_SIZE, 551, GroupLayout.PREFERRED_SIZE)
+					.addComponent(txtCourriel, GroupLayout.PREFERRED_SIZE, 551, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(21, Short.MAX_VALUE))
 				.addGroup(gl_mid.createSequentialGroup()
 					.addContainerGap()
@@ -363,8 +377,10 @@ public class VerifierInformationClient extends JFrame
 							.addComponent(txtTelephone, GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE))
 						.addGroup(gl_mid.createSequentialGroup()
 							.addComponent(txtAssurancePersonnelle, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE)
-							.addGap(59)
-							.addComponent(txtTelephone_1_1, GroupLayout.PREFERRED_SIZE, 479, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(rdBtnAssurance, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(rdbtnAssuranceNon, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_mid.createSequentialGroup()
 							.addGroup(gl_mid.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_mid.createParallelGroup(Alignment.TRAILING)
@@ -414,14 +430,15 @@ public class VerifierInformationClient extends JFrame
 					.addGroup(gl_mid.createParallelGroup(Alignment.TRAILING)
 						.addComponent(labelTelephone, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(txtTelephone, 0, 0, Short.MAX_VALUE))
-					.addPreferredGap(ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
 					.addGroup(gl_mid.createParallelGroup(Alignment.TRAILING)
-						.addComponent(txtTelephone_1, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtCourriel, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
 						.addComponent(txtEmail, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_mid.createParallelGroup(Alignment.LEADING)
-						.addComponent(txtTelephone_1_1, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtAssurancePersonnelle, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
+					.addGroup(gl_mid.createParallelGroup(Alignment.BASELINE)
+						.addComponent(txtAssurancePersonnelle, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+						.addComponent(rdBtnAssurance)
+						.addComponent(rdbtnAssuranceNon))
 					.addGap(18)
 					.addComponent(labelInformationsPermis, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addGap(13)
