@@ -33,6 +33,13 @@ public class VerifierInformationClient extends JFrame
 	private static VerifierInformationClient frame;
 	private static Action actionEnCours;
 	private static ClientControleur controleurClient;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
+	private JTextField textField_5;
+	private JTextField textField_6;
 
 	/**
 	 * Launch the application.
@@ -115,6 +122,8 @@ public class VerifierInformationClient extends JFrame
 		contentPane.add(mid, BorderLayout.CENTER);
 
 		JTextPane txtpnInformationsPermisDe = new JTextPane();
+		txtpnInformationsPermisDe.setForeground(Color.WHITE);
+		txtpnInformationsPermisDe.setBackground(Color.DARK_GRAY);
 		txtpnInformationsPermisDe.setFont(new Font("Verdana", Font.PLAIN, 16));
 		txtpnInformationsPermisDe.setText("Informations Permis de Conduire");
 
@@ -146,30 +155,6 @@ public class VerifierInformationClient extends JFrame
 		txtpnDateExpirationDu.setText("Date expiration du permis: YYYY-MM-JJ");
 		txtpnDateExpirationDu.setFont(new Font("Verdana", Font.PLAIN, 16));
 
-		JTextPane txtpnDateDeDbut = new JTextPane();
-		txtpnDateDeDbut.setText("Date de d\u00E9but de la location :");
-		txtpnDateDeDbut.setFont(new Font("Verdana", Font.PLAIN, 16));
-
-		JTextPane txtpnDate = new JTextPane();
-		txtpnDate.setText("Date");
-		txtpnDate.setFont(new Font("Verdana", Font.PLAIN, 16));
-
-		JTextPane txtpnDateDeFin = new JTextPane();
-		txtpnDateDeFin.setText("Date de fin de la location :");
-		txtpnDateDeFin.setFont(new Font("Verdana", Font.PLAIN, 16));
-
-		JTextPane txtpnDate_1 = new JTextPane();
-		txtpnDate_1.setText("Date");
-		txtpnDate_1.setFont(new Font("Verdana", Font.PLAIN, 16));
-
-		JTextPane txtpnClasseDeVhicule = new JTextPane();
-		txtpnClasseDeVhicule.setText("Classe de v\u00E9hicule souhait\u00E9:");
-		txtpnClasseDeVhicule.setFont(new Font("Verdana", Font.PLAIN, 16));
-
-		JTextPane txtpnClasse = new JTextPane();
-		txtpnClasse.setText("Classe ");
-		txtpnClasse.setFont(new Font("Verdana", Font.PLAIN, 16));
-
 		JButton btnValider = new JButton("Valider");
 		btnValider.addActionListener(new ActionListener()
 		{
@@ -180,98 +165,162 @@ public class VerifierInformationClient extends JFrame
 		});
 		btnValider.setFont(new Font("Verdana", Font.PLAIN, 16));
 		btnValider.setBackground(Color.CYAN);
+		
+		JButton btnModifier = new JButton("Modifier");
+		btnModifier.setFont(new Font("Verdana", Font.PLAIN, 16));
+		btnModifier.setBackground(Color.CYAN);
+		
+		textField = new JTextField();
+		textField.setText("Forfait");
+		textField.setHorizontalAlignment(SwingConstants.CENTER);
+		textField.setForeground(Color.WHITE);
+		textField.setFont(new Font("Verdana", Font.PLAIN, 16));
+		textField.setEditable(false);
+		textField.setColumns(10);
+		textField.setBackground(Color.DARK_GRAY);
+		
+		textField_1 = new JTextField();
+		textField_1.setText("Assurance");
+		textField_1.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_1.setForeground(Color.WHITE);
+		textField_1.setFont(new Font("Verdana", Font.PLAIN, 16));
+		textField_1.setEditable(false);
+		textField_1.setColumns(10);
+		textField_1.setBackground(Color.DARK_GRAY);
+		
+		textField_2 = new JTextField();
+		textField_2.setText("Dur\u00E9e");
+		textField_2.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_2.setForeground(Color.WHITE);
+		textField_2.setFont(new Font("Verdana", Font.PLAIN, 16));
+		textField_2.setEditable(false);
+		textField_2.setColumns(10);
+		textField_2.setBackground(Color.DARK_GRAY);
+		
+		textField_3 = new JTextField();
+		textField_3.setText("Classe");
+		textField_3.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_3.setForeground(Color.WHITE);
+		textField_3.setFont(new Font("Verdana", Font.PLAIN, 16));
+		textField_3.setEditable(false);
+		textField_3.setColumns(10);
+		textField_3.setBackground(Color.DARK_GRAY);
+		
+		textField_4 = new JTextField();
+		textField_4.setText("Classe");
+		textField_4.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_4.setForeground(Color.WHITE);
+		textField_4.setFont(new Font("Verdana", Font.PLAIN, 16));
+		textField_4.setEditable(false);
+		textField_4.setColumns(10);
+		textField_4.setBackground(Color.DARK_GRAY);
+		
+		textField_5 = new JTextField();
+		textField_5.setText("Classe");
+		textField_5.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_5.setForeground(Color.WHITE);
+		textField_5.setFont(new Font("Verdana", Font.PLAIN, 16));
+		textField_5.setEditable(false);
+		textField_5.setColumns(10);
+		textField_5.setBackground(Color.DARK_GRAY);
+		
+		textField_6 = new JTextField();
+		textField_6.setText("Classe");
+		textField_6.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_6.setForeground(Color.WHITE);
+		textField_6.setFont(new Font("Verdana", Font.PLAIN, 16));
+		textField_6.setEditable(false);
+		textField_6.setColumns(10);
+		textField_6.setBackground(Color.DARK_GRAY);
 
 		GroupLayout gl_mid = new GroupLayout(mid);
-		gl_mid.setHorizontalGroup(gl_mid.createParallelGroup(Alignment.TRAILING).addGroup(Alignment.LEADING, gl_mid
-				.createSequentialGroup().addContainerGap()
-				.addComponent(txtpnInformationsPermisDe, GroupLayout.PREFERRED_SIZE, 293, GroupLayout.PREFERRED_SIZE)
-				.addPreferredGap(ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
-				.addComponent(txtpnDateDeDbut, GroupLayout.PREFERRED_SIZE, 293, GroupLayout.PREFERRED_SIZE)
-				.addContainerGap())
-				.addGroup(Alignment.LEADING,
-						gl_mid.createSequentialGroup().addContainerGap()
-								.addComponent(txtpnInformationsPermisDe_1, GroupLayout.PREFERRED_SIZE, 293,
-										GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
-								.addComponent(txtpnDate, GroupLayout.PREFERRED_SIZE, 293, GroupLayout.PREFERRED_SIZE)
-								.addContainerGap())
-				.addGroup(Alignment.LEADING,
-						gl_mid.createSequentialGroup().addContainerGap()
-								.addComponent(txtpnNom, GroupLayout.PREFERRED_SIZE, 293, GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
-								.addComponent(txtpnDateDeFin, GroupLayout.PREFERRED_SIZE, 293,
-										GroupLayout.PREFERRED_SIZE)
-								.addContainerGap())
-				.addGroup(Alignment.LEADING,
-						gl_mid.createSequentialGroup().addContainerGap()
-								.addComponent(txtpnPrnom, GroupLayout.PREFERRED_SIZE, 293, GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
-								.addComponent(txtpnDate_1, GroupLayout.PREFERRED_SIZE, 293, GroupLayout.PREFERRED_SIZE)
-								.addContainerGap())
-				.addGroup(Alignment.LEADING, gl_mid.createSequentialGroup().addContainerGap()
-						.addComponent(txtpnDateDeNaissance, GroupLayout.PREFERRED_SIZE, 293, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
-						.addComponent(txtpnClasseDeVhicule, GroupLayout.PREFERRED_SIZE, 293, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap())
+		gl_mid.setHorizontalGroup(
+			gl_mid.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_mid.createSequentialGroup()
-						.addGroup(gl_mid.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_mid.createSequentialGroup().addContainerGap().addComponent(txtpnRue,
-										GroupLayout.PREFERRED_SIZE, 293, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_mid.createSequentialGroup().addContainerGap().addComponent(txtpnClasses,
-										GroupLayout.PREFERRED_SIZE, 293, GroupLayout.PREFERRED_SIZE)))
-						.addGap(117)
-						.addGroup(gl_mid.createParallelGroup(Alignment.LEADING)
-								.addComponent(btnValider, GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
-								.addComponent(txtpnClasse, Alignment.TRAILING))
-						.addContainerGap())
-				.addGroup(Alignment.LEADING,
-						gl_mid.createSequentialGroup().addContainerGap().addComponent(txtpnDateExpirationDu,
-								GroupLayout.PREFERRED_SIZE, 293, GroupLayout.PREFERRED_SIZE)
-								.addContainerGap(420, Short.MAX_VALUE)));
-		gl_mid.setVerticalGroup(gl_mid.createParallelGroup(Alignment.LEADING).addGroup(gl_mid.createSequentialGroup()
-				.addGroup(gl_mid.createParallelGroup(Alignment.LEADING).addGroup(gl_mid.createSequentialGroup()
-						.addGap(20)
-						.addGroup(gl_mid.createParallelGroup(Alignment.LEADING).addGroup(gl_mid.createSequentialGroup()
-								.addGap(38)
-								.addComponent(txtpnInformationsPermisDe_1, GroupLayout.PREFERRED_SIZE, 27,
-										GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.UNRELATED)
-								.addComponent(txtpnNom, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.UNRELATED)
-								.addComponent(txtpnPrnom, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(txtpnDateDeNaissance, GroupLayout.PREFERRED_SIZE, 27,
-										GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.UNRELATED)
-								.addComponent(txtpnRue, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_mid.createSequentialGroup().addGap(31)
-										.addComponent(txtpnDate, GroupLayout.PREFERRED_SIZE, 27,
-												GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(ComponentPlacement.UNRELATED)
-										.addComponent(txtpnDateDeFin, GroupLayout.PREFERRED_SIZE, 27,
-												GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(ComponentPlacement.UNRELATED)
-										.addComponent(txtpnDate_1, GroupLayout.PREFERRED_SIZE, 27,
-												GroupLayout.PREFERRED_SIZE)
-										.addGap(13)
-										.addComponent(txtpnClasseDeVhicule, GroupLayout.PREFERRED_SIZE, 27,
-												GroupLayout.PREFERRED_SIZE)
-										.addGap(11).addComponent(txtpnClasse, GroupLayout.PREFERRED_SIZE, 27,
-												GroupLayout.PREFERRED_SIZE))))
-						.addGroup(gl_mid.createSequentialGroup().addContainerGap()
-								.addGroup(gl_mid.createParallelGroup(Alignment.LEADING)
-										.addComponent(txtpnDateDeDbut, GroupLayout.PREFERRED_SIZE, 27,
-												GroupLayout.PREFERRED_SIZE)
-										.addComponent(txtpnInformationsPermisDe, GroupLayout.PREFERRED_SIZE,
-												GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
-				.addPreferredGap(ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
-				.addGroup(gl_mid.createParallelGroup(Alignment.LEADING)
+					.addContainerGap()
+					.addGroup(gl_mid.createParallelGroup(Alignment.LEADING)
+						.addComponent(textField, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE))
+					.addGap(10)
+					.addGroup(gl_mid.createParallelGroup(Alignment.LEADING)
+						.addComponent(txtpnNom, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
+						.addComponent(txtpnPrnom, Alignment.TRAILING)
+						.addComponent(txtpnDateDeNaissance, Alignment.TRAILING)
+						.addComponent(txtpnRue, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE))
+					.addContainerGap())
+				.addGroup(gl_mid.createSequentialGroup()
+					.addGap(45)
+					.addComponent(btnModifier, GroupLayout.PREFERRED_SIZE, 258, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
+					.addComponent(btnValider, GroupLayout.PREFERRED_SIZE, 256, GroupLayout.PREFERRED_SIZE)
+					.addGap(51))
+				.addGroup(gl_mid.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(txtpnInformationsPermisDe_1, GroupLayout.PREFERRED_SIZE, 562, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+				.addGroup(gl_mid.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(textField_6, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(txtpnDateExpirationDu, GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
+					.addContainerGap())
+				.addGroup(gl_mid.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+					.addComponent(txtpnClasses, GroupLayout.PREFERRED_SIZE, 562, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+				.addGroup(gl_mid.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(txtpnInformationsPermisDe, GroupLayout.DEFAULT_SIZE, 703, Short.MAX_VALUE)
+					.addContainerGap())
+		);
+		gl_mid.setVerticalGroup(
+			gl_mid.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_mid.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_mid.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_mid.createSequentialGroup()
-								.addComponent(txtpnClasses, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-								.addGap(19).addComponent(txtpnDateExpirationDu, GroupLayout.PREFERRED_SIZE, 27,
-										GroupLayout.PREFERRED_SIZE))
-						.addComponent(btnValider, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-				.addContainerGap()));
+							.addComponent(txtpnNom, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(txtpnPrnom, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(txtpnDateDeNaissance, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(txtpnRue, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_mid.createSequentialGroup()
+							.addGap(1)
+							.addComponent(textField, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+							.addGap(11)
+							.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+							.addGap(11)
+							.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+							.addGap(11)
+							.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)))
+					.addGap(11)
+					.addGroup(gl_mid.createParallelGroup(Alignment.LEADING)
+						.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtpnInformationsPermisDe_1, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
+					.addGap(20)
+					.addComponent(txtpnInformationsPermisDe, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_mid.createParallelGroup(Alignment.LEADING)
+						.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtpnClasses, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_mid.createParallelGroup(Alignment.LEADING)
+						.addComponent(textField_6, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtpnDateExpirationDu, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+					.addGroup(gl_mid.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnValider, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnModifier, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
+					.addGap(20))
+		);
 		mid.setLayout(gl_mid);
 	}
 }

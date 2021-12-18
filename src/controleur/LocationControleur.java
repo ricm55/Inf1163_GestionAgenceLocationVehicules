@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
-
+import java.util.concurrent.TimeUnit;
 import background.CatalogueVehicule;
 import background.ClasseDeVehicule;
 import background.Client;
@@ -125,6 +125,54 @@ public class LocationControleur {
         return location.getPremierVersement();
     	
     }
+    
+    private double miseAJourKilometrageVehicule(Location location, double nouveauKilometrage)
+    
+    {
+    	double surplus = 0;
+    	if ( ( nouveauKilometrage > 500 ) && ( location.getForfait().getType() != "kilometrageIllimite"))
+    	{
+    		surplus = nouveauKilometrage - 500 * 0.21;
+    		
+    	}
+    	else{
+    	
+    		long dateLocation = location.getDateDebut().getTime();
+    	
+    		Date dateNow=new Date();  
+    	
+    		long timeDiff = dateLocation - dateNow.getTime();
+    	
+    		surplus = TimeUnit.DAYS.convert(timeDiff, TimeUnit.MICROSECONDS) * 18.45 ;
+    	}
+    	
+    	return surplus;
+    	
+    }
+    
+    private double miseAJourReservoirVehicule(double reservoir)
+    {
+    	return reservoir*1.41;
+    }
+    
+    private double miseAJourDommages(double dommages)
+    {
+    	return dommages;
+    }
+    
+    private double miseAJourVehicule(double niveauReservoir, double kilometrage, double dommages, Location location)
+    {
+    	double total = this.miseAJourDommages(dommages) + this.miseAJourReservoirVehicule(niveauReservoir);
+    	total = total+this.miseAJourKilometrageVehicule(location, kilometrage);
+    	total = total + (total * 0.14975);
+    	return total;
+    }
+    
+    
+    
+    
+    
+    
     
     
 }
