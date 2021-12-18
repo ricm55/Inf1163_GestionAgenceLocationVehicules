@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import background.Client;
@@ -30,7 +31,17 @@ public class StockageBasic {
         storage.close();
     }
     
-    
+    static Date converterStringDate(String chaine) {
+        System.out.println(chaine);
+        
+        String[] sections_date = chaine.split( "-" );
+        
+        int annee = Integer.parseInt(sections_date[0]);
+        int mois = Integer.parseInt(sections_date[1]);
+        int jour = Integer.parseInt(sections_date[2]);
+        
+        return new Date(annee,mois,jour);
+    }
     
 }
 

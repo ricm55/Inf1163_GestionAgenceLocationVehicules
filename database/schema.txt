@@ -30,22 +30,18 @@ CREATE TABLE PermisConduireClassePermis(
     CONSTRAINT pk_PermisConduireClassePermis PRIMARY KEY (permisConduire_id,classePermis_id)
 );
 
-CREATE TABLE Paiement(
-    PaiementId INTEGER CONSTRAINT pk_paiement PRIMARY KEY AUTOINCREMENT,
-    paiementDebut DOUBLE,
-    paiementFinal DOUBLE
-);
-
 CREATE TABLE Tarif(
     TarifId INTEGER CONSTRAINT pk_tarif PRIMARY KEY AUTOINCREMENT,
-    type varchar(30),
-    prix DOUBLE
+    type varchar(1) UNIQUE,
+    prix DOUBLE,
+    description varchar(200)
+
 );
 
-CREATE TABLE Forfait(
-    ForfaitId INTEGER CONSTRAINT pk_paiement PRIMARY KEY AUTOINCREMENT,
-    type varchar(30),
-    prix DOUBLE
+CREATE TABLE TarifLocation(
+    tarif_id INTEGER CONSTRAINT fk_tarifLocation_tarif REFERENCES tarif(TarifId),
+    location_id INTEGER CONSTRAINT fk_tarifLocation_location REFERENCES Location(LocationId),
+    CONSTRAINT pk_PermisConduireClassePermis PRIMARY KEY (tarif_id,location_id)
 );
 
  CREATE TABLE Vehicule(
@@ -53,8 +49,9 @@ CREATE TABLE Forfait(
      marque varchar(50),
      modele varchar(50),
      annee INTEGER,
+     categorie varchar(30),
      couleur varchar(20),
-     kilometrage INTEGER,
+     kilometrage DOUBLE,
      quantiteEssence INTEGER,
      disponible BIT,
      classePermis_id INTEGER CONSTRAINT fk_vehicule_classePermis REFERENCES ClassePermis(ClassePermisId)
@@ -68,15 +65,128 @@ CREATE TABLE Forfait(
      kiloDebut INTEGER,
      distanceParcourue INTEGER,
      dateFin DATE,
-     forfait_id INTEGER CONSTRAINT fk_location_forfait REFERENCES Forfait(ForfaitId),
-     tarif_id INTEGER CONSTRAINT fk_location_tarif REFERENCES Tarif(TarifId),
-     pairement_id INTEGER CONSTRAINT fk_location_paiement REFERENCES Paiement(PaiementId)
+     pairementDebut DOUBLE,
+     pairementFin DOUBLE,
+     actif BIT
  );
 
+-- feed DB --
+insert into ClassePermis values
+ (?,"CLASSE1"),
+ (?,"CLASSE2"),
+ (?,"CLASSE3"),
+ (?,"CLASSE4A"),
+ (?,"CLASSE4B"),
+ (?,"CLASSE5"),
+ (?,"CLASSE6A"),
+ (?,"CLASSE6B"),
+ (?,"CLASSE6C"),
+ (?,"CLASSE6D"),
+ (?,"CLASSE6E"),
+ (?,"CLASSE8");
+
+insert into Tarif values
+    (?,'A',61.00,"Classe Economique d'un vehicule par jour"),
+    (?,'B',72.00,"Classe Moyenne d'un vehicule par jour"),
+    (?,'C',83.00,"Classe Confort d'un vehicule par jour"),
+    (?,'D',114.00,"Classe Luxe d'un vehicule par jour"),
+    (?,'E',99.00,"Classe Utilitaire d'un vehicule par jour"),
+    (?,'F',21.40,"Supplement par jour contre les degats et materiels sauf si le client a sa propre police d'assurance"),
+    (?,'G',0.21,"Supplement par kilometre parcouru au-dela des 500 premiers kilometres"),
+    (?,'H',18.45,"Supplement par jour pour un forfait avec un kilometrage illimite"),
+    (?,'I',10,"Supplément en pourcentage par heure de retard du client"),
+    (?,'J',5,"Taxe federal en pourcentage"),
+    (?,'K',9.975,"Taxe provinciale: Ajout ce Pourcentage au resultat des taxes provinciales"),
+    (?,'L',1.41,"Supplement par litre si le reservoir d'essence n'est pas plein au retour"),
+    (?,'M',350,"Montant remboursable au retour si le client paie par carte de credit");
+
+
+insert into Vehicule values
+    (?,"Honda","Civic",2007,"Economique","Grise",220.5,50.24,true,(select ClassePermisId from ClassePermis where type="CLASSE5")),
+    (?,"Toyota","Corolla",2018,"Economique","Blanche",115.6,73.5,true,(select ClassePermisId from ClassePermis where type="CLASSE5")),
+    (?,"Mazda","2",2011,"Economique","Rouge",440.9,50.32,true,(select ClassePermisId from ClassePermis where type="CLASSE5")),
+    (?,"Ford","Fiesta",2014,"Economique","Verte",110.3,66.2,true,(select ClassePermisId from ClassePermis where type="CLASSE5")),
+    (?,"Mitsubishi","Mirage",2017,"Economique","Mauve",220.56,80.23,true,(select ClassePermisId from ClassePermis where type="CLASSE5")),
+    (?,"Toyota","Yaris",2018,"Economique","Noir",336.48,59.6,true,(select ClassePermisId from ClassePermis where type="CLASSE5")),
+    (?,"Volkswagen","Golf",2011,"Moyenne","Grise",150.23,60.56,true,(select ClassePermisId from ClassePermis where type="CLASSE5")),
+    (?,"Ford","Focus",1998,"Moyenne","Rouge",220.49,83.86,true,(select ClassePermisId from ClassePermis where type="CLASSE5")),
+    (?,"Hyundai","Elantra",2006,"Moyenne","Violet",389.12,98.23,true,(select ClassePermisId from ClassePermis where type="CLASSE5")),
+    (?,"Honda","Civic",2016,"Moyenne","Rose",56.21,110.25,true,(select ClassePermisId from ClassePermis where type="CLASSE5")),
+    (?,"Mazda","3",2017,"Moyenne","Grise",362.25,120.26,true,(select ClassePermisId from ClassePermis where type="CLASSE5")),
+    (?,"Mitsubishi","Lancer",2003,"Moyenne","Jaune",256.21,84,true,(select ClassePermisId from ClassePermis where type="CLASSE5")),
+    (?,"Toyota","Avalon",2020,"Confort","Blanche",110.98,79.54,true,(select ClassePermisId from ClassePermis where type="CLASSE5")),
+    (?,"Buick","Enclave",2020,"Confort","Noir",115.65,100.98,true,(select ClassePermisId from ClassePermis where type="CLASSE5")),
+    (?,"Dodge","Durango",2019,"Confort","Rouge",420.35,66.3,true,(select ClassePermisId from ClassePermis where type="CLASSE5")),
+    (?,"Honda","Accord",2018,"Confort","Grise",265.50,78.91,true,(select ClassePermisId from ClassePermis where type="CLASSE5")),
+    (?,"Ford","Edge",2018,"Confort","Bleu",256.54,111.26,true,(select ClassePermisId from ClassePermis where type="CLASSE5")),
+    (?,"Volkswagen","Arteon",2019,"Confort","Platinium",330.26,90.51,true,(select ClassePermisId from ClassePermis where type="CLASSE5")),
+    (?,"Audi","R8",2022,"Luxe","Noir",98.56,66.45,true,(select ClassePermisId from ClassePermis where type="CLASSE5")),
+    (?,"Rolls Royce","Phantom",2021,"Luxe","Blanche",223.56,83.54,true,(select ClassePermisId from ClassePermis where type="CLASSE5")),
+    (?,"Porshe","Taycan",2018,"Luxe","Jaune",223.65,96.57,true,(select ClassePermisId from ClassePermis where type="CLASSE5")),
+    (?,"Lexus","LC",2021,"Luxe","Noir",221.15,48.65,true,(select ClassePermisId from ClassePermis where type="CLASSE5")),
+    (?,"Maserati","Ghibli",2021,"Luxe","Platinium",225.25,99.52,true,(select ClassePermisId from ClassePermis where type="CLASSE5")),
+    (?,"BMW","Serie 5",2021,"Luxe","Gris",112.32,56.25,true,(select ClassePermisId from ClassePermis where type="CLASSE5")),
+    (?,"JOHN DEERE","9r 390",2019,"Utilitaire","Vert",112.27,78.54,true,(select ClassePermisId from ClassePermis where type="CLASSE5")),
+    (?,"36D","Fleetwood SOUTHWIND",2019,"Utilitaire","Gris",221.21,85.25,true,(select ClassePermisId from ClassePermis where type="CLASSE5")),
+    (?,"JOHN DEERE","9r 560",2018,"Utilitaire","Vert",332.18,124.25,true,(select ClassePermisId from ClassePermis where type="CLASSE5"));
 
 
 
+-- ******************** test select **************************** --
 
+-- Obtenir les informations du client (param: numTelephone)
+SELECT ClientId, nom,prenom,numTelephone,dateCreation,courriel,dateDeNaissance,adresse,assurancePersonnelle,dateExpiration
+    from Client
+    inner join PermisConduire on Client.ClientId = PermisConduire.client_id
+    WHERE numTelephone="819-556-4525";
+
+-- 2: Recuperer l'id du client (param: num de telephone)
+select ClientId from Client where numTelephone="819-556-4525";
+
+-- Obtenir les classes de permis (param: id du client)
+SELECT type FROM PermisConduireClassePermis
+    inner join ClassePermis on PermisConduireClassePermis.classePermis_id = ClassePermis.ClassePermisId
+    where permisConduire_id=1;
+
+-- Obtenir une location avec ses fraits (param: numero de telephone)
+
+
+-- **************************** test insert **************************** --
+
+-- Inserer un client
+
+--1: inserer le client
+INSERT INTO Client VALUES
+    ( ?, "Bananna", "Joe","819-556-4525","2021-05-02","joe.bannana@gmail.com","1999-05-22","Jean rue des Jeans",1);
+
+-- 2: Recuperer l'id du client (param: num de telephone)
+select ClientId from Client where numTelephone="819-556-4525";
+
+-- 3: inserer un permis (param: l'id du client)
+INSERT INTO PermisConduire VALUES
+    ((select ClientId from Client where numTelephone="819-556-4525"),"2025-05-02");
+
+-- 4: Mettre une classe au permis (param: ClientId select dans l'etape 2)
+insert into PermisConduireClassePermis values
+    ((SELECT client_id from PermisConduire where client_id=1),(SELECT ClassePermisId from ClassePermis where type="CLASSE1")),
+    ((SELECT client_id from PermisConduire where client_id=1),(SELECT ClassePermisId from ClassePermis where type="CLASSE2"));
+
+-- Inserer des locations
+
+-- 1: Inserer une location (besoins d'un num telephone du client donc faire getClient avant)
+-- Besoins d'un objet Vehicule
+
+insert into location values
+    (?,(select ClientId from client where numTelephone), (select VehiculeId from Vehicule where marque="Honda" AND modele="Civic" AND annee=2007),"2021-02-05",220.5,50.24,null,20.2,null,true);
+
+-- 2: Inserer les tarifs assicie a la location (param=vehiculeId)
+insert into TarifLocation values
+    ((select TarifId from tarif where type="A"),(select locationId from Location where vehicule_id= (select VehiculeId from Vehicule where marque="Honda" AND modele="Civic" AND annee=2007)));
+
+insert into location values
+(?,(select ClientId from client where numTelephone="6234562890"),
+ (select VehiculeId from Vehicule where marque="Toyota" AND modele="Avalon" AND annee=2,020),
+ "2021-12-18",0,0,2021-6-6,0,0,true);
  -- Autre test --
 
  -- Inserer des permis de conduire

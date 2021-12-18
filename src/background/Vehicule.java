@@ -26,6 +26,11 @@ public class Vehicule
 		this.setClasse( classe );
 		this.typeDePermisNecessaire = typeDePermisNecessaire;
 	}
+	public Vehicule(String marque, String modele, int annee) {
+	    this.marque = marque;
+        this.modele = modele;
+        this.annee = annee;
+	}
 	
 	@Override
     public String toString() {

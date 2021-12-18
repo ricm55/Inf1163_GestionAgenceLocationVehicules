@@ -168,13 +168,13 @@ public class StockageClients{
                     result_getClient.getString( "nom" ),
                     result_getClient.getString( "prenom" ),
                     result_getClient.getString( "numTelephone" ),
-                    converterStringDate( result_getClient.getString( "dateCreation" ) ).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+                    StockageBasic.converterStringDate( result_getClient.getString( "dateCreation" ) ).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
                     result_getClient.getString( "courriel" ),
-                    converterStringDate( result_getClient.getString( "dateDeNaissance" ) ),
+                    StockageBasic.converterStringDate( result_getClient.getString( "dateDeNaissance" ) ),
                     result_getClient.getString( "adresse" ),
                     result_getClient.getBoolean( "assurancePersonnelle" )
                     );  
-            Date dateExpiration = converterStringDate(result_getClient.getString("dateExpiration"));
+            Date dateExpiration = StockageBasic.converterStringDate(result_getClient.getString("dateExpiration"));
     
             
             //Obtenir le permis du client
@@ -264,15 +264,5 @@ public class StockageClients{
         
     }
     
-    private static Date converterStringDate(String chaine) {
-        
-        String[] sections_date = chaine.split( "-" );
-        
-        int annee = Integer.parseInt(sections_date[0]);
-        int mois = Integer.parseInt(sections_date[1]);
-        int jour = Integer.parseInt(sections_date[2]);
-        
-        return new Date(annee,mois,jour);
-    }
 
 }
