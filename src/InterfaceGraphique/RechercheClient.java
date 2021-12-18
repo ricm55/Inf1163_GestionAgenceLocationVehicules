@@ -88,20 +88,14 @@ public class RechercheClient extends JFrame
 		btnBackToHome.setFont(new Font("Verdana", Font.PLAIN, 16));
 		btnBackToHome.setBackground(Color.DARK_GRAY);
 		GroupLayout gl_Left = new GroupLayout(Left);
-		gl_Left.setHorizontalGroup(
-			gl_Left.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_Left.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(btnBackToHome, GroupLayout.PREFERRED_SIZE, 161, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
-		gl_Left.setVerticalGroup(
-			gl_Left.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_Left.createSequentialGroup()
-					.addContainerGap(354, Short.MAX_VALUE)
-					.addComponent(btnBackToHome, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-		);
+		gl_Left.setHorizontalGroup(gl_Left.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_Left.createSequentialGroup().addContainerGap()
+						.addComponent(btnBackToHome, GroupLayout.PREFERRED_SIZE, 161, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+		gl_Left.setVerticalGroup(gl_Left.createParallelGroup(Alignment.LEADING).addGroup(Alignment.TRAILING,
+				gl_Left.createSequentialGroup().addContainerGap(354, Short.MAX_VALUE)
+						.addComponent(btnBackToHome, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap()));
 		Left.setLayout(gl_Left);
 
 		JPanel up = new JPanel();
@@ -197,51 +191,27 @@ public class RechercheClient extends JFrame
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				try {
-					controleurClient = new ClientControleur(textTelephone.getText());
-				} catch (SQLException e2) {
-					// TODO Auto-generated catch block
+				controleurClient = new ClientControleur(textTelephone.getText());
 
-					e2.printStackTrace();
-				} catch (ParseException e2) {
+				try
+				{
+					if (controleurClient.getClient() == null)
+					{
+						JOptionPane.showMessageDialog(null,
+								"Ce num\u00E9ro n'est pas li\u00E9 \u00E0 un compte client.");
+					} else
+					{
+						textTelephone.setText(
+								controleurClient.getNomClient() + ", " + controleurClient.getPrenomClient());
+						btnOui.setEnabled(true);
+						btnNon.setEnabled(true);
+					}
+				} catch (HeadlessException e1)
+				{
 					// TODO Auto-generated catch block
-					e2.printStackTrace();
-
+					e1.printStackTrace();
 				}
-				
-				
-					
-						try {
-							if(controleurClient.getClient() == null)
-							{
-								JOptionPane.showMessageDialog(null, "Ce num\u00E9ro n'est pas li\u00E9 \u00E0 un compte client.");
-							}
-							else
-							{
-								try {
-									textTelephone.setText(controleurClient.getNomClient() + ", " + controleurClient.getPrenomClient());
-								} catch (SQLException e1) {
-									// TODO Auto-generated catch block
-									e1.printStackTrace();
-								} catch (ParseException e1) {
-									// TODO Auto-generated catch block
-									e1.printStackTrace();
-								}
-								btnOui.setEnabled(true);
-								btnNon.setEnabled(true);
-							}
-						} catch (HeadlessException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						} catch (ParseException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-					
-				
+
 			}
 
 		});

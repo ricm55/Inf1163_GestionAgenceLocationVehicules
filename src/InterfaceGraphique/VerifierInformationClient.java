@@ -22,6 +22,9 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Color;
 import javax.swing.JTextPane;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 
@@ -40,7 +43,13 @@ public class VerifierInformationClient extends JFrame
 	private JTextField labelAdresse;
 	private JTextField labelClasses;
 	private JTextField labelExpiration;
+
 	private JTextField labelTelephone;
+
+	
+	String pattern = "yyyy-MM-dd";
+	SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+
 
 	/**
 	 * Launch the application.
@@ -129,6 +138,11 @@ public class VerifierInformationClient extends JFrame
 		labelInformationsPermis.setFont(new Font("Verdana", Font.PLAIN, 11));
 		labelInformationsPermis.setText("Informations sur le permis de conduire");
 
+		JTextPane txtTelephone = new JTextPane();
+        txtTelephone.setEditable(false);
+        txtTelephone.setText(controleurClient.getNumTelephoneClient());
+        txtTelephone.setFont(new Font("Verdana", Font.PLAIN, 16));
+        
 		JTextPane txtNom = new JTextPane();
 		txtNom.setEditable(false);
 		txtNom.setText(controleurClient.getNomClient());
@@ -174,19 +188,33 @@ public class VerifierInformationClient extends JFrame
 				}
 				else
 				{
-					frame.dispose();
+					controleurClient.setNomClient(txtNom.getText());
+					controleurClient.setPrenomClient(txtPrnom.getText());
+					controleurClient.setAdresseClient(txtAdresse.getText());
+					controleurClient.setNumTelephoneClient(txtTelephone.getText());
+					controleurClient.setClassesPermisClient(txtClasses.getText());
+					try
+					{
+						controleurClient.setDateDeNaissanceClient(simpleDateFormat.parse(txtDateDeNaissance.getText()));
+						controleurClient.setDateExpirationPermisClient(simpleDateFormat.parse(txtExpiration.getText()));
+					} catch (ParseException e)
+					{
+						e.printStackTrace();
+					}
+					
 					switch(actionEnCours)
 					{
 						case LOCATION:
+							frame.dispose();
 							LocationVehicule.launch();
 							break;
 						case RESERVATION:
+							frame.dispose();
 							//interface reservation
 							LocationVehicule.launch();
 							LocationVehicule.rendreInvisible(false);
 							break;
 						case VOIR_COMPTE_CLIENT:
-							//interface compte client
 							break;
 						default:
 							break;
@@ -276,10 +304,6 @@ public class VerifierInformationClient extends JFrame
 		labelTelephone.setColumns(10);
 		labelTelephone.setBackground(Color.DARK_GRAY);
 		
-		JTextPane txtTelephone = new JTextPane();
-		txtTelephone.setFont(new Font("Verdana", Font.PLAIN, 16));
-		//txtTelephone.setText(controleurClient.getNumTelephoneClient());
-		txtTelephone.setEditable(false);
 
 		GroupLayout gl_mid = new GroupLayout(mid);
 		gl_mid.setHorizontalGroup(
