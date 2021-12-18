@@ -149,7 +149,27 @@ SELECT type FROM PermisConduireClassePermis
     where permisConduire_id=1;
 
 -- Obtenir une location avec ses fraits (param: numero de telephone)
+-- Creer location sans creer vehicule
 
+select vehicule_id, dateDebut, kiloDebut, distanceParcourue, dateFin, pairementFin, pairementDebut, actif from Location
+    inner join Client on Location.LocationId = client.ClientId
+    where numTelephone="6234562890";
+
+
+
+select * from location
+    inner join Client on Client.ClientId = Location.client_id = Client.ClientId
+    inner join Vehicule on location.vehicule_id = Vehicule.VehiculeId
+    inner join ClassePermis on Vehicule.classePermis_id = ClassePermis.ClassePermisId
+    where numTelephone="6234562890";
+
+
+-- Besoins de store le id de la location
+
+select * from TarifLocation where location_id=2;
+
+-- Trouve tarif d'un type
+select prix from tarif where type="A";
 
 -- **************************** test insert **************************** --
 
