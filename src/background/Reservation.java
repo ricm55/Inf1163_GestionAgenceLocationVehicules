@@ -7,6 +7,7 @@ public class Reservation
 	private Date debut;
 	private Date fin;
 	
+	
 	public Reservation(Date debut, Date fin)
 	{
 		this.debut = debut;
