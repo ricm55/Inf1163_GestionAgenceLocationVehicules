@@ -1,6 +1,7 @@
 package background;
 
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Location
@@ -15,8 +16,10 @@ public class Location
 	private boolean estEnCours;
 	private double premierVersement;
 	private double deuxiemeVersement;
+	private ArrayList<String> tarifApplicable;
 	
-	public Location(Client client, Date dateDebut, Date dateFin, Forfait forfait, Vehicule vehicule)
+	//SEULEMENT POUR LE STOCKAGE
+	public Location(Client client, Date dateDebut, Date dateFin, Vehicule vehicule)
 	{
 	    this.setClient( client );
 		this.dateDebut = dateDebut;
@@ -30,6 +33,23 @@ public class Location
 		this.deuxiemeVersement = deuxiemeVersement;
 	
 	}
+	
+	//UTILISER LUI POUR L'APP
+	public Location(Client client, Date dateDebut, Date dateFin, Vehicule vehicule,ArrayList<String> tarifApplicable)
+    {
+        this.setClient( client );
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+        this.duree = 0;
+        this.vehicule = vehicule;
+        this.forfait = forfait;
+        this.kilometrageInitial = this.vehicule.getKilometrage();
+        this.estEnCours = true;
+        this.premierVersement = definitionPremierVersement(vehicule);
+        this.deuxiemeVersement = deuxiemeVersement;
+        this.tarifApplicable = tarifApplicable;
+    
+    }
 	
 	public double setPremierVersement(double premierVersement ) 
 	{
@@ -46,7 +66,7 @@ public class Location
 	
 	public double definitionPremierVersement(Vehicule vehicule)
 	{
-		switch (vehicule.getClasseDeVehicule().getClasse())
+		/*switch (vehicule.getClasseDeVehicule().getClasse())
 		{
 		
 		case ECONOMIQUE:
@@ -66,7 +86,7 @@ public class Location
 			
 		default:
 			break;
-		}
+		}*/
 		return 0;
 		
 	}
@@ -166,6 +186,20 @@ public class Location
                 + "\n, getEstEnCours()=" + getEstEnCours() + "\n, getForfait()=" + getForfait() + "\n, getDateDebut()="
                 + getDateDebut() + "\n, getDateFin()=" + getDateFin() + "\n, getKilometrageInitial()="
                 + getKilometrageInitial() + "\n, getClient()=" + getClient() + "\n, getVehicule()=" + getVehicule() + "]";
+    }
+
+    /**
+     * @return the tarifApplicable
+     */
+    public ArrayList<String> getTarifApplicable() {
+        return tarifApplicable;
+    }
+
+    /**
+     * @param tarifApplicable the tarifApplicable to set
+     */
+    public void setTarifApplicable( ArrayList<String> tarifApplicable ) {
+        this.tarifApplicable = tarifApplicable;
     }
     
     
