@@ -30,7 +30,7 @@ public class Test {
         //StockageClients stk = new StockageClients();
         /*
         try {
-            Client c = StockageClients.getClient( "1234567890" );
+            Client c = StockageClients.getClient( "7348563" );
             System.out.println(c);
             
         } catch ( SQLException e ) {
@@ -40,7 +40,7 @@ public class Test {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }*/
-        /*try {
+        try {
             
 
             Client c = new Client(-1,"TestNom","TestPrenom","1234567890",java.time.LocalDate.now(),"test@gmail.com",new Date(1999,8,11),"Rue des Benoits",true);
@@ -50,8 +50,8 @@ public class Test {
             StockageClients.insertClient( c );
             
         } catch ( Exception e ) {
-            // TODO Auto-generated catch block
-        }*/
+            System.out.println(e.getMessage());
+        }
         
     }
 
