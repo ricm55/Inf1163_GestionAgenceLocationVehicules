@@ -49,7 +49,7 @@ public class Test {
             PermisDeConduire permis = new PermisDeConduire(new Date(2025,06,22), new ArrayList<String>() { {add("CLASSE1");add("CLASSE2");add("CLASSE6B");} } );
             c.setPermis( permis );
             StockageClients.insertClient( c );
-            InterfaceAccueil.launch();
+            //InterfaceAccueil.launch();
             
         } catch ( Exception e ) {
             // TODO Auto-generated catch block

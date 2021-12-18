@@ -240,7 +240,7 @@ public class StockageClients{
         //Mettre une classe au permis
         //String query_insertClassePermis = MessageFormat.format( "", arguments )
         String query_insertClassePermis = "insert into PermisConduireClassePermis values ";
-        for (String type : client.getPermis().getClasse()) {
+        for (String type : client.getPermis().getClasses()) {
             String query_suite = MessageFormat.format( "((SELECT client_id from PermisConduire where client_id={0}),(SELECT ClassePermisId from ClassePermis where type=\"{1}\")),", ClientId,type );
             query_insertClassePermis = query_insertClassePermis + query_suite;
         }

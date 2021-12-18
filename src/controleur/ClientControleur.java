@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.sqlite.util.StringUtils;
+
 import background.Client;
 import background.Location;
 import background.PermisDeConduire;
@@ -176,6 +178,17 @@ public class ClientControleur
 	public PermisDeConduire getPermisClient()
 	{
 		return this.client.getPermis();
+	}
+	
+	public String getClassesPermisClient()
+	{
+		List<String> listeClasse = this.client.getPermis().getClasses();
+		return StringUtils.join(listeClasse, ",");
+	}
+	
+	public String getDateExpirationPermisClient()
+	{
+		return this.client.getPermis().getDateExpiration().toString();
 	}
 
 	public int getAge() {

@@ -75,9 +75,9 @@ public class LocationControleur {
     
     public boolean verificationValidePermisControleur(Client client,Vehicule vehicule)
     {
-    	for (int classe = 0 ; classe <= client.getPermis().getClasse().size(); classe ++)
+    	for (int classe = 0 ; classe <= client.getPermis().getClasses().size(); classe ++)
     	{
-    		if (client.getPermis().getClasse().get(classe) == vehicule.getTypeDePermisNecessaire())
+    		if (client.getPermis().getClasses().get(classe) == vehicule.getTypeDePermisNecessaire())
         	
         		return true;
     	}
