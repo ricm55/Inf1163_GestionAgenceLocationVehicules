@@ -8,7 +8,7 @@ public class Vehicule
 	private String modele;
 	private int annee;
 	private String couleur;
-	private int kilometrage;
+	private double kilometrage;
 	private double niveauReservoir;
 	private boolean disponible;
 	private ClasseDeVehicule classe;
@@ -79,7 +79,7 @@ public class Vehicule
 		this.couleur = couleur;
 	}
 	
-	public int getKilometrage()
+	public double getKilometrage()
 	{
 		return kilometrage;
 	}
@@ -89,7 +89,7 @@ public class Vehicule
     	return this.disponible;
     }
 	
-	public void setKilometrage(int kilometrage)
+	public void setKilometrage(double kilometrage)
 	{
 		this.kilometrage = kilometrage;
 	}
