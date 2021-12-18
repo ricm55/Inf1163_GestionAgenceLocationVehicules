@@ -219,6 +219,7 @@ public class CreerNouveauClient extends JFrame
 		{
 			public void actionPerformed(ActionEvent e)
 			{
+				//ajouter courriel et assurance, voir clientControleur ligne 62 pour la structure
 				controleurClient.creerNouveauClient(txtNom.getText(), txtPrenom.getText(), simpleDateFormat.parse(txtDateDeNaissance.getText()),
 						txtAdresse.getText(), txtTelephone.getText(), txtClasses.getText(), simpleDateFormat.parse(txtExpiration.getText()));
 			}
