@@ -38,9 +38,9 @@ public class VerifierInformationClient extends JFrame
 	private JTextField labelPrnom;
 	private JTextField labelDateDeNaissance;
 	private JTextField labelAdresse;
-	private JTextField labelTelephone;
 	private JTextField labelClasses;
 	private JTextField labelExpiration;
+	private JTextField labelTelephone;
 
 	/**
 	 * Launch the application.
@@ -129,11 +129,6 @@ public class VerifierInformationClient extends JFrame
 		labelInformationsPermis.setFont(new Font("Verdana", Font.PLAIN, 11));
 		labelInformationsPermis.setText("Informations sur le permis de conduire");
 
-		JTextPane txtTelephone = new JTextPane();
-		txtTelephone.setEditable(false);
-		txtTelephone.setText(controleurClient.getNumTelephoneClient());
-		txtTelephone.setFont(new Font("Verdana", Font.PLAIN, 16));
-
 		JTextPane txtNom = new JTextPane();
 		txtNom.setEditable(false);
 		txtNom.setText(controleurClient.getNomClient());
@@ -187,6 +182,8 @@ public class VerifierInformationClient extends JFrame
 							break;
 						case RESERVATION:
 							//interface reservation
+							LocationVehicule.launch();
+							LocationVehicule.rendreInvisible(false);
 							break;
 						case VOIR_COMPTE_CLIENT:
 							//interface compte client
@@ -252,15 +249,6 @@ public class VerifierInformationClient extends JFrame
 		labelAdresse.setColumns(10);
 		labelAdresse.setBackground(Color.DARK_GRAY);
 
-		labelTelephone = new JTextField();
-		labelTelephone.setText("T\u00E9l\u00E9phone");
-		labelTelephone.setHorizontalAlignment(SwingConstants.CENTER);
-		labelTelephone.setForeground(Color.WHITE);
-		labelTelephone.setFont(new Font("Verdana", Font.PLAIN, 11));
-		labelTelephone.setEditable(false);
-		labelTelephone.setColumns(10);
-		labelTelephone.setBackground(Color.DARK_GRAY);
-
 		labelClasses = new JTextField();
 		labelClasses.setText("Classe(s)");
 		labelClasses.setHorizontalAlignment(SwingConstants.CENTER);
@@ -278,24 +266,24 @@ public class VerifierInformationClient extends JFrame
 		labelExpiration.setEditable(false);
 		labelExpiration.setColumns(10);
 		labelExpiration.setBackground(Color.DARK_GRAY);
+		
+		labelTelephone = new JTextField();
+		labelTelephone.setText("T\u00E9l\u00E9phone");
+		labelTelephone.setHorizontalAlignment(SwingConstants.CENTER);
+		labelTelephone.setForeground(Color.WHITE);
+		labelTelephone.setFont(new Font("Verdana", Font.PLAIN, 11));
+		labelTelephone.setEditable(false);
+		labelTelephone.setColumns(10);
+		labelTelephone.setBackground(Color.DARK_GRAY);
+		
+		JTextPane txtTelephone = new JTextPane();
+		txtTelephone.setFont(new Font("Verdana", Font.PLAIN, 16));
+		//txtTelephone.setText(controleurClient.getNumTelephoneClient());
+		txtTelephone.setEditable(false);
 
 		GroupLayout gl_mid = new GroupLayout(mid);
 		gl_mid.setHorizontalGroup(
-			gl_mid.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_mid.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_mid.createParallelGroup(Alignment.LEADING)
-						.addComponent(labelNom, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
-						.addComponent(labelPrnom, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
-						.addComponent(labelDateDeNaissance, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
-						.addComponent(labelAdresse, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE))
-					.addGap(10)
-					.addGroup(gl_mid.createParallelGroup(Alignment.LEADING)
-						.addComponent(txtNom, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
-						.addComponent(txtAdresse, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
-						.addComponent(txtPrnom, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
-						.addComponent(txtDateDeNaissance, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE))
-					.addContainerGap())
+			gl_mid.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_mid.createSequentialGroup()
 					.addGap(38)
 					.addComponent(btnModifier, GroupLayout.PREFERRED_SIZE, 258, GroupLayout.PREFERRED_SIZE)
@@ -304,26 +292,33 @@ public class VerifierInformationClient extends JFrame
 					.addGap(51))
 				.addGroup(gl_mid.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(labelTelephone, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(txtTelephone, GroupLayout.PREFERRED_SIZE, 562, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-				.addGroup(gl_mid.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(labelExpiration, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(txtExpiration, GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
-					.addContainerGap())
-				.addGroup(gl_mid.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(labelClasses, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-					.addComponent(txtClasses, GroupLayout.PREFERRED_SIZE, 562, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-				.addGroup(gl_mid.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(labelInformationsPermis, GroupLayout.DEFAULT_SIZE, 703, Short.MAX_VALUE)
-					.addContainerGap())
+					.addGroup(gl_mid.createParallelGroup(Alignment.TRAILING, false)
+						.addGroup(gl_mid.createSequentialGroup()
+							.addComponent(labelExpiration, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(txtExpiration))
+						.addGroup(gl_mid.createSequentialGroup()
+							.addComponent(labelClasses, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(txtClasses, GroupLayout.PREFERRED_SIZE, 551, GroupLayout.PREFERRED_SIZE))
+						.addComponent(labelInformationsPermis, Alignment.LEADING)
+						.addGroup(Alignment.LEADING, gl_mid.createSequentialGroup()
+							.addComponent(labelTelephone, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(txtTelephone))
+						.addGroup(Alignment.LEADING, gl_mid.createSequentialGroup()
+							.addGroup(gl_mid.createParallelGroup(Alignment.LEADING)
+								.addComponent(labelNom, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
+								.addComponent(labelPrnom, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
+								.addComponent(labelDateDeNaissance, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
+								.addComponent(labelAdresse, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE))
+							.addGap(10)
+							.addGroup(gl_mid.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(txtAdresse)
+								.addComponent(txtDateDeNaissance)
+								.addComponent(txtPrnom)
+								.addComponent(txtNom, GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE))))
+					.addContainerGap(21, Short.MAX_VALUE))
 		);
 		gl_mid.setVerticalGroup(
 			gl_mid.createParallelGroup(Alignment.LEADING)
@@ -347,7 +342,7 @@ public class VerifierInformationClient extends JFrame
 							.addComponent(labelDateDeNaissance, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
 							.addGap(11)
 							.addComponent(labelAdresse, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)))
-					.addGap(11)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_mid.createParallelGroup(Alignment.LEADING)
 						.addComponent(labelTelephone, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
 						.addComponent(txtTelephone, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))

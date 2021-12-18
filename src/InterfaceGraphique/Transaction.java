@@ -42,7 +42,6 @@ public class Transaction extends JFrame {
 	private JTextField totalTxt;
 	private JTextField versement_textfield;
 	private JTextField pVersementTotal;
-	private JTextField money;
 	public static int cash = 1 ;
 	private static Transaction frame;
 
@@ -332,11 +331,6 @@ public class Transaction extends JFrame {
 		btnCredit.setBackground(new Color(60, 179, 113));
 		btnCredit.setBounds(393, 310, 122, 29);
 		Mid.add(btnCredit);
-		
-		money = new JTextField();
-		money.setColumns(10);
-		money.setBounds(508, 363, 156, 27);
-		Mid.add(money);
 		
 		btnComptant.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

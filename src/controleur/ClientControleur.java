@@ -118,7 +118,7 @@ public class ClientControleur
 
 	public Client getClient() throws SQLException, ParseException
 	{
-		return StockageClients.getClient(getNumTelephoneClient());
+		return this.client ;
 	}
 
 	public void setPrenomClient(String prenom)

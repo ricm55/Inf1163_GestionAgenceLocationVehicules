@@ -31,8 +31,8 @@ public class Test {
         }*/
         //StockageClients stk = new StockageClients();
         
-       /* try {
-            Client c = StockageClients.getClient( "7348563" );
+        /*try {
+            Client c = StockageClients.getClient( "6234562890" );
             System.out.println(c);
             
         } catch ( SQLException e ) {
@@ -43,14 +43,10 @@ public class Test {
             e.printStackTrace();
 
         }*/
-        /*try {
-<<<<<<< HEAD
-=======
 
-        }*/
-        /*try {
+       /* try {
 
->>>>>>> 63b8cb881437108d1c850c272ff996f298f7f304
+
             
             Client c = new Client(-1,"TestNom","TestPrenom","6234562890",java.time.LocalDate.now(),"test@gmail.com",new Date(1999,8,11),"Rue des Benoits",true);
 
@@ -63,7 +59,7 @@ public class Test {
             System.out.println(e.getMessage());
         }*/
         
-        try {
+        /*try {
             ArrayList<Vehicule> listeVehicules = StockageVehicule.getVehicules( "Economique" );
             for(Vehicule v:listeVehicules) {
                 System.out.println(v);
@@ -71,7 +67,7 @@ public class Test {
         } catch ( SQLException e ) {
             // TODO Auto-generated catch block
             System.out.println("ca plante");
-        }
+        }*/
         
     }
 
