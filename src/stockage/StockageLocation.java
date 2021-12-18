@@ -137,6 +137,9 @@ public class StockageLocation {
         return location;
     }
     
+    /*
+     * Permet d'obtenir le chiffre d'un tarif a partir d'une categorie
+     * */
     public static double getTarifPrix(String type) throws SQLException {
         StockageBasic.connect();
         Statement statement = StockageBasic.storage.createStatement();
@@ -150,6 +153,20 @@ public class StockageLocation {
         
         StockageBasic.disconnect();
         return tarif;
+    }
+    
+    /*
+     * Permet d'update un prix dans la db
+     * */
+    public static void updateTarifPrix(double prix, String type) throws SQLException {
+        StockageBasic.connect();
+        Statement statement = StockageBasic.storage.createStatement();
+        
+        String query_updateTarifPrix = MessageFormat.format( "UPDATE tarif SET prix = {0} WHERE type=\"{1}\";", prix, type );
+        statement.executeUpdate( query_updateTarifPrix );
+        System.out.println("=> " + query_updateTarifPrix);
+        
+        StockageBasic.disconnect();
     }
 
 }

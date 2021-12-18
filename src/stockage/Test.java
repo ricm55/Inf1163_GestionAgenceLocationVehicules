@@ -118,7 +118,7 @@ public class Test {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }*/
-        
+        /*
         try {
             double tarif = StockageLocation.getTarifPrix("A");
             System.out.println(tarif);
@@ -126,7 +126,14 @@ public class Test {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        */
         
+        try {
+            StockageLocation.updateTarifPrix( 20.98, "A" );
+        } catch ( SQLException e ) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         
         //StockageLocation.insertLocation( location,  );
         
