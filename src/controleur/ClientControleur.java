@@ -178,4 +178,9 @@ public class ClientControleur
 		return this.client.getPermis();
 	}
 
+	public int getAge() {
+		
+		return this.client.getAge();
+	}
+
 }
