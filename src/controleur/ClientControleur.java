@@ -1,45 +1,94 @@
 package controleur;
 
-import java.sql.Date;
+
+import java.sql.SQLException;
+import java.text.ParseException;
+
+import java.util.Date;
+
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
+
+import org.sqlite.util.StringUtils;
 
 import background.Client;
 import background.Location;
 import background.PermisDeConduire;
 import background.Reservation;
 
+import stockage.StockageClients;
+
+import background.Vehicule;
+
+
 public class ClientControleur
 {
 	private Client client;
 
-	public ClientControleur(String telephone)
+	public ClientControleur(String telephone) throws SQLException, ParseException
 	{
 		this.client = this.identifierClient(telephone);
 	}
 
-	public boolean rechercheClient(String telephone)
+	public boolean rechercheClient(String telephone) throws SQLException, ParseException
 	{
 		// if client exist
-		return true;
+		if(StockageClients.getClient(telephone) != null) {
+			return true;
+		}
+		
 		// else
-		// return false;
+		return false;
 	}
 
 	// Si le client existe, return le client
 	// Si le client n'existe pas, return null (devrait afficher un message d'erreur)
-	public Client identifierClient(String telephone)
+	public Client identifierClient(String telephone) throws SQLException, ParseException
 	{
 		if (this.rechercheClient(telephone) == true)
 		{
-			return client;
-		} 
-		else
+
+			return StockageClients.getClient(telephone);
+			
+		} else
+
 		{
 			return null;
 		}
 
 	}
+
+	private boolean verificationExpirationPermisConduire(Client client)
+	{
+		// Permi valide
+		LocalDate ld = java.time.LocalDate.now();
+		ZoneId defaultZoneId = ZoneId.systemDefault();
+		Date todayDate = Date.from(ld.atStartOfDay(defaultZoneId).toInstant());
+
+		boolean permiValideDate = client.getPermis().getDateExpiration().before(todayDate);
+
+		if (permiValideDate == true)
+		{
+			return true;
+		}
+		return false;
+
+	}
+
+	private boolean verificationAgeClient(Client client)
+	{
+		if (this.client.getAge() < 25)
+		{
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean verificationGeneraleClient(Client client, Vehicule vehicule)
+    {
+    	return verificationExpirationPermisConduire(client) && verificationAgeClient(client);
+    }
 
 	public List<Location> getListeLocationEnPossession()
 	{
@@ -73,9 +122,9 @@ public class ClientControleur
 
 	}
 
-	public Client getClient()
+	public Client getClient() throws SQLException, ParseException
 	{
-		return this.client;
+		return StockageClients.getClient(getNumTelephoneClient());
 	}
 
 	public void setPrenomClient(String prenom)
@@ -84,9 +133,9 @@ public class ClientControleur
 
 	}
 
-	public String getPrenomClient()
+	public String getPrenomClient() throws SQLException, ParseException
 	{
-		return this.client.getPrenom();
+		return StockageClients.getClient(getNumTelephoneClient()).toString();
 	}
 
 	public void setCourrielClient(String courriel)
@@ -124,9 +173,9 @@ public class ClientControleur
 		this.client.setNom(nom);
 	}
 
-	public String getNomClient()
+	public String getNomClient() throws SQLException, ParseException
 	{
-		return this.client.getNom();
+		return StockageClients.getClient(getNumTelephoneClient()).toString();
 	}
 
 	public void setDateDeNaissanceClient(Date dateDeNaissance)
@@ -154,7 +203,7 @@ public class ClientControleur
 		this.client.setNumTelephone(numTelephone);
 	}
 
-	public String getNumTelephoneClient()
+	public String getNumTelephoneClient() throws SQLException, ParseException
 	{
 		return this.client.getNumTelephone();
 	}
@@ -179,8 +228,20 @@ public class ClientControleur
 		return this.client.getPermis();
 	}
 
-	public int getAge() {
-		
+	public String getClassesPermisClient()
+	{
+		List<String> listeClasse = this.client.getPermis().getClasses();
+		return StringUtils.join(listeClasse, ",");
+	}
+
+	public String getDateExpirationPermisClient()
+	{
+		return this.client.getPermis().getDateExpiration().toString();
+	}
+
+	public int getAge()
+	{
+
 		return this.client.getAge();
 	}
 

@@ -20,6 +20,7 @@ public class Main
 	public static void main(String[] args)
 	{
 		InterfaceAccueil.launch();
+
 		/*
 		 * Vehicule vehicule = new Vehicule("Hyndai","Accent",2011,
 		 * "Rouge",320000,34.65, true,ClasseVehicule.CLASSE1); PermisDeConduire permi =

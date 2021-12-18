@@ -32,28 +32,6 @@ public class LocationControleur {
         //Mettre la location dans la db
     }
     
-    public boolean VerificationExpirationPermisConduire(Client client) {
-        
-        //Permi valide
-        LocalDate ld = java.time.LocalDate.now();
-        ZoneId defaultZoneId = ZoneId.systemDefault();
-        Date todayDate = Date.from(ld.atStartOfDay(defaultZoneId).toInstant());
-        
-        boolean permiValideDate = client.getPermis().getDateExpiration().before( todayDate );
-        
-        if (permiValideDate == true) 
-        {
-        	return true;
-        }
-        return false;
-        
-    }
-    
-    public void premierPaiement() {
-        
-    }
-    
-    
     public Vehicule rechercherInventaireLocationControleur(ClasseDeVehicule classe, Date dateDebut, Date dateFin, CatalogueVehicule catalogue)
     {	
     	//consulter inventaire et return le vehicule disponible ayant la classe correspondante
@@ -75,9 +53,9 @@ public class LocationControleur {
     
     public boolean verificationValidePermisControleur(Client client,Vehicule vehicule)
     {
-    	for (int classe = 0 ; classe <= client.getPermis().getClasse().size(); classe ++)
+    	for (int classe = 0 ; classe <= client.getPermis().getClasses().size(); classe ++)
     	{
-    		if (client.getPermis().getClasse().get(classe) == vehicule.getTypeDePermisNecessaire())
+    		if (client.getPermis().getClasses().get(classe) == vehicule.getTypeDePermisNecessaire())
         	
         		return true;
     	}
@@ -85,26 +63,7 @@ public class LocationControleur {
     	return false;
     }
     
-    public boolean verificationAgeClient(Client client)
-    {
-    	if (this.client.getAge()  < 25)
-    	{
-    		return false;
-    	}
-    	return true;
-    }
-    
-    public boolean verificationGeneraleClient(Client client, Vehicule vehicule)
-    {
-    	if (this.verificationValidePermisControleur(client, vehicule) && this.VerificationExpirationPermisConduire(client) && this.verificationAgeClient(client))
-    	{
-    		return true;
-    	}
-    	return false;
-    	
-    }
-    
-    private double paiementPremierVersement(double paiement, double versement)
+    private double paiement(double paiement, double versement)
     {
     	double difference = 0.0;
     	if (versement > paiement)
@@ -119,7 +78,7 @@ public class LocationControleur {
     //date expiration permis,classe valide,  age
     public double nouvelleLocationControleur(Vehicule vehicule, Client client, Forfait forfait, Date dateDebut, Date dateFin)
     {	
-    	this.verificationGeneraleClient(client, vehicule);
+    	this.verificationValidePermisControleur(client, vehicule);
     	Location location = new Location(client, dateDebut, dateFin, forfait, vehicule);
         this.client.setListeLocationEnPossession(location);
         return location.getPremierVersement();
@@ -180,5 +139,48 @@ public class LocationControleur {
     		}  	
     	}
     }
-       
-}
+    
+    private double miseAJourDelai(Location location)
+    {
+    	long dateLocation = location.getDateDebut().getTime();
+    	
+    	Date dateNow=new Date();  
+    	
+		long timeDiff = dateLocation - dateNow.getTime();
+	
+		timeDiff = TimeUnit.HOURS.convert(timeDiff, TimeUnit.MICROSECONDS);
+		
+		return timeDiff + (timeDiff*0.10);
+		
+    }
+    
+    private double totalDeuxiemeVersement(Location locationEnCours)
+    {
+    	
+    	for (int locations = 0; locations <= this.client.getListeLocationEnPossession().size(); locations ++)
+    	{
+    		Location location = this.client.getListeLocationEnPossession().get(locations);
+    		
+    		if(location == locationEnCours)
+    		{	
+    			return location.getDeuxiemeVersement();
+    		}  	
+    	}
+    	return 0.0;
+    	
+    }
+
+    
+    private double paiementDeuxiemeVersement(double niveauReservoir,double kilometrage,Location location,double dommages)
+    {
+    	double total;
+    	total = this.miseAJourVehicule(niveauReservoir, kilometrage, dommages, location);
+    	total = total + totalDeuxiemeVersement(location);
+    	total = total + this.miseAJourDelai(location);
+    	
+    	return total;
+    	
+    }
+    
+}       
+

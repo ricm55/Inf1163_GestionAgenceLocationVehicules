@@ -8,12 +8,12 @@ import constante.ClasseVehicule;
 public class PermisDeConduire
 {	
 	private Date dateExpiration;
-	private ArrayList<String> type;
+	private ArrayList<String> typesDePermis;
 	
 	public PermisDeConduire(Date dateExpiration, ArrayList<String> type)
 	{
 		this.dateExpiration = dateExpiration;
-		this.type = type;
+		this.typesDePermis = type;
 	}
 	
 	public Date getDateExpiration()
@@ -26,19 +26,19 @@ public class PermisDeConduire
 		this.dateExpiration = dateExpiration;
 	}
 	
-	public ArrayList<String> getClasse()
+	public ArrayList<String> getClasses()
 	{
-		return type;
+		return typesDePermis;
 	}
 	
-	public void setClasse(ArrayList<String> type)
+	public void setClasses(ArrayList<String> type)
 	{
-		this.type = type;
+		this.typesDePermis = type;
 	}
 
     @Override
     public String toString() {
-        return "PermisDeConduire [getDateExpiration()=" + getDateExpiration() + ", getClasse()=" + getClasse() + "]";
+        return "PermisDeConduire [getDateExpiration()=" + getDateExpiration() + ", getClasses()=" + getClasses() + "]";
     }
 	
 }
