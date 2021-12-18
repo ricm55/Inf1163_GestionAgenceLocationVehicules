@@ -126,5 +126,25 @@ public class LocationControleur {
     	
     }
     
+    private double miseAJourKilometrageVehicule(Location location, double nouveauKilometrage)
+    {
+    	double surplus = 0;
+    	if (nouveauKilometrage > 500 && location.getForfait().getType() == "kilometrageIllimite");
+    	{
+    		surplus = nouveauKilometrage - 500;
+    	}
+    
+    	return surplus;
+    }
+    
+    private double miseAJourReservoirVehicule(double reservoir)
+    {
+    	return reservoir*1.41;
+    }
+    
+    
+    
+    
+    
     
 }
