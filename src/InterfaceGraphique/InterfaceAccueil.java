@@ -150,28 +150,53 @@ public class InterfaceAccueil extends JFrame
 		btnCompteClient.setFont(new Font("Verdana", Font.PLAIN, 16));
 		btnCompteClient.setBackground(Color.DARK_GRAY);
 		
+		JButton btnCreerClient = new JButton("Cr\u00E9er Client");
+		btnCreerClient.setForeground(Color.WHITE);
+		btnCreerClient.setFont(new Font("Verdana", Font.PLAIN, 16));
+		btnCreerClient.setBackground(Color.DARK_GRAY);
+		
 		GroupLayout gl_leftPanel = new GroupLayout(leftPanel);
-		gl_leftPanel.setHorizontalGroup(gl_leftPanel.createParallelGroup(Alignment.TRAILING).addGroup(gl_leftPanel
-				.createSequentialGroup()
-				.addGroup(gl_leftPanel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_leftPanel.createSequentialGroup().addGap(15).addComponent(btnDeconnextion,
-								GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE))
-						.addGroup(gl_leftPanel.createSequentialGroup().addContainerGap().addComponent(btnLocation,
-								GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))
-						.addGroup(gl_leftPanel.createSequentialGroup().addContainerGap().addComponent(btnReservation,
-								GroupLayout.PREFERRED_SIZE, 161, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_leftPanel.createSequentialGroup().addContainerGap().addComponent(btnCatalogue,
-								GroupLayout.PREFERRED_SIZE, 161, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_leftPanel.createSequentialGroup().addContainerGap().addComponent(btnCompteClient,
-								GroupLayout.PREFERRED_SIZE, 161, GroupLayout.PREFERRED_SIZE)))
-				.addContainerGap()));
-		gl_leftPanel.setVerticalGroup(gl_leftPanel.createParallelGroup(Alignment.LEADING).addGroup(gl_leftPanel
-				.createSequentialGroup().addGap(20)
-				.addComponent(btnLocation, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE).addGap(18)
-				.addComponent(btnReservation, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE).addGap(18)
-				.addComponent(btnCatalogue, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE).addGap(18)
-				.addComponent(btnCompteClient, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE).addGap(143)
-				.addComponent(btnDeconnextion, GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE).addContainerGap()));
+		gl_leftPanel.setHorizontalGroup(
+			gl_leftPanel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_leftPanel.createSequentialGroup()
+					.addGroup(gl_leftPanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_leftPanel.createSequentialGroup()
+							.addGap(15)
+							.addComponent(btnDeconnextion, GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE))
+						.addGroup(gl_leftPanel.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(btnLocation, GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))
+						.addGroup(gl_leftPanel.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(btnReservation, GroupLayout.PREFERRED_SIZE, 161, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_leftPanel.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(btnCatalogue, GroupLayout.PREFERRED_SIZE, 161, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_leftPanel.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(btnCompteClient, GroupLayout.PREFERRED_SIZE, 161, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_leftPanel.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(btnCreerClient, GroupLayout.PREFERRED_SIZE, 161, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap())
+		);
+		gl_leftPanel.setVerticalGroup(
+			gl_leftPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_leftPanel.createSequentialGroup()
+					.addGap(20)
+					.addComponent(btnLocation, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(btnReservation, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(btnCatalogue, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(btnCompteClient, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(btnCreerClient, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+					.addGap(91)
+					.addComponent(btnDeconnextion, GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+					.addContainerGap())
+		);
 		leftPanel.setLayout(gl_leftPanel);
 
 		JPanel midPanel = new JPanel();

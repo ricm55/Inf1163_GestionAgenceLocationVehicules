@@ -40,11 +40,16 @@ public class LocationVehicule extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtClasse;
-	private JTextField txtVehiculeDisponible;
+	private static JTextField txtVehiculeDisponible;
 	private static LocationVehicule frame;
 	private JTextField txtVehicule;
 	private JTextField textField;
 	private JTextField textField_1;
+	private static JRadioButton rdbtnForfaitA ;
+	private static JRadioButton rdbtnForfaitB;
+	private static JRadioButton assuranceCompagnie;
+	private static JRadioButton assurancePersonnelle;
+	
 	
 
 	/**
@@ -356,5 +361,13 @@ public class LocationVehicule extends JFrame {
 	
 	public static void rendreVisible(boolean visible) {
 		 frame.setVisible(visible);
+	}
+	
+	public static void rendreInvisible(boolean invisible) {
+		rdbtnForfaitA.setEnabled(invisible);
+		rdbtnForfaitB.setEnabled(invisible);
+		assuranceCompagnie.setEnabled(invisible);
+		assurancePersonnelle.setEnabled(invisible);
+		txtVehiculeDisponible.setText("V\\u00e9hicule disponible \\u00e0 la R\\u00e9servation");
 	}
 }

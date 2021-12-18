@@ -20,6 +20,8 @@ public class Main
 	public static void main(String[] args)
 	{
 		InterfaceAccueil.launch();
+		//VerifierInformationClient.launch();
+		
 
 		/*
 		 * Vehicule vehicule = new Vehicule("Hyndai","Accent",2011,
