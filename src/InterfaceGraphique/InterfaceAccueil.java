@@ -151,6 +151,14 @@ public class InterfaceAccueil extends JFrame
 		btnCompteClient.setBackground(Color.DARK_GRAY);
 		
 		JButton btnCreerClient = new JButton("Cr\u00E9er Client");
+		btnCreerClient.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				frame.dispose();
+				CreerNouveauClient.launch();
+			}
+		});
 		btnCreerClient.setForeground(Color.WHITE);
 		btnCreerClient.setFont(new Font("Verdana", Font.PLAIN, 16));
 		btnCreerClient.setBackground(Color.DARK_GRAY);

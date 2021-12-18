@@ -64,14 +64,14 @@ public class VerifierInformationClient extends JFrame
 				{
 					frame = new VerifierInformationClient();
 					frame.setVisible(true);
-					actionEnCours = action;
-					controleurClient = controleur;
 				} catch (Exception e)
 				{
 					e.printStackTrace();
 				}
 			}
 		});
+		actionEnCours = action;
+		controleurClient = controleur;
 	}
 
 	/**
@@ -105,6 +105,7 @@ public class VerifierInformationClient extends JFrame
 		contentPane.add(left, BorderLayout.WEST);
 
 		JButton btnRetour = new JButton("Retour");
+		btnRetour.setForeground(Color.WHITE);
 		btnRetour.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -114,7 +115,7 @@ public class VerifierInformationClient extends JFrame
 			}
 		});
 		btnRetour.setFont(new Font("Verdana", Font.PLAIN, 16));
-		btnRetour.setBackground(Color.CYAN);
+		btnRetour.setBackground(Color.DARK_GRAY);
 
 		GroupLayout gl_left = new GroupLayout(left);
 		gl_left.setHorizontalGroup(gl_left.createParallelGroup(Alignment.LEADING)
@@ -137,7 +138,6 @@ public class VerifierInformationClient extends JFrame
 		labelInformationsPermis.setBackground(Color.DARK_GRAY);
 		labelInformationsPermis.setFont(new Font("Verdana", Font.PLAIN, 11));
 		labelInformationsPermis.setText("Informations sur le permis de conduire");
-		
 	
 		JTextPane txtTelephone = new JTextPane();
         txtTelephone.setEditable(false);
@@ -175,6 +175,7 @@ public class VerifierInformationClient extends JFrame
 		txtExpiration.setFont(new Font("Verdana", Font.PLAIN, 16));
 
 		JButton btnValider = new JButton("Valider");
+		btnValider.setForeground(Color.WHITE);
 		btnValider.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
@@ -224,9 +225,10 @@ public class VerifierInformationClient extends JFrame
 			}
 		});
 		btnValider.setFont(new Font("Verdana", Font.PLAIN, 16));
-		btnValider.setBackground(Color.CYAN);
+		btnValider.setBackground(Color.DARK_GRAY);
 
 		JButton btnModifier = new JButton("Modifier");
+		btnModifier.setForeground(Color.WHITE);
 		btnModifier.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -240,7 +242,7 @@ public class VerifierInformationClient extends JFrame
 			}
 		});
 		btnModifier.setFont(new Font("Verdana", Font.PLAIN, 16));
-		btnModifier.setBackground(Color.CYAN);
+		btnModifier.setBackground(Color.DARK_GRAY);
 
 		labelNom = new JTextField();
 		labelNom.setText("Nom");

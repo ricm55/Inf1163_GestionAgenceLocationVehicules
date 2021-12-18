@@ -203,7 +203,7 @@ public class RechercheClient extends JFrame
 								"Ce num\u00E9ro n'est pas li\u00E9 \u00E0 un compte client.");
 					} else
 					{
-						textTelephone.setText(
+						txtNom.setText(
 								controleurClient.getNomClient() + ", " + controleurClient.getPrenomClient());
 						btnOui.setEnabled(true);
 						btnNon.setEnabled(true);
