@@ -18,6 +18,8 @@ import background.PermisDeConduire;
 import constante.ClasseVehicule;
 import models.ModeleClient;
 
+import errorHandler.*;
+
 import java.util.concurrent.TimeUnit;
 
 
@@ -158,42 +160,51 @@ public class StockageClients{
         
         System.out.println(query_getClient);
         
-        System.out.println(result_getClient.getInt("ClientId"));
+        try {
         
-        //Obtenir le client
-        Client client = new Client(
-                result_getClient.getInt("ClientId"),
-                result_getClient.getString( "nom" ),
-                result_getClient.getString( "prenom" ),
-                result_getClient.getString( "numTelephone" ),
-                converterStringDate( result_getClient.getString( "dateCreation" ) ).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
-                result_getClient.getString( "courriel" ),
-                converterStringDate( result_getClient.getString( "dateDeNaissance" ) ),
-                result_getClient.getString( "adresse" ),
-                result_getClient.getBoolean( "assurancePersonnelle" )
-                );
+            //Obtenir le client
+            Client client = new Client(
+                    result_getClient.getInt("ClientId"),
+                    result_getClient.getString( "nom" ),
+                    result_getClient.getString( "prenom" ),
+                    result_getClient.getString( "numTelephone" ),
+                    converterStringDate( result_getClient.getString( "dateCreation" ) ).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+                    result_getClient.getString( "courriel" ),
+                    converterStringDate( result_getClient.getString( "dateDeNaissance" ) ),
+                    result_getClient.getString( "adresse" ),
+                    result_getClient.getBoolean( "assurancePersonnelle" )
+                    );  
+            Date dateExpiration = converterStringDate(result_getClient.getString("dateExpiration"));
+    
+            
+            //Obtenir le permis du client
+            String query_getPermisType = MessageFormat.format( "select type from PermisConduireClassePermis inner join ClassePermis on PermisConduireClassePermis.classePermis_id = ClassePermis.ClassePermisId where permisConduire_id={0};",result_getClient.getInt("ClientId"));
+            ResultSet result_getPermisType = statement.executeQuery(query_getPermisType);
+            
+            ArrayList<String> types = new ArrayList<String> ();
+            while(result_getPermisType.next()) {
+                types.add( result_getPermisType.getString( "type" ) );
+            }
+            PermisDeConduire permisDuClient = new PermisDeConduire( dateExpiration, types);
+            
+            client.setPermis( permisDuClient );
+            //Se deconnection de la base de donnee
+            StockageBasic.disconnect();
+            return client;
         
-        Date dateExpiration = converterStringDate(result_getClient.getString("dateExpiration"));
-
-        
-        //Obtenir le permis du client
-        String query_getPermisType = MessageFormat.format( "select type from PermisConduireClassePermis inner join ClassePermis on PermisConduireClassePermis.classePermis_id = ClassePermis.ClassePermisId where permisConduire_id={0};",result_getClient.getInt("ClientId"));
-        ResultSet result_getPermisType = statement.executeQuery(query_getPermisType);
-        
-        ArrayList<String> types = new ArrayList<String> ();
-        while(result_getPermisType.next()) {
-            types.add( result_getPermisType.getString( "type" ) );
+        }catch( SQLException e) {
+            //Il n'y a pas de client
+            return null;
         }
-        PermisDeConduire permisDuClient = new PermisDeConduire( dateExpiration, types);
-        
-        client.setPermis( permisDuClient );
-        //Se deconnection de la base de donnee
-        StockageBasic.disconnect();
-        return client;
     }
     
-    public static void insertClient(Client client) throws SQLException{
+    public static void insertClient(Client client) throws SQLException, ParseException, CustomException{
         System.out.println("INSERTION d'un client");
+        
+        //Verifier s'il n'y a pas un client avec le meme numero
+        if( getClient(client.getNumTelephone())!=null) {
+            throw new CustomException("Le client existe deja");
+        }
         
         //Connection a la base de donnee
         StockageBasic.connect();
@@ -233,21 +244,23 @@ public class StockageClients{
                 client.getNumTelephone(),String.valueOf( client.getPermis().getDateExpiration().getYear() ),
                 client.getPermis().getDateExpiration().getMonth(),
                 client.getPermis().getDateExpiration().getDay());
-        
+        System.out.println(query_insertPermisClient);
         statement.executeUpdate(query_insertPermisClient);
         System.out.println("=> "+query_insertPermisClient);
         
         //Mettre une classe au permis
         //String query_insertClassePermis = MessageFormat.format( "", arguments )
         String query_insertClassePermis = "insert into PermisConduireClassePermis values ";
-        for (String type : client.getPermis().getClasse()) {
+        for (String type : client.getPermis().getClasses()) {
             String query_suite = MessageFormat.format( "((SELECT client_id from PermisConduire where client_id={0}),(SELECT ClassePermisId from ClassePermis where type=\"{1}\")),", ClientId,type );
             query_insertClassePermis = query_insertClassePermis + query_suite;
         }
         //Finir la query avec un ;
         query_insertClassePermis = query_insertClassePermis.substring(0,query_insertClassePermis.length() - 1) + ';';
-        statement.executeQuery(query_insertClassePermis);
+        System.out.println("DEBUG => "+query_insertClassePermis);
+        statement.executeUpdate(query_insertClassePermis);
         System.out.println("=> "+query_insertClassePermis);
+        
         
     }
     

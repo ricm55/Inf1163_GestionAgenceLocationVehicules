@@ -215,10 +215,12 @@ public class RechercheClient extends JFrame
 					controleurClient = new ClientControleur(textTelephone.getText());
 				} catch (SQLException e2) {
 					// TODO Auto-generated catch block
+
 					e2.printStackTrace();
 				} catch (ParseException e2) {
 					// TODO Auto-generated catch block
 					e2.printStackTrace();
+
 				}
 				
 				

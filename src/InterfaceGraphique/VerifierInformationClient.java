@@ -33,13 +33,13 @@ public class VerifierInformationClient extends JFrame
 	private static VerifierInformationClient frame;
 	private static Action actionEnCours;
 	private static ClientControleur controleurClient;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
+	private JTextField labelNom;
+	private JTextField labelPrnom;
+	private JTextField labelDateDeNaissance;
+	private JTextField labelAdresse;
+	private JTextField labelTelephone;
+	private JTextField labelClasses;
+	private JTextField labelExpiration;
 
 	/**
 	 * Launch the application.
@@ -121,117 +121,137 @@ public class VerifierInformationClient extends JFrame
 		mid.setBackground(SystemColor.textHighlight);
 		contentPane.add(mid, BorderLayout.CENTER);
 
-		JTextPane txtpnInformationsPermisDe = new JTextPane();
-		txtpnInformationsPermisDe.setForeground(Color.WHITE);
-		txtpnInformationsPermisDe.setBackground(Color.DARK_GRAY);
-		txtpnInformationsPermisDe.setFont(new Font("Verdana", Font.PLAIN, 16));
-		txtpnInformationsPermisDe.setText("Informations Permis de Conduire");
+		JTextPane labelInformationsPermis = new JTextPane();
+		labelInformationsPermis.setEditable(false);
+		labelInformationsPermis.setForeground(Color.WHITE);
+		labelInformationsPermis.setBackground(Color.DARK_GRAY);
+		labelInformationsPermis.setFont(new Font("Verdana", Font.PLAIN, 11));
+		labelInformationsPermis.setText("Informations sur le permis de conduire");
 
-		JTextPane txtpnInformationsPermisDe_1 = new JTextPane();
-		txtpnInformationsPermisDe_1.setText("#");
-		txtpnInformationsPermisDe_1.setFont(new Font("Verdana", Font.PLAIN, 16));
+		JTextPane txtTelephone = new JTextPane();
+		txtTelephone.setEditable(false);
+		txtTelephone.setText(controleurClient.getNumTelephoneClient());
+		txtTelephone.setFont(new Font("Verdana", Font.PLAIN, 16));
 
-		JTextPane txtpnNom = new JTextPane();
-		txtpnNom.setText("Nom");
-		txtpnNom.setFont(new Font("Verdana", Font.PLAIN, 16));
+		JTextPane txtNom = new JTextPane();
+		txtNom.setEditable(false);
+		txtNom.setText(controleurClient.getNomClient());
+		txtNom.setFont(new Font("Verdana", Font.PLAIN, 16));
 
-		JTextPane txtpnPrnom = new JTextPane();
-		txtpnPrnom.setText("Pr\u00E9nom");
-		txtpnPrnom.setFont(new Font("Verdana", Font.PLAIN, 16));
+		JTextPane txtPrnom = new JTextPane();
+		txtPrnom.setEditable(false);
+		txtPrnom.setText(controleurClient.getPrenomClient());
+		txtPrnom.setFont(new Font("Verdana", Font.PLAIN, 16));
 
-		JTextPane txtpnDateDeNaissance = new JTextPane();
-		txtpnDateDeNaissance.setText("Date de naissance: AAAA-MM-JJ");
-		txtpnDateDeNaissance.setFont(new Font("Verdana", Font.PLAIN, 16));
+		JTextPane txtDateDeNaissance = new JTextPane();
+		txtDateDeNaissance.setEditable(false);
+		txtDateDeNaissance.setText(controleurClient.getDateNaissanceClient().toString());
+		txtDateDeNaissance.setFont(new Font("Verdana", Font.PLAIN, 16));
 
-		JTextPane txtpnRue = new JTextPane();
-		txtpnRue.setText("# RUE");
-		txtpnRue.setFont(new Font("Verdana", Font.PLAIN, 16));
+		JTextPane txtAdresse = new JTextPane();
+		txtAdresse.setEditable(false);
+		txtAdresse.setText(controleurClient.getAdresseClient());
+		txtAdresse.setFont(new Font("Verdana", Font.PLAIN, 16));
 
-		JTextPane txtpnClasses = new JTextPane();
-		txtpnClasses.setText("Classe(S): #");
-		txtpnClasses.setFont(new Font("Verdana", Font.PLAIN, 16));
+		JTextPane txtClasses = new JTextPane();
+		txtClasses.setEditable(false);
+		txtClasses.setText(controleurClient.getClassesPermisClient());
+		txtClasses.setFont(new Font("Verdana", Font.PLAIN, 16));
 
-		JTextPane txtpnDateExpirationDu = new JTextPane();
-		txtpnDateExpirationDu.setText("Date expiration du permis: YYYY-MM-JJ");
-		txtpnDateExpirationDu.setFont(new Font("Verdana", Font.PLAIN, 16));
+		JTextPane txtExpiration = new JTextPane();
+		txtExpiration.setEditable(false);
+		txtExpiration.setText(controleurClient.getDateExpirationPermisClient());
+		txtExpiration.setFont(new Font("Verdana", Font.PLAIN, 16));
 
 		JButton btnValider = new JButton("Valider");
 		btnValider.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-				//controleur validation informations client
+				// controleur validation informations client
 			}
 		});
 		btnValider.setFont(new Font("Verdana", Font.PLAIN, 16));
 		btnValider.setBackground(Color.CYAN);
-		
+
 		JButton btnModifier = new JButton("Modifier");
+		btnModifier.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				txtNom.setEditable(true);
+				txtPrnom.setEditable(true);
+				txtDateDeNaissance.setEditable(true);
+				txtAdresse.setEditable(true);
+				txtClasses.setEditable(true);
+				txtExpiration.setEditable(true);
+			}
+		});
 		btnModifier.setFont(new Font("Verdana", Font.PLAIN, 16));
 		btnModifier.setBackground(Color.CYAN);
-		
-		textField = new JTextField();
-		textField.setText("Forfait");
-		textField.setHorizontalAlignment(SwingConstants.CENTER);
-		textField.setForeground(Color.WHITE);
-		textField.setFont(new Font("Verdana", Font.PLAIN, 16));
-		textField.setEditable(false);
-		textField.setColumns(10);
-		textField.setBackground(Color.DARK_GRAY);
-		
-		textField_1 = new JTextField();
-		textField_1.setText("Assurance");
-		textField_1.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_1.setForeground(Color.WHITE);
-		textField_1.setFont(new Font("Verdana", Font.PLAIN, 16));
-		textField_1.setEditable(false);
-		textField_1.setColumns(10);
-		textField_1.setBackground(Color.DARK_GRAY);
-		
-		textField_2 = new JTextField();
-		textField_2.setText("Dur\u00E9e");
-		textField_2.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_2.setForeground(Color.WHITE);
-		textField_2.setFont(new Font("Verdana", Font.PLAIN, 16));
-		textField_2.setEditable(false);
-		textField_2.setColumns(10);
-		textField_2.setBackground(Color.DARK_GRAY);
-		
-		textField_3 = new JTextField();
-		textField_3.setText("Classe");
-		textField_3.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_3.setForeground(Color.WHITE);
-		textField_3.setFont(new Font("Verdana", Font.PLAIN, 16));
-		textField_3.setEditable(false);
-		textField_3.setColumns(10);
-		textField_3.setBackground(Color.DARK_GRAY);
-		
-		textField_4 = new JTextField();
-		textField_4.setText("Classe");
-		textField_4.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_4.setForeground(Color.WHITE);
-		textField_4.setFont(new Font("Verdana", Font.PLAIN, 16));
-		textField_4.setEditable(false);
-		textField_4.setColumns(10);
-		textField_4.setBackground(Color.DARK_GRAY);
-		
-		textField_5 = new JTextField();
-		textField_5.setText("Classe");
-		textField_5.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_5.setForeground(Color.WHITE);
-		textField_5.setFont(new Font("Verdana", Font.PLAIN, 16));
-		textField_5.setEditable(false);
-		textField_5.setColumns(10);
-		textField_5.setBackground(Color.DARK_GRAY);
-		
-		textField_6 = new JTextField();
-		textField_6.setText("Classe");
-		textField_6.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_6.setForeground(Color.WHITE);
-		textField_6.setFont(new Font("Verdana", Font.PLAIN, 16));
-		textField_6.setEditable(false);
-		textField_6.setColumns(10);
-		textField_6.setBackground(Color.DARK_GRAY);
+
+		labelNom = new JTextField();
+		labelNom.setText("Nom");
+		labelNom.setHorizontalAlignment(SwingConstants.CENTER);
+		labelNom.setForeground(Color.WHITE);
+		labelNom.setFont(new Font("Verdana", Font.PLAIN, 11));
+		labelNom.setEditable(false);
+		labelNom.setColumns(10);
+		labelNom.setBackground(Color.DARK_GRAY);
+
+		labelPrnom = new JTextField();
+		labelPrnom.setText("Pr\u00E9nom");
+		labelPrnom.setHorizontalAlignment(SwingConstants.CENTER);
+		labelPrnom.setForeground(Color.WHITE);
+		labelPrnom.setFont(new Font("Verdana", Font.PLAIN, 11));
+		labelPrnom.setEditable(false);
+		labelPrnom.setColumns(10);
+		labelPrnom.setBackground(Color.DARK_GRAY);
+
+		labelDateDeNaissance = new JTextField();
+		labelDateDeNaissance.setText("Date de naissance");
+		labelDateDeNaissance.setHorizontalAlignment(SwingConstants.CENTER);
+		labelDateDeNaissance.setForeground(Color.WHITE);
+		labelDateDeNaissance.setFont(new Font("Verdana", Font.PLAIN, 11));
+		labelDateDeNaissance.setEditable(false);
+		labelDateDeNaissance.setColumns(10);
+		labelDateDeNaissance.setBackground(Color.DARK_GRAY);
+
+		labelAdresse = new JTextField();
+		labelAdresse.setText("Adresse");
+		labelAdresse.setHorizontalAlignment(SwingConstants.CENTER);
+		labelAdresse.setForeground(Color.WHITE);
+		labelAdresse.setFont(new Font("Verdana", Font.PLAIN, 11));
+		labelAdresse.setEditable(false);
+		labelAdresse.setColumns(10);
+		labelAdresse.setBackground(Color.DARK_GRAY);
+
+		labelTelephone = new JTextField();
+		labelTelephone.setText("T\u00E9l\u00E9phone");
+		labelTelephone.setHorizontalAlignment(SwingConstants.CENTER);
+		labelTelephone.setForeground(Color.WHITE);
+		labelTelephone.setFont(new Font("Verdana", Font.PLAIN, 11));
+		labelTelephone.setEditable(false);
+		labelTelephone.setColumns(10);
+		labelTelephone.setBackground(Color.DARK_GRAY);
+
+		labelClasses = new JTextField();
+		labelClasses.setText("Classe(s)");
+		labelClasses.setHorizontalAlignment(SwingConstants.CENTER);
+		labelClasses.setForeground(Color.WHITE);
+		labelClasses.setFont(new Font("Verdana", Font.PLAIN, 11));
+		labelClasses.setEditable(false);
+		labelClasses.setColumns(10);
+		labelClasses.setBackground(Color.DARK_GRAY);
+
+		labelExpiration = new JTextField();
+		labelExpiration.setText("Expiration");
+		labelExpiration.setHorizontalAlignment(SwingConstants.CENTER);
+		labelExpiration.setForeground(Color.WHITE);
+		labelExpiration.setFont(new Font("Verdana", Font.PLAIN, 11));
+		labelExpiration.setEditable(false);
+		labelExpiration.setColumns(10);
+		labelExpiration.setBackground(Color.DARK_GRAY);
 
 		GroupLayout gl_mid = new GroupLayout(mid);
 		gl_mid.setHorizontalGroup(
@@ -239,44 +259,44 @@ public class VerifierInformationClient extends JFrame
 				.addGroup(gl_mid.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_mid.createParallelGroup(Alignment.LEADING)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE))
+						.addComponent(labelNom, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
+						.addComponent(labelPrnom, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
+						.addComponent(labelDateDeNaissance, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
+						.addComponent(labelAdresse, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE))
 					.addGap(10)
 					.addGroup(gl_mid.createParallelGroup(Alignment.LEADING)
-						.addComponent(txtpnNom, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
-						.addComponent(txtpnPrnom, Alignment.TRAILING)
-						.addComponent(txtpnDateDeNaissance, Alignment.TRAILING)
-						.addComponent(txtpnRue, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE))
+						.addComponent(txtNom, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
+						.addComponent(txtAdresse, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
+						.addComponent(txtPrnom, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
+						.addComponent(txtDateDeNaissance, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE))
 					.addContainerGap())
 				.addGroup(gl_mid.createSequentialGroup()
-					.addGap(45)
+					.addGap(38)
 					.addComponent(btnModifier, GroupLayout.PREFERRED_SIZE, 258, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
 					.addComponent(btnValider, GroupLayout.PREFERRED_SIZE, 256, GroupLayout.PREFERRED_SIZE)
 					.addGap(51))
 				.addGroup(gl_mid.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
+					.addComponent(labelTelephone, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(txtpnInformationsPermisDe_1, GroupLayout.PREFERRED_SIZE, 562, GroupLayout.PREFERRED_SIZE)
+					.addComponent(txtTelephone, GroupLayout.PREFERRED_SIZE, 562, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 				.addGroup(gl_mid.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(textField_6, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
+					.addComponent(labelExpiration, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(txtpnDateExpirationDu, GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
+					.addComponent(txtExpiration, GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
 					.addContainerGap())
 				.addGroup(gl_mid.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
+					.addComponent(labelClasses, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-					.addComponent(txtpnClasses, GroupLayout.PREFERRED_SIZE, 562, GroupLayout.PREFERRED_SIZE)
+					.addComponent(txtClasses, GroupLayout.PREFERRED_SIZE, 562, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 				.addGroup(gl_mid.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(txtpnInformationsPermisDe, GroupLayout.DEFAULT_SIZE, 703, Short.MAX_VALUE)
+					.addComponent(labelInformationsPermis, GroupLayout.DEFAULT_SIZE, 703, Short.MAX_VALUE)
 					.addContainerGap())
 		);
 		gl_mid.setVerticalGroup(
@@ -285,37 +305,37 @@ public class VerifierInformationClient extends JFrame
 					.addContainerGap()
 					.addGroup(gl_mid.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_mid.createSequentialGroup()
-							.addComponent(txtpnNom, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+							.addComponent(txtNom, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(txtpnPrnom, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+							.addComponent(txtPrnom, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(txtpnDateDeNaissance, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+							.addComponent(txtDateDeNaissance, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(txtpnRue, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
+							.addComponent(txtAdresse, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_mid.createSequentialGroup()
 							.addGap(1)
-							.addComponent(textField, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+							.addComponent(labelNom, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
 							.addGap(11)
-							.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+							.addComponent(labelPrnom, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
 							.addGap(11)
-							.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+							.addComponent(labelDateDeNaissance, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
 							.addGap(11)
-							.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(labelAdresse, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)))
 					.addGap(11)
 					.addGroup(gl_mid.createParallelGroup(Alignment.LEADING)
-						.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtpnInformationsPermisDe_1, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
+						.addComponent(labelTelephone, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtTelephone, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
 					.addGap(20)
-					.addComponent(txtpnInformationsPermisDe, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addComponent(labelInformationsPermis, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_mid.createParallelGroup(Alignment.LEADING)
-						.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtpnClasses, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
+						.addComponent(labelClasses, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtClasses, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_mid.createParallelGroup(Alignment.LEADING)
-						.addComponent(textField_6, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtpnDateExpirationDu, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+						.addComponent(labelExpiration, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtExpiration, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
 					.addGroup(gl_mid.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnValider, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnModifier, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
