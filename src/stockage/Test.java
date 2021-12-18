@@ -110,10 +110,18 @@ public class Test {
             e.printStackTrace();
         }*/
         
- 
+ /*
         try {
             Location l = StockageLocation.getLocation( "6234562890" );
             System.out.println(l);
+        } catch ( SQLException e ) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }*/
+        
+        try {
+            double tarif = StockageLocation.getTarifPrix("A");
+            System.out.println(tarif);
         } catch ( SQLException e ) {
             // TODO Auto-generated catch block
             e.printStackTrace();

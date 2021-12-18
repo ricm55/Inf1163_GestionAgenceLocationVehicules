@@ -33,14 +33,19 @@ public class StockageBasic {
     
     static Date converterStringDate(String chaine) {
         System.out.println(chaine);
+        try {
         
-        String[] sections_date = chaine.split( "-" );
+            String[] sections_date = chaine.split( "-" );
+            
+            int annee = Integer.parseInt(sections_date[0]);
+            int mois = Integer.parseInt(sections_date[1]);
+            int jour = Integer.parseInt(sections_date[2]);
+            return new Date(annee,mois,jour);
+            
+        }catch(Exception e) {
+            return new Date(0,0,0);
+        }
         
-        int annee = Integer.parseInt(sections_date[0]);
-        int mois = Integer.parseInt(sections_date[1]);
-        int jour = Integer.parseInt(sections_date[2]);
-        
-        return new Date(annee,mois,jour);
     }
     
 }
