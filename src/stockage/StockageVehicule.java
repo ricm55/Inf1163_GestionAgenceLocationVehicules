@@ -50,4 +50,31 @@ public class StockageVehicule {
         return vehicules;
         
     }
+    
+    /*
+     * Mettre le vehicule disponible ou indisponible
+     * */
+    public static void updateVehiculeDispo(Vehicule v, boolean dispo) throws SQLException {
+        StockageBasic.connect();
+        Statement statement = StockageBasic.storage.createStatement();
+        /*
+        UPDATE vehicule
+        SET disponible = false
+        where marque="Mazda" AND modele="2" AND annee=2011;
+        */
+        int annee = v.getAnnee();
+        
+        String query_getVehicules = MessageFormat.format( "UPDATE vehicule SET disponible = {0} where marque=\"{1}\" AND modele=\"{2}\" AND annee={3};"
+                ,dispo, v.getMarque(), v.getModele(), String.valueOf(  v.getAnnee() ));
+        
+        statement.executeUpdate(query_getVehicules);
+        System.out.println("=> "+query_getVehicules);
+        
+        StockageBasic.disconnect();
+    }
+    
+    /*
+     * 
+     * */
+    
 }

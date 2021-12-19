@@ -28,127 +28,10 @@ public class StockageClients{
     public StockageClients() {
 
     }
-/*
-    public List<Client>  getClients() throws SQLException {
-            
-        List<Client> clients = new ArrayList<Client>();
-        Connection storage = super.connect();
-        Statement statement = storage.createStatement();
-        
-        //ResultSet result = statement.executeQuery("select * from Client;");
-        String query_getClient = "SELECT ClientId, nom,prenom,numTelephone,dateCreation,courriel,dateDeNaissance,adresse,"
-                    + "assurancePersonnelle,dateExpiration "
-                    + "from Client "
-                    + "inner join PermisConduire on Client.ClientId = PermisConduire.client_id ";
-                    //+ "WHERE numTelephone=\"819-556-4525\";";
-            
-        ResultSet result_client = statement.executeQuery(query_getClient);
-        
-        while(result_client.next()) {
-            
-            //Creer le client
-            Client client = new Client (
-                result_client.getInt( "ClientId" ),
-                result_client.getString( "nom" ),
-                result_client.getString( "prenom" ),
-                result_client.getString( "numTelephone" ),
-                result_client.getDate( "dateCreation" ),
-                result_client.getString( "courriel" ),
-                result_client.getDate( "dateDeNaissance" ),
-                result_client.getString( "adresse" ),
-                result_client.getBoolean( "assurancePersonnelle" )
-                );
-            //Ajouter le client a la liste
-            clients.add( client );
-            
-        }
-        
-        //Faire liste vide des classes du client
-        ArrayList<String> typePermis = new ArrayList<String>();
-        
-        //Commande permettant d'obtenir les types du permis de l'utilisateur
-        String query_type_permis = String.format( "SELECT type FROM PermisConduireClassePermis " 
-                                                  + "inner join ClassePermis on PermisConduireClassePermis.classePermis_id = ClassePermis.ClassePermisId " 
-                                                  + "where permisConduire_id=%d;",
-                                                  result_client.getInt( "ClientId" ));
-        
-        //Executer la commande
-        ResultSet result_type_permis = statement.executeQuery(query_type_permis);
-        
-        //Lire tous les types de l'utilisateur
-        while(result_type_permis.next()) {
-            
-            typePermis.add(result_type_permis.getString( "type" ));
-        }
-        
-        //Creer le permis de l'utilisateur
-        PermisDeConduire permis_client = new PermisDeConduire(result_client.getDate( "dateExpiration" ),typePermis);
-        
-        //Se deconnecter de la database    
-        disconnect(storage);
-        return clients;
-        }*/
     
     /*
-     * Obtenir les informations d'un seul utilisateur
+     * Obtenir un client a partir d'un numero de telephone
      * */
-    /*public static Client getClient(String numTelephone) throws SQLException {
-        //Connection a la base de donnee
-        StockageBasic.connect();
-        Statement statement = StockageBasic.storage.createStatement();
-        
-        //Definir la commande pour obtenir l'utilisateur
-        String query_getClient = String.format(
-                "SELECT ClientId, nom,prenom,numTelephone,dateCreation,courriel,dateDeNaissance,adresse,"
-                + "assurancePersonnelle,dateExpiration "
-                + "from Client "
-                + "inner join PermisConduire on Client.ClientId = PermisConduire.client_id "
-                + "WHERE numTelephone=%s;",numTelephone);
-        
-        //Executer la commande de la base de donnee
-        ResultSet result_client = statement.executeQuery(query_getClient);
-        
-        result_client.next();
-        //Creer le client
-        Client client = new Client(
-                result_client.getInt( "ClientId" ),
-                result_client.getString( "nom" ),
-                result_client.getString( "prenom" ),
-                result_client.getString( "numTelephone" ),
-                result_client.getDate( "dateCreation" ),
-                result_client.getString( "courriel" ),
-                result_client.getDate( "dateDeNaissance" ),
-                result_client.getString( "adresse" ),
-                result_client.getBoolean( "assurancePersonnelle" )
-                );
-        
-        //Se deconnecter de la base de donnee
-        StockageBasic.disconnect();
-        
-        return client;
-    }*/
-    /*
-     * public static ModeleClient getClient(int id) throws SQLException {
-     * connect(); Statement statement = conn.createStatement(); String sql =
-     * MessageFormat.format( "select * from client where id={0};", id );
-     * ResultSet result = statement.executeQuery(sql); ModeleClient client = new
-     * ModeleClient( result.getInt("id"), result.getString( "name" ),
-     * result.getString( "email" ) ); disconnect();
-     * 
-     * return client; }
-     * 
-     * public static void insertClient(ModeleClient c) throws SQLException{
-     * 
-     * connect(); Statement statement = conn.createStatement(); String sql =
-     * MessageFormat.format("insert into client values (?,\"{0}\",\"{1}\");",c.
-     * getName(),c.getEmail()); statement.executeUpdate(sql); disconnect(); }
-     * public static void updateClient(ModeleClient c) throws SQLException{
-     * connect(); Statement statement = conn.createStatement(); String sql =
-     * MessageFormat.
-     * format("update client set name=\"{0}\", email=\"{1}\" where id={2};",c.
-     * getName(),c.getEmail(),c.getId()); statement.executeUpdate(sql);
-     * disconnect(); }
-     */
     public static Client  getClient(String numTelephone) throws SQLException, ParseException {
         //Connection avec la base de donnee
         StockageBasic.connect();
@@ -200,6 +83,9 @@ public class StockageClients{
         }
     }
     
+    /*
+     * Insertion d'un client
+     * */
     public static void insertClient(Client client) throws SQLException, ParseException, CustomException{
         System.out.println("INSERTION d'un client");
         

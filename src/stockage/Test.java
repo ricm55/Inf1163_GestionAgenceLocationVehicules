@@ -129,15 +129,15 @@ public class Test {
         */
         /*
         try {
-            StockageLocation.updateTarifPrix( 20.98, "A" );
+            StockageTarif.updateTarifPrix( 56.98, "A" );
         } catch ( SQLException e ) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }*/
-        
+        }
+        */
         //StockageLocation.insertLocation( location,  );
         
-        
+        /*
         try {
             Client c = StockageClients.getClient( "6234562890" );
             System.out.println(c.getDateDeNaissance() + " " + c.getPermis().getDateExpiration());
@@ -146,6 +146,24 @@ public class Test {
             // TODO Auto-generated catch block
             e.printStackTrace();
         } catch ( ParseException e ) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        *//*
+        Vehicule v = new Vehicule("Mazda","2",2011);
+        try {
+            StockageVehicule.updateVehiculeDispo( v, true);
+        } catch ( SQLException e ) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }*/
+        
+        try {
+            ArrayList<Vehicule> listeVehicule = StockageVehicule.getVehicules( "Economique" );
+            for (Vehicule v : listeVehicule ) {
+                System.out.println(v);
+            }
+        } catch ( SQLException e ) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
