@@ -35,8 +35,7 @@ public class ClientControleur
 		try
 		{
 			return StockageClients.getClient(telephone);
-		}
-		catch(SQLException | ParseException e)
+		} catch (SQLException | ParseException e)
 		{
 			JOptionPane.showMessageDialog(null, "Ce client n'existe pas.");
 		}
@@ -58,13 +57,12 @@ public class ClientControleur
 		}
 		return false;
 	}
-	
-	public Client creerNouveauClient(String nom, String prenom,Date naissance,String adresse, String telephone, ArrayList<String> type,
-			Date expiration, boolean assurance, String courriel  )
+
+	public Client creerNouveauClient(String nom, String prenom, String telephone, String courriel, Date naissance, String adresse,
+			boolean assurance, ArrayList<String> typesPermis, Date expiration)
 	{
-		
-		LocalDate dateCreation= LocalDate.now();
-		PermisDeConduire permis = new PermisDeConduire(expiration, type);
+		LocalDate dateCreation = LocalDate.now();
+		PermisDeConduire permis = new PermisDeConduire(expiration, typesPermis);
 		Client client = new Client(nom, prenom, telephone, dateCreation, courriel, naissance, adresse, false);
 		client.setPermis(permis);
 		return client;
@@ -113,7 +111,7 @@ public class ClientControleur
 
 	public Client getClient()
 	{
-		return this.client ;
+		return this.client;
 	}
 
 	public void setPrenomClient(String prenom)
@@ -222,12 +220,12 @@ public class ClientControleur
 		List<String> listeClasse = this.client.getPermis().getClasses();
 		return StringUtils.join(listeClasse, ",");
 	}
-	
+
 	public void setClassesPermisClient(String classes)
 	{
 		ArrayList<String> listeClasses = new ArrayList<String>();
-		String [] arrayClasses = classes.split(",[ ]*");
-		for(String s : arrayClasses)
+		String[] arrayClasses = classes.split(",[ ]*");
+		for (String s : arrayClasses)
 		{
 			listeClasses.add(s);
 		}
@@ -238,7 +236,7 @@ public class ClientControleur
 	{
 		return this.client.getPermis().getDateExpiration().toString();
 	}
-	
+
 	public void setDateExpirationPermisClient(Date date)
 	{
 		this.client.getPermis().setDateExpiration(date);

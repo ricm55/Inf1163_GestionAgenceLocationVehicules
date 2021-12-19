@@ -130,7 +130,7 @@ public class CreerNouveauClient extends JFrame
 
 		JTextPane txtExpiration = new JTextPane();
 		txtExpiration.setText((String) null);
-		txtExpiration.setFont(new Font("Verdana", Font.PLAIN, 16));
+		txtExpiration.setFont(new Font("Verdana", Font.PLAIN, 11));
 
 		labelClasses = new JTextField();
 		labelClasses.setText("Classe(s)");
@@ -143,7 +143,7 @@ public class CreerNouveauClient extends JFrame
 
 		JTextPane txtClasses = new JTextPane();
 		txtClasses.setText((String) null);
-		txtClasses.setFont(new Font("Verdana", Font.PLAIN, 16));
+		txtClasses.setFont(new Font("Verdana", Font.PLAIN, 11));
 
 		JTextPane labelInformationsPermis = new JTextPane();
 		labelInformationsPermis.setText("Informations sur le permis de conduire");
@@ -163,7 +163,7 @@ public class CreerNouveauClient extends JFrame
 
 		JTextPane txtTelephone = new JTextPane();
 		txtTelephone.setText((String) null);
-		txtTelephone.setFont(new Font("Verdana", Font.PLAIN, 16));
+		txtTelephone.setFont(new Font("Verdana", Font.PLAIN, 11));
 
 		labelNom = new JTextField();
 		labelNom.setText("Nom");
@@ -203,23 +203,23 @@ public class CreerNouveauClient extends JFrame
 
 		JTextPane txtAdresse = new JTextPane();
 		txtAdresse.setText((String) null);
-		txtAdresse.setFont(new Font("Verdana", Font.PLAIN, 16));
+		txtAdresse.setFont(new Font("Verdana", Font.PLAIN, 11));
 
 		JTextPane txtDateDeNaissance = new JTextPane();
 		txtDateDeNaissance.setText((String) null);
-		txtDateDeNaissance.setFont(new Font("Verdana", Font.PLAIN, 16));
+		txtDateDeNaissance.setFont(new Font("Verdana", Font.PLAIN, 11));
 
 		JTextPane txtPrenom = new JTextPane();
 		txtPrenom.setText((String) null);
-		txtPrenom.setFont(new Font("Verdana", Font.PLAIN, 16));
+		txtPrenom.setFont(new Font("Verdana", Font.PLAIN, 11));
 
 		JTextPane txtNom = new JTextPane();
 		txtNom.setText((String) null);
-		txtNom.setFont(new Font("Verdana", Font.PLAIN, 16));
+		txtNom.setFont(new Font("Verdana", Font.PLAIN, 11));
 		
 		JTextPane txtCourriel = new JTextPane();
 		txtCourriel.setText((String) null);
-		txtCourriel.setFont(new Font("Verdana", Font.PLAIN, 16));
+		txtCourriel.setFont(new Font("Verdana", Font.PLAIN, 11));
 		txtCourriel.setEditable(false);
 		
 		JRadioButton rdBtnAssurance = new JRadioButton("Oui");
@@ -237,7 +237,8 @@ public class CreerNouveauClient extends JFrame
 			{
 				//ajouter courriel et assurance, voir clientControleur ligne 62 pour la structure
 				controleurClient.creerNouveauClient(txtNom.getText(), txtPrenom.getText(), simpleDateFormat.parse(txtDateDeNaissance.getText()),
-						txtAdresse.getText(), txtTelephone.getText(), txtClasses.getText(), simpleDateFormat.parse(txtExpiration.getText()), rdBtnAssurance.isSelected(), txtCourriel.getText());
+						txtAdresse.getText(), txtTelephone.getText(), txtClasses.getText(), simpleDateFormat.parse(txtExpiration.getText()),
+						rdBtnAssurance.isSelected(), txtCourriel.getText());
 			}
 		});
 		btnValider.setForeground(Color.WHITE);
@@ -268,7 +269,7 @@ public class CreerNouveauClient extends JFrame
 			gl_mid.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_mid.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_mid.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_mid.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_mid.createSequentialGroup()
 							.addComponent(labelAssurance, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
@@ -277,13 +278,13 @@ public class CreerNouveauClient extends JFrame
 							.addComponent(rdbtnAssuranceNon, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
 							.addContainerGap(404, Short.MAX_VALUE))
 						.addGroup(gl_mid.createSequentialGroup()
-							.addGroup(gl_mid.createParallelGroup(Alignment.TRAILING)
-								.addGroup(Alignment.LEADING, gl_mid.createParallelGroup(Alignment.TRAILING)
-									.addGroup(Alignment.LEADING, gl_mid.createSequentialGroup()
+							.addGroup(gl_mid.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_mid.createParallelGroup(Alignment.LEADING)
+									.addGroup(gl_mid.createSequentialGroup()
 										.addComponent(labelTelephone, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
 										.addPreferredGap(ComponentPlacement.UNRELATED)
 										.addComponent(txtTelephone, GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE))
-									.addGroup(Alignment.LEADING, gl_mid.createSequentialGroup()
+									.addGroup(gl_mid.createSequentialGroup()
 										.addGroup(gl_mid.createParallelGroup(Alignment.LEADING)
 											.addComponent(labelNom, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
 											.addComponent(labelPrenom, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
@@ -295,29 +296,30 @@ public class CreerNouveauClient extends JFrame
 											.addComponent(txtAdresse, GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)
 											.addComponent(txtDateDeNaissance, GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)
 											.addComponent(txtPrenom, GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)))
-									.addGroup(Alignment.LEADING, gl_mid.createSequentialGroup()
+									.addGroup(gl_mid.createSequentialGroup()
 										.addComponent(labelExpiration, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
 										.addPreferredGap(ComponentPlacement.UNRELATED)
 										.addComponent(txtExpiration, GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE))
-									.addGroup(Alignment.LEADING, gl_mid.createSequentialGroup()
+									.addGroup(gl_mid.createSequentialGroup()
 										.addComponent(labelEmail, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
 										.addPreferredGap(ComponentPlacement.UNRELATED)
 										.addComponent(txtCourriel, GroupLayout.PREFERRED_SIZE, 551, GroupLayout.PREFERRED_SIZE)))
-								.addGroup(Alignment.LEADING, gl_mid.createSequentialGroup()
+								.addGroup(gl_mid.createSequentialGroup()
 									.addComponent(labelClasses, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.UNRELATED)
 									.addComponent(txtClasses, GroupLayout.PREFERRED_SIZE, 551, GroupLayout.PREFERRED_SIZE)))
 							.addGap(19))
 						.addGroup(gl_mid.createSequentialGroup()
 							.addComponent(labelInformationsPermis, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap(476, Short.MAX_VALUE))
-						.addGroup(Alignment.TRAILING, gl_mid.createSequentialGroup()
-							.addComponent(btnValider, GroupLayout.PREFERRED_SIZE, 325, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap())))
+							.addContainerGap(476, Short.MAX_VALUE))))
+				.addGroup(gl_mid.createSequentialGroup()
+					.addGap(189)
+					.addComponent(btnValider, GroupLayout.PREFERRED_SIZE, 325, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(202, Short.MAX_VALUE))
 		);
 		gl_mid.setVerticalGroup(
-			gl_mid.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_mid.createSequentialGroup()
+			gl_mid.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_mid.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_mid.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_mid.createSequentialGroup()
@@ -350,7 +352,7 @@ public class CreerNouveauClient extends JFrame
 						.addComponent(labelAssurance, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
 						.addComponent(rdBtnAssurance)
 						.addComponent(rdbtnAssuranceNon))
-					.addPreferredGap(ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
 					.addComponent(labelInformationsPermis, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_mid.createParallelGroup(Alignment.TRAILING)
@@ -358,12 +360,11 @@ public class CreerNouveauClient extends JFrame
 						.addComponent(txtClasses, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_mid.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_mid.createSequentialGroup()
-							.addComponent(txtExpiration, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnValider, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
+						.addComponent(txtExpiration, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
 						.addComponent(labelExpiration, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap())
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnValider, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addGap(6))
 		);
 		mid.setLayout(gl_mid);
 	}

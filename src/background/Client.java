@@ -6,11 +6,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
-
 public class Client
 {
-    private int id;
+    private int id = -1;
 	private String nom;
 	private String prenom;
 	private String numTelephone;
@@ -24,17 +22,31 @@ public class Client
 	private List<Location> listeLocationEnPossession;
 	private int age;
 
-
 	public Client(String nom, String prenom, String numTelephone, LocalDate dateCreation,String courriel,Date dateDeNaissance, String adresse, boolean assurancePersonnelle)
 	{
-	    this.setId( id );
-		this.setNom( nom );
-		this.setPrenom( prenom );
-		this.setDateDeNaissance( dateDeNaissance );
+		this.setNom(nom);
+		this.setPrenom(prenom);
+		this.setDateDeNaissance(dateDeNaissance);
 		this.setAdresse(adresse);
-		this.setNumTelephone( numTelephone);
-		this.setDateCreation( dateCreation );
-		this.setCourriel( courriel );
+		this.setNumTelephone(numTelephone);
+		this.setDateCreation(dateCreation);
+		this.setCourriel(courriel);
+		this.setAssurancePersonnelle(assurancePersonnelle);
+		List<Reservation> listeReservationEnPossession = new ArrayList<Reservation>();
+		List <Location> listeLocationEnPossession = new ArrayList<Location>();
+		this.age = this.calculAge();
+	}
+	
+	public Client(int id, String nom, String prenom, String numTelephone, LocalDate dateCreation,String courriel,Date dateDeNaissance, String adresse, boolean assurancePersonnelle)
+	{
+	    this.setId(id);
+		this.setNom(nom);
+		this.setPrenom(prenom);
+		this.setDateDeNaissance(dateDeNaissance);
+		this.setAdresse(adresse);
+		this.setNumTelephone(numTelephone);
+		this.setDateCreation(dateCreation);
+		this.setCourriel(courriel);
 		this.setAssurancePersonnelle(assurancePersonnelle);
 		List<Reservation> listeReservationEnPossession = new ArrayList<Reservation>();
 		List <Location> listeLocationEnPossession = new ArrayList<Location>();
@@ -162,7 +174,7 @@ public class Client
     /**
      * @param prenom the prenom to set
      */
-    public void setPrenom( String prenom ) {
+    public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
 
@@ -176,7 +188,7 @@ public class Client
     /**
      * @param id the id to set
      */
-    public void setId( int id ) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -190,7 +202,7 @@ public class Client
     /**
      * @param dateCreation the dateCreation to set
      */
-    public void setDateCreation( LocalDate dateCreation ) {
+    public void setDateCreation(LocalDate dateCreation) {
         this.dateCreation = dateCreation;
     }
 
@@ -204,7 +216,7 @@ public class Client
     /**
      * @param courriel the courriel to set
      */
-    public void setCourriel( String courriel ) {
+    public void setCourriel(String courriel) {
         this.courriel = courriel;
     }
 
