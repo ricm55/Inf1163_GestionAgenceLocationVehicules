@@ -17,11 +17,11 @@ import constante.ClasseVehicule;
 
 public class LocationControleur {
     
-    private ClientControleur client;
+    private ClientControleur controleurClient;
     
-    public LocationControleur(String telephone) throws Exception {
+    public LocationControleur(ClientControleur controleur) throws Exception {
         
-    	this.client = new ClientControleur(telephone);
+    	this.controleurClient = controleur;
     	
     	
         //Creer location
@@ -80,7 +80,7 @@ public class LocationControleur {
     {	
     	this.verificationValidePermisControleur(client, vehicule);
     	Location location = new Location(client, dateDebut, dateFin, forfait, vehicule);
-        this.client.setListeLocationEnPossession(location);
+        this.controleurClient.setListeLocationEnPossession(location);
         return location.getPremierVersement();
     	
     }
@@ -129,13 +129,13 @@ public class LocationControleur {
     
     private void retourVehicule(Location locationEnCours)
     {
-    	for (int locations = 0; locations <= this.client.getListeLocationEnPossession().size(); locations ++)
+    	for (int locations = 0; locations <= this.controleurClient.getListeLocationEnPossession().size(); locations ++)
     	{
-    		Location location = this.client.getListeLocationEnPossession().get(locations);
+    		Location location = this.controleurClient.getListeLocationEnPossession().get(locations);
     		
     		if(location == locationEnCours)
     		{	
-    			this.client.enleverLocation(location);
+    			this.controleurClient.enleverLocation(location);
     		}  	
     	}
     }
@@ -157,9 +157,9 @@ public class LocationControleur {
     private double totalDeuxiemeVersement(Location locationEnCours)
     {
     	
-    	for (int locations = 0; locations <= this.client.getListeLocationEnPossession().size(); locations ++)
+    	for (int locations = 0; locations <= this.controleurClient.getListeLocationEnPossession().size(); locations ++)
     	{
-    		Location location = this.client.getListeLocationEnPossession().get(locations);
+    		Location location = this.controleurClient.getListeLocationEnPossession().get(locations);
     		
     		if(location == locationEnCours)	
     		{	

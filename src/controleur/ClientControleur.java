@@ -22,24 +22,34 @@ import stockage.StockageClients;
 public class ClientControleur
 {
 	private Client client;
-
-	public ClientControleur(String telephone)
+	
+	public Client creerNouveauClient(String nom, String prenom, String telephone, String courriel, Date naissance, String adresse,
+			boolean assurance, String typesPermis, Date expiration)
 	{
-		this.client = this.identifierClient(telephone);
+		LocalDate dateCreation = LocalDate.now();
+		ArrayList<String> listeClasses = new ArrayList<String>();
+		String[] arrayClasses = typesPermis.split(",[ ]*");
+		for (String s : arrayClasses)
+		{
+			listeClasses.add(s);
+		}
+		PermisDeConduire permis = new PermisDeConduire(expiration, listeClasses);
+		client = new Client(nom, prenom, telephone, dateCreation, courriel, naissance, adresse, false, permis);
+		client.setPermis(permis);
+		return client;
 	}
 
 	// Si le client existe, return le client
 	// Si le client n'existe pas, return null (devrait afficher un message d'erreur)
-	public Client identifierClient(String telephone)
+	public void identifierClient(String telephone)
 	{
 		try
 		{
-			return StockageClients.getClient(telephone);
+			this.client = StockageClients.getClient(telephone);
 		} catch (SQLException | ParseException e)
 		{
 			JOptionPane.showMessageDialog(null, "Ce client n'existe pas.");
 		}
-		return null;
 	}
 
 	public boolean verificationExpirationPermisConduire()
@@ -56,16 +66,6 @@ public class ClientControleur
 			return false;
 		}
 		return true;
-	}
-
-	public Client creerNouveauClient(String nom, String prenom, String telephone, String courriel, Date naissance, String adresse,
-			boolean assurance, ArrayList<String> typesPermis, Date expiration)
-	{
-		LocalDate dateCreation = LocalDate.now();
-		PermisDeConduire permis = new PermisDeConduire(expiration, typesPermis);
-		Client client = new Client(nom, prenom, telephone, dateCreation, courriel, naissance, adresse, false);
-		client.setPermis(permis);
-		return client;
 	}
 
 	public boolean verificationAgeClient()
