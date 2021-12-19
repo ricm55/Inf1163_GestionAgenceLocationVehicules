@@ -240,6 +240,8 @@ public class CreerNouveauClient extends JFrame
 					controleurClient.creerNouveauClient(txtNom.getText(), txtPrenom.getText(),
 							txtTelephone.getText(), txtCourriel.getText(), simpleDateFormat.parse(txtDateDeNaissance.getText()),
 							txtAdresse.getText(), rdBtnAssurance.isSelected(), txtClasses.getText(), simpleDateFormat.parse(txtExpiration.getText()));
+					System.out.println(simpleDateFormat.parse(txtDateDeNaissance.getText()));
+					System.out.println(simpleDateFormat.parse(txtDateDeNaissance.getText()).toString());
 				} catch (ParseException e1)
 				{
 					// TODO Auto-generated catch block
