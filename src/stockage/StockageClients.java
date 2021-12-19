@@ -161,7 +161,9 @@ public class StockageClients{
         System.out.println(query_getClient);
         
         try {
-        
+            String pattern = "yyyy-MM-dd";
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+ 
             //Obtenir le client
             Client client = new Client(
                     result_getClient.getInt("ClientId"),
@@ -170,12 +172,12 @@ public class StockageClients{
                     result_getClient.getString( "numTelephone" ),
                     StockageBasic.converterStringDate( result_getClient.getString( "dateCreation" ) ).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
                     result_getClient.getString( "courriel" ),
-                    StockageBasic.converterStringDate( result_getClient.getString( "dateDeNaissance" ) ),
+                    simpleDateFormat.parse(result_getClient.getString( "dateDeNaissance" ) ),
                     result_getClient.getString( "adresse" ),
                     result_getClient.getBoolean( "assurancePersonnelle" )
                     );  
-            Date dateExpiration = StockageBasic.converterStringDate(result_getClient.getString("dateExpiration"));
-            
+            //Date dateExpiration = StockageBasic.converterStringDate(result_getClient.getString("dateExpiration"));
+            Date dateExpiration = simpleDateFormat.parse( result_getClient.getString("dateExpiration") );
             
             //Obtenir le permis du client
             String query_getPermisType = MessageFormat.format( "select type from PermisConduireClassePermis inner join ClassePermis on PermisConduireClassePermis.classePermis_id = ClassePermis.ClassePermisId where permisConduire_id={0};",result_getClient.getInt("ClientId"));
