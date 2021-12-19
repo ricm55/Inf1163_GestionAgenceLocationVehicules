@@ -57,6 +57,7 @@ public class RechercheClient extends JFrame
 				}
 			}
 		});
+		controleurClient = new ClientControleur();
 	}
 
 	/**
@@ -160,8 +161,8 @@ public class RechercheClient extends JFrame
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				controleurClient = new ClientControleur(textTelephone.getText());
-				System.out.println(controleurClient.getPrenomClient()); 
+				//controleurClient.identifierClient(textTelephone.getText());
+				//System.out.println(controleurClient.getPrenomClient()); 
 				frame.dispose();
 				VerifierInformationClient.launch(actionEnCours, controleurClient);
 			}
@@ -193,7 +194,7 @@ public class RechercheClient extends JFrame
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				controleurClient = new ClientControleur(textTelephone.getText());
+				controleurClient.identifierClient(textTelephone.getText());
 
 				try
 				{
