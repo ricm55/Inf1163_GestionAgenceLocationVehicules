@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -184,6 +185,11 @@ public class VerifierInformationClient extends JFrame
 		JRadioButton rdbtnAssuranceNon = new JRadioButton("Non");
 		rdbtnAssuranceNon.setForeground(Color.WHITE);
 		rdbtnAssuranceNon.setBackground(SystemColor.textHighlight);
+		
+		ButtonGroup bg = new ButtonGroup(); 
+		  bg.add(rdBtnAssurance);
+		  bg.add(rdbtnAssuranceNon);
+		  
 		if(controleurClient.isAssurancePersonnelleClient())
 		{
 			rdBtnAssurance.setSelected(true);
@@ -237,6 +243,10 @@ public class VerifierInformationClient extends JFrame
 						LocationVehicule.rendreInvisible(false);
 						break;
 					case VOIR_COMPTE_CLIENT:
+						break;
+					case RETOUR:
+						frame.dispose();
+						RetourVehicule.launch();
 						break;
 					default:
 						break;

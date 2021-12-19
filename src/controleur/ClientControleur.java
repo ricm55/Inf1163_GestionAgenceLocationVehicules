@@ -49,13 +49,13 @@ public class ClientControleur
 		ZoneId defaultZoneId = ZoneId.systemDefault();
 		Date todayDate = Date.from(ld.atStartOfDay(defaultZoneId).toInstant());
 
-		boolean permisValideDate = client.getPermis().getDateExpiration().before(todayDate);
+		boolean permisInvalideDate = client.getPermis().getDateExpiration().before(todayDate);
 
-		if (permisValideDate == true)
+		if (permisInvalideDate == true)
 		{
-			return true;
+			return false;
 		}
-		return false;
+		return true;
 	}
 
 	public Client creerNouveauClient(String nom, String prenom, String telephone, String courriel, Date naissance, String adresse,

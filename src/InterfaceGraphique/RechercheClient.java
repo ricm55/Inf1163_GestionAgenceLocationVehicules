@@ -164,6 +164,7 @@ public class RechercheClient extends JFrame
 				System.out.println(controleurClient.getPrenomClient()); 
 				frame.dispose();
 				VerifierInformationClient.launch(actionEnCours, controleurClient);
+				
 			}
 		});
 		btnOui.setForeground(Color.WHITE);
