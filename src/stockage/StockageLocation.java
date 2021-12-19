@@ -147,7 +147,7 @@ public class StockageLocation {
         String query_getTarifPrix = MessageFormat.format( "select prix from tarif where type=\"{0}\";", type );
         System.out.println("=> " + query_getTarifPrix);
         ResultSet resultSet_getTarifPrix = statement.executeQuery(query_getTarifPrix );
-
+        
         
         double tarif = resultSet_getTarifPrix.getDouble( "prix" );
         

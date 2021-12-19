@@ -175,7 +175,7 @@ public class StockageClients{
                     result_getClient.getBoolean( "assurancePersonnelle" )
                     );  
             Date dateExpiration = StockageBasic.converterStringDate(result_getClient.getString("dateExpiration"));
-    
+            
             
             //Obtenir le permis du client
             String query_getPermisType = MessageFormat.format( "select type from PermisConduireClassePermis inner join ClassePermis on PermisConduireClassePermis.classePermis_id = ClassePermis.ClassePermisId where permisConduire_id={0};",result_getClient.getInt("ClientId"));
