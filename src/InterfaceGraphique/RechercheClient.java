@@ -57,6 +57,7 @@ public class RechercheClient extends JFrame
 				}
 			}
 		});
+		controleurClient = new ClientControleur();
 	}
 
 	/**
@@ -160,10 +161,11 @@ public class RechercheClient extends JFrame
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				controleurClient = new ClientControleur(textTelephone.getText());
-				System.out.println(controleurClient.getPrenomClient()); 
+				//controleurClient.identifierClient(textTelephone.getText());
+				//System.out.println(controleurClient.getPrenomClient()); 
 				frame.dispose();
 				VerifierInformationClient.launch(actionEnCours, controleurClient);
+				
 			}
 		});
 		btnOui.setForeground(Color.WHITE);
@@ -193,7 +195,7 @@ public class RechercheClient extends JFrame
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				controleurClient = new ClientControleur(textTelephone.getText());
+				controleurClient.identifierClient(textTelephone.getText());
 
 				try
 				{
@@ -203,7 +205,7 @@ public class RechercheClient extends JFrame
 								"Ce num\u00E9ro n'est pas li\u00E9 \u00E0 un compte client.");
 					} else
 					{
-						textTelephone.setText(
+						txtNom.setText(
 								controleurClient.getNomClient() + ", " + controleurClient.getPrenomClient());
 						btnOui.setEnabled(true);
 						btnNon.setEnabled(true);

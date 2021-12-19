@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 
 import org.sqlite.util.StringUtils;
 
+import background.ClasseDeVehicule;
 import background.Client;
 import background.Location;
 import background.PermisDeConduire;
@@ -21,41 +22,50 @@ import stockage.StockageClients;
 public class ClientControleur
 {
 	private Client client;
-
-	public ClientControleur(String telephone)
+	
+	public Client creerNouveauClient(String nom, String prenom, String telephone, String courriel, Date naissance, String adresse,
+			boolean assurance, String typesPermis, Date expiration)
 	{
-		this.client = this.identifierClient(telephone);
+		LocalDate dateCreation = LocalDate.now();
+		ArrayList<String> listeClasses = new ArrayList<String>();
+		String[] arrayClasses = typesPermis.split(",[ ]*");
+		for (String s : arrayClasses)
+		{
+			listeClasses.add(s);
+		}
+		PermisDeConduire permis = new PermisDeConduire(expiration, listeClasses);
+		client = new Client(nom, prenom, telephone, dateCreation, courriel, naissance, adresse, false, permis);
+		client.setPermis(permis);
+		return client;
 	}
 
 	// Si le client existe, return le client
 	// Si le client n'existe pas, return null (devrait afficher un message d'erreur)
-	public Client identifierClient(String telephone)
+	public void identifierClient(String telephone)
 	{
 		try
 		{
-			return StockageClients.getClient(telephone);
-		}
-		catch(SQLException | ParseException e)
+			this.client = StockageClients.getClient(telephone);
+		} catch (SQLException | ParseException e)
 		{
 			JOptionPane.showMessageDialog(null, "Ce client n'existe pas.");
 		}
-		return null;
 	}
 
 	public boolean verificationExpirationPermisConduire()
 	{
-		// Permi valide
+		// Permis valide
 		LocalDate ld = java.time.LocalDate.now();
 		ZoneId defaultZoneId = ZoneId.systemDefault();
 		Date todayDate = Date.from(ld.atStartOfDay(defaultZoneId).toInstant());
 
-		boolean permisValideDate = client.getPermis().getDateExpiration().before(todayDate);
+		boolean permisInvalideDate = client.getPermis().getDateExpiration().before(todayDate);
 
-		if (permisValideDate == true)
+		if (permisInvalideDate == true)
 		{
-			return true;
+			return false;
 		}
-		return false;
+		return true;
 	}
 
 	public boolean verificationAgeClient()
@@ -101,7 +111,7 @@ public class ClientControleur
 
 	public Client getClient()
 	{
-		return this.client ;
+		return this.client;
 	}
 
 	public void setPrenomClient(String prenom)
@@ -210,12 +220,12 @@ public class ClientControleur
 		List<String> listeClasse = this.client.getPermis().getClasses();
 		return StringUtils.join(listeClasse, ",");
 	}
-	
+
 	public void setClassesPermisClient(String classes)
 	{
 		ArrayList<String> listeClasses = new ArrayList<String>();
-		String [] arrayClasses = classes.split(",[ ]*");
-		for(String s : arrayClasses)
+		String[] arrayClasses = classes.split(",[ ]*");
+		for (String s : arrayClasses)
 		{
 			listeClasses.add(s);
 		}
@@ -226,7 +236,7 @@ public class ClientControleur
 	{
 		return this.client.getPermis().getDateExpiration().toString();
 	}
-	
+
 	public void setDateExpirationPermisClient(Date date)
 	{
 		this.client.getPermis().setDateExpiration(date);
