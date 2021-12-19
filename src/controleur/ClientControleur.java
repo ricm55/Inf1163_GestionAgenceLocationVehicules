@@ -34,6 +34,7 @@ public class ClientControleur
 			listeClasses.add(s);
 		}
 		PermisDeConduire permis = new PermisDeConduire(expiration, listeClasses);
+		System.out.println(naissance.toString());
 		client = new Client(nom, prenom, telephone, dateCreation, courriel, naissance, adresse, false, permis);
 		client.setPermis(permis);
 		return client;
