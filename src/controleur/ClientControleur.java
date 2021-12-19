@@ -3,9 +3,8 @@ package controleur;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.time.LocalDate;
-import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -23,8 +22,8 @@ public class ClientControleur
 {
 	private Client client;
 	
-	public Client creerNouveauClient(String nom, String prenom, String telephone, String courriel, Date naissance, String adresse,
-			boolean assurance, String typesPermis, Date expiration)
+	public Client creerNouveauClient(String nom, String prenom, String telephone, String courriel, String naissance, String adresse,
+			boolean assurance, String typesPermis, String expiration)
 	{
 		LocalDate dateCreation = LocalDate.now();
 		ArrayList<String> listeClasses = new ArrayList<String>();
@@ -33,9 +32,11 @@ public class ClientControleur
 		{
 			listeClasses.add(s);
 		}
-		PermisDeConduire permis = new PermisDeConduire(expiration, listeClasses);
+		LocalDate naissanceDate = parseDate(naissance);
+		LocalDate expirationDate = parseDate(expiration);
+		PermisDeConduire permis = new PermisDeConduire(expirationDate, listeClasses);
 		System.out.println(naissance.toString());
-		client = new Client(nom, prenom, telephone, dateCreation, courriel, naissance, adresse, false, permis);
+		client = new Client(nom, prenom, telephone, dateCreation, courriel, naissanceDate, adresse, false, permis);
 		client.setPermis(permis);
 		return client;
 	}
@@ -52,21 +53,23 @@ public class ClientControleur
 			JOptionPane.showMessageDialog(null, "Ce client n'existe pas.");
 		}
 	}
+	
+	private LocalDate parseDate(String date)
+	{
+		String[] tokens = date.split("-");
+		return LocalDate.of(Integer.parseInt(tokens[0]), Integer.parseInt(tokens[1]), Integer.parseInt(tokens[2]));
+	}
 
 	public boolean verificationExpirationPermisConduire()
 	{
 		// Permis valide
-		LocalDate ld = java.time.LocalDate.now();
-		ZoneId defaultZoneId = ZoneId.systemDefault();
-		Date todayDate = Date.from(ld.atStartOfDay(defaultZoneId).toInstant());
+		LocalDate ld = LocalDate.now();
 
-		boolean permisInvalideDate = client.getPermis().getDateExpiration().before(todayDate);
-
-		if (permisInvalideDate == true)
+		if(ChronoUnit.MONTHS.between(ld, client.getPermis().getDateExpiration()) > 1)
 		{
-			return false;
+			return true;
 		}
-		return true;
+		return false;
 	}
 
 	public boolean verificationAgeClient()
@@ -166,12 +169,12 @@ public class ClientControleur
 		return this.client.getNom();
 	}
 
-	public void setDateDeNaissanceClient(Date dateDeNaissance)
+	public void setDateDeNaissanceClient(String dateDeNaissance)
 	{
-		this.client.setDateDeNaissance(dateDeNaissance);
+		this.client.setDateDeNaissance(parseDate(dateDeNaissance));
 	}
 
-	public java.util.Date getDateNaissanceClient()
+	public LocalDate getDateNaissanceClient()
 	{
 		return this.client.getDateDeNaissance();
 	}
@@ -238,9 +241,9 @@ public class ClientControleur
 		return this.client.getPermis().getDateExpiration().toString();
 	}
 
-	public void setDateExpirationPermisClient(Date date)
+	public void setDateExpirationPermisClient(String date)
 	{
-		this.client.getPermis().setDateExpiration(date);
+		this.client.getPermis().setDateExpiration(parseDate(date));
 	}
 
 	public int getAge()

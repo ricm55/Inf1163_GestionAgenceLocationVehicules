@@ -1,35 +1,35 @@
 package background;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Reservation
 {
-	private Date debut;
-	private Date fin;
+	private LocalDate debut;
+	private LocalDate fin;
 	
 	
-	public Reservation(Date debut, Date fin)
+	public Reservation(LocalDate debut, LocalDate fin)
 	{
 		this.debut = debut;
 		this.fin = fin;
 	}
 	
-	public Date getDebut()
+	public LocalDate getDebut()
 	{
 		return debut;
 	}
 	
-	public void setDebut(Date debut)
+	public void setDebut(LocalDate debut)
 	{
 		this.debut = debut;
 	}
 	
-	public Date getFin()
+	public LocalDate getFin()
 	{
 		return fin;
 	}
 	
-	public void setFin(Date fin)
+	public void setFin(LocalDate fin)
 	{
 		this.fin = fin;
 	}

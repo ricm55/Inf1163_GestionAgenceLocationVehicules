@@ -1,10 +1,7 @@
 package controleur;
 
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import background.CatalogueVehicule;
 import background.ClasseDeVehicule;
 import background.Client;
@@ -32,7 +29,7 @@ public class LocationControleur {
         //Mettre la location dans la db
     }
     
-    public Vehicule rechercherInventaireLocationControleur(ClasseDeVehicule classe, Date dateDebut, Date dateFin, CatalogueVehicule catalogue)
+    public Vehicule rechercherInventaireLocationControleur(ClasseDeVehicule classe, LocalDate dateDebut, LocalDate dateFin, CatalogueVehicule catalogue)
     {	
     	//consulter inventaire et return le vehicule disponible ayant la classe correspondante
     	//Return null si vehicule 0 valide

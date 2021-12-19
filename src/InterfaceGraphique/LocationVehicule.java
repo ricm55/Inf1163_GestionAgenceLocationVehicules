@@ -50,8 +50,6 @@ public class LocationVehicule extends JFrame {
 	private static JRadioButton assuranceCompagnie;
 	private static JRadioButton assurancePersonnelle;
 	
-	
-
 	/**
 	 * Launch the application.
 	 */

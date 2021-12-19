@@ -41,7 +41,7 @@ public class StockageLocation {
                 vehicule.getMarque(),vehicule.getModele(),String.valueOf( vehicule.getAnnee() ),
                 todayDate,
                 vehicule.getKilometrage(), vehicule.getNiveauReservoir(),
-                String.valueOf( location.getDateFin().getYear() ),location.getDateFin().getMonth(),location.getDateFin().getDay(),
+                String.valueOf( location.getDateFin().getYear() ),location.getDateFin().getMonth(),location.getDateFin().getDayOfMonth(),
                 location.getPremierVersement(),location.getDeuxiemeVersement()
                 );
         statement.executeUpdate(query_insertLocation);
@@ -100,7 +100,7 @@ public class StockageLocation {
                         resultSet_getLocation.getString( "nom" ),
                         resultSet_getLocation.getString( "prenom" ),
                         resultSet_getLocation.getString( "numTelephone" ),
-                        StockageBasic.converterStringDate( resultSet_getLocation.getString( "dateCreation" ) ).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+                        StockageBasic.converterStringDate( resultSet_getLocation.getString( "dateCreation" ) ),
                         resultSet_getLocation.getString( "courriel" ),
                         StockageBasic.converterStringDate( resultSet_getLocation.getString( "dateDeNaissance" ) ),
                         resultSet_getLocation.getString( "adresse" ),

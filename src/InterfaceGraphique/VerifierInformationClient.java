@@ -7,8 +7,6 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
@@ -46,8 +44,6 @@ public class VerifierInformationClient extends JFrame
 
 	private JTextField labelTelephone;
 
-	String pattern = "yyyy-MM-dd";
-	SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 	private JTextField txtEmail;
 	private JTextField txtAssurancePersonnelle;
 
@@ -221,14 +217,8 @@ public class VerifierInformationClient extends JFrame
 					controleurClient.setCourrielClient(txtCourriel.getText());
 					controleurClient.setAssurancePersonnelleClient(rdBtnAssurance.isSelected());
 
-					try
-					{
-						controleurClient.setDateDeNaissanceClient(simpleDateFormat.parse(txtDateDeNaissance.getText()));
-						controleurClient.setDateExpirationPermisClient(simpleDateFormat.parse(txtExpiration.getText()));
-					} catch (ParseException e)
-					{
-						e.printStackTrace();
-					}
+					controleurClient.setDateDeNaissanceClient(txtDateDeNaissance.getText());
+					controleurClient.setDateExpirationPermisClient(txtExpiration.getText());
 
 					switch (actionEnCours)
 					{
