@@ -41,7 +41,7 @@ public class StockageLocation {
                 vehicule.getMarque(),vehicule.getModele(),String.valueOf( vehicule.getAnnee() ),
                 todayDate,
                 vehicule.getKilometrage(), vehicule.getNiveauReservoir(),
-                String.valueOf( location.getDateFin().getYear() ),location.getDateFin().getMonth(),location.getDateFin().getDay(),
+                String.valueOf( location.getDateFin().getYear() ),location.getDateFin().getMonth(),location.getDateFin().getDayOfMonth(),
                 location.getPremierVersement(),location.getDeuxiemeVersement()
                 );
         statement.executeUpdate(query_insertLocation);
@@ -100,7 +100,7 @@ public class StockageLocation {
                         resultSet_getLocation.getString( "nom" ),
                         resultSet_getLocation.getString( "prenom" ),
                         resultSet_getLocation.getString( "numTelephone" ),
-                        StockageBasic.converterStringDate( resultSet_getLocation.getString( "dateCreation" ) ).toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+                        StockageBasic.converterStringDate( resultSet_getLocation.getString( "dateCreation" ) ),
                         resultSet_getLocation.getString( "courriel" ),
                         StockageBasic.converterStringDate( resultSet_getLocation.getString( "dateDeNaissance" ) ),
                         resultSet_getLocation.getString( "adresse" ),
@@ -137,36 +137,5 @@ public class StockageLocation {
         return location;
     }
     
-    /*
-     * Permet d'obtenir le chiffre d'un tarif a partir d'une categorie
-     * */
-    public static double getTarifPrix(String type) throws SQLException {
-        StockageBasic.connect();
-        Statement statement = StockageBasic.storage.createStatement();
-        
-        String query_getTarifPrix = MessageFormat.format( "select prix from tarif where type=\"{0}\";", type );
-        System.out.println("=> " + query_getTarifPrix);
-        ResultSet resultSet_getTarifPrix = statement.executeQuery(query_getTarifPrix );
-
-        
-        double tarif = resultSet_getTarifPrix.getDouble( "prix" );
-        
-        StockageBasic.disconnect();
-        return tarif;
-    }
     
-    /*
-     * Permet d'update un prix dans la db
-     * */
-    public static void updateTarifPrix(double prix, String type) throws SQLException {
-        StockageBasic.connect();
-        Statement statement = StockageBasic.storage.createStatement();
-        
-        String query_updateTarifPrix = MessageFormat.format( "UPDATE tarif SET prix = {0} WHERE type=\"{1}\";", prix, type );
-        statement.executeUpdate( query_updateTarifPrix );
-        System.out.println("=> " + query_updateTarifPrix);
-        
-        StockageBasic.disconnect();
-    }
-
 }

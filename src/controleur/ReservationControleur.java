@@ -9,7 +9,7 @@ public class ReservationControleur {
 	
 	public ReservationControleur(String nom, String telephone) 
 	{
-		this.client = new ClientControleur(telephone);
+		this.client = new ClientControleur();
 	}
 	
 	public boolean annulerReservationControleur(Reservation reservation)

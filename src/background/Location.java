@@ -1,14 +1,13 @@
 package background;
 
-import java.time.temporal.ChronoUnit;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Location
 {
     private Client client;
-	private Date dateDebut;
-	private Date dateFin;
+	private LocalDate dateDebut;
+	private LocalDate dateFin;
 	private int duree;
 	private Vehicule vehicule;
 	private Forfait forfait;
@@ -19,7 +18,7 @@ public class Location
 	private ArrayList<String> tarifApplicable;
 	
 	//SEULEMENT POUR LE STOCKAGE
-	public Location(Client client, Date dateDebut, Date dateFin, Vehicule vehicule)
+	public Location(Client client, LocalDate dateDebut, LocalDate dateFin, Vehicule vehicule)
 	{
 	    this.setClient( client );
 		this.dateDebut = dateDebut;
@@ -35,7 +34,7 @@ public class Location
 	}
 	
 	//UTILISER LUI POUR L'APP
-	public Location(Client client, Date dateDebut, Date dateFin, Vehicule vehicule,ArrayList<String> tarifApplicable)
+	public Location(Client client, LocalDate dateDebut, LocalDate dateFin, Vehicule vehicule,ArrayList<String> tarifApplicable)
     {
         this.setClient( client );
         this.dateDebut = dateDebut;
@@ -136,22 +135,22 @@ public class Location
 		return this.forfait;
 	}
 	
-	public Date getDateDebut()
+	public LocalDate getDateDebut()
 	{
 		return this.dateDebut;
 	}
 	
-	public void setDateDebut(Date debut)
+	public void setDateDebut(LocalDate debut)
 	{
 		this.dateDebut = debut;
 	}
 	
-	public Date getDateFin()
+	public LocalDate getDateFin()
 	{
 		return this.dateFin;
 	}
 	
-	public void setDateFin(Date fin)
+	public void setDateFin(LocalDate fin)
 	{
 		this.dateFin = fin;
 	}

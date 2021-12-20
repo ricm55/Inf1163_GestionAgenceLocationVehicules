@@ -1,27 +1,27 @@
 package background;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 import constante.ClasseVehicule;
 
 public class PermisDeConduire
 {	
-	private Date dateExpiration;
+	private LocalDate dateExpiration;
 	private ArrayList<String> typesDePermis;
 	
-	public PermisDeConduire(Date dateExpiration, ArrayList<String> type)
+	public PermisDeConduire(LocalDate expiration, ArrayList<String> type)
 	{
-		this.dateExpiration = dateExpiration;
+		this.dateExpiration = expiration;
 		this.typesDePermis = type;
 	}
 	
-	public Date getDateExpiration()
+	public LocalDate getDateExpiration()
 	{
 		return dateExpiration;
 	}
 	
-	public void setDateExpiration(Date dateExpiration)
+	public void setDateExpiration(LocalDate dateExpiration)
 	{
 		this.dateExpiration = dateExpiration;
 	}

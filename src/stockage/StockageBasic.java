@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.MessageFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -31,8 +32,7 @@ public class StockageBasic {
         storage.close();
     }
     
-    static Date converterStringDate(String chaine) {
-        System.out.println(chaine);
+    static LocalDate converterStringDate(String chaine) {
         try {
         
             String[] sections_date = chaine.split( "-" );
@@ -40,10 +40,10 @@ public class StockageBasic {
             int annee = Integer.parseInt(sections_date[0]);
             int mois = Integer.parseInt(sections_date[1]);
             int jour = Integer.parseInt(sections_date[2]);
-            return new Date(annee,mois,jour);
+            return LocalDate.of(annee,mois,jour);
             
         }catch(Exception e) {
-            return new Date(0,0,0);
+            return LocalDate.of(0,0,0);
         }
         
     }

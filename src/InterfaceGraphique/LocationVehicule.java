@@ -70,8 +70,6 @@ public class LocationVehicule extends JFrame {
 	
 	
 	
-	
-
 	/**
 	 * Launch the application.
 	 * @throws Exception 

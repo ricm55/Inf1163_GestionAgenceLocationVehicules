@@ -3,9 +3,8 @@ package background;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.time.LocalDate;
-import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import errorHandler.CustomException;
@@ -19,7 +18,7 @@ public class Client
 	private String numTelephone;
 	private LocalDate dateCreation;
 	private String courriel;
-	private Date dateDeNaissance;
+	private LocalDate dateDeNaissance;
 	private String adresse;
 	private boolean assurancePersonnelle;
 	private PermisDeConduire permis;
@@ -28,7 +27,7 @@ public class Client
 	private int age;
 
 	public Client(String nom, String prenom, String numTelephone, LocalDate dateCreation, String courriel,
-			Date dateDeNaissance, String adresse, boolean assurancePersonnelle, PermisDeConduire permis)
+			LocalDate dateDeNaissance, String adresse, boolean assurancePersonnelle, PermisDeConduire permis)
 	{
 		this.nom = nom;
 		this.prenom = prenom;
@@ -53,7 +52,7 @@ public class Client
 	}
 
 	public Client(int id, String nom, String prenom, String numTelephone, LocalDate dateCreation, String courriel,
-			Date dateDeNaissance, String adresse, boolean assurancePersonnelle)
+			LocalDate dateDeNaissance, String adresse, boolean assurancePersonnelle)
 	{
 		this.id = id;
 		this.nom = nom;
@@ -88,10 +87,9 @@ public class Client
 	// besoins de calculer age
 	public int calculAge()
 	{
-		LocalDate ld = java.time.LocalDate.now();
-		ZoneId defaultZoneId = ZoneId.systemDefault();
-		Date todayDate = Date.from(ld.atStartOfDay(defaultZoneId).toInstant());
-		return 25;
+		LocalDate ld = LocalDate.now();
+		System.out.println(ChronoUnit.YEARS.between(dateDeNaissance, ld));
+		return (int) ChronoUnit.YEARS.between(dateDeNaissance, ld);
 	}
 
 	public boolean enleverLocation(Location location)
@@ -129,12 +127,12 @@ public class Client
 		this.nom = nom;
 	}
 
-	public Date getDateDeNaissance()
+	public LocalDate getDateDeNaissance()
 	{
 		return dateDeNaissance;
 	}
 
-	public void setDateDeNaissance(Date dateDeNaissance)
+	public void setDateDeNaissance(LocalDate dateDeNaissance)
 	{
 		this.dateDeNaissance = dateDeNaissance;
 	}

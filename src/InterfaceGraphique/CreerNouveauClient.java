@@ -40,8 +40,6 @@ public class CreerNouveauClient extends JFrame
 	private static CreerNouveauClient frame;
 	private static ClientControleur controleurClient;
 
-	String pattern = "yyyy-MM-dd";
-	SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 	private JTextField labelEmail;
 	private JTextField labelAssurance;
 
@@ -235,16 +233,10 @@ public class CreerNouveauClient extends JFrame
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				try
-				{
-					controleurClient.creerNouveauClient(txtNom.getText(), txtPrenom.getText(),
-							txtTelephone.getText(), txtCourriel.getText(), simpleDateFormat.parse(txtDateDeNaissance.getText()),
-							txtAdresse.getText(), rdBtnAssurance.isSelected(), txtClasses.getText(), simpleDateFormat.parse(txtExpiration.getText()));
-				} catch (ParseException e1)
-				{
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				controleurClient.creerNouveauClient(txtNom.getText(), txtPrenom.getText(),
+					txtTelephone.getText(), txtCourriel.getText(), txtDateDeNaissance.getText(),
+					txtAdresse.getText(), rdBtnAssurance.isSelected(), txtClasses.getText(), txtExpiration.getText());
+				
 			}
 		});
 		btnValider.setForeground(Color.WHITE);

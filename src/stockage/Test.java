@@ -50,28 +50,28 @@ public class Test {
             e.printStackTrace();
 
         }*/
+/*
+        try {
 
-        /*try {
-
-
-            
-            Client c = new Client(-1,"TestNom","TestPrenom","6234562890",java.time.LocalDate.now(),"test@gmail.com",new Date(1999,8,11),"Rue des Benoits",true);
-             Client d = new Client(-1,"TestNom","TestPrenom","1234567890",java.time.LocalDate.now(),"test@gmail.com",new Date(1999,8,11),"Rue des Benoits",true);
-	
             PermisDeConduire permis = new PermisDeConduire(new Date(2025,06,22), new ArrayList<String>() { {add("CLASSE1");add("CLASSE2");add("CLASSE6B");} } );
-            c.setPermis( permis );
+
+            LocalDate dateCreation = LocalDate.now();
+            
+            Client c = new Client("TestNom","TestPrenom","473746284",dateCreation,"test@gmail.com",new Date(1999,8,11),"Rue des Benoits",true,permis);
+             //Client d = new Client(-1,"TestNom","TestPrenom","1234567890",java.time.LocalDate.now(),"test@gmail.com",new Date(1999,8,11),"Rue des Benoits",true);
+	
             StockageClients.insertClient( c );
             //InterfaceAccueil.launch();
             
         } catch ( Exception e ) {
-            System.out.println(e.getMessage());
-        }*/
-
-        /*
-        try {
-
+            System.out.println("Erreur => " + e.getMessage());
+        }
+*/
         
-        /*try {
+        //try {
+/*
+        
+        try {
             ArrayList<Vehicule> listeVehicules = StockageVehicule.getVehicules( "Economique" );
             for(Vehicule v:listeVehicules) {
                 System.out.println(v);
@@ -79,9 +79,9 @@ public class Test {
         } catch ( SQLException e ) {
             // TODO Auto-generated catch block
             System.out.println("ca plante");
-        }*/
+        }
 
-        
+        */
         //public Location(Client client, Date dateDebut, Date dateFin, Forfait forfait, Vehicule vehicule)
        /*Client c;
         try {
@@ -108,8 +108,8 @@ public class Test {
         } catch ( ParseException e ) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }*/
-        
+        }
+        */
  /*
         try {
             Location l = StockageLocation.getLocation( "6234562890" );
@@ -127,15 +127,47 @@ public class Test {
             e.printStackTrace();
         }
         */
+        /*
+        try {
+            StockageTarif.updateTarifPrix( 56.98, "A" );
+        } catch ( SQLException e ) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        */
+        //StockageLocation.insertLocation( location,  );
+        
+        /*
+        try {
+            Client c = StockageClients.getClient( "6234562890" );
+            System.out.println(c.getDateDeNaissance() + " " + c.getPermis().getDateExpiration());
+        
+        } catch ( SQLException e ) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch ( ParseException e ) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        *//*
+        Vehicule v = new Vehicule("Mazda","2",2011);
+        try {
+            StockageVehicule.updateVehiculeDispo( v, true);
+        } catch ( SQLException e ) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }*/
         
         try {
-            StockageLocation.updateTarifPrix( 20.98, "A" );
+            ArrayList<Vehicule> listeVehicule = StockageVehicule.getVehicules( "Economique" );
+            for (Vehicule v : listeVehicule ) {
+                System.out.println(v);
+            }
         } catch ( SQLException e ) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
         
-        //StockageLocation.insertLocation( location,  );
         
     }
 

@@ -2,10 +2,7 @@ package controleur;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import background.CatalogueVehicule;
 import background.ClasseDeVehicule;
 import background.Client;
@@ -33,7 +30,9 @@ public class LocationControleur {
         //Mettre la location dans la db
     }
     
-    public Vehicule rechercherInventaireLocationControleur(Vehicule classe, Date dateDebut, Date dateFin, CatalogueVehicule catalogue) throws SQLException
+
+    /*public Vehicule rechercherInventaireLocationControleur(ClasseDeVehicule classe, LocalDate dateDebut, LocalDate dateFin, CatalogueVehicule catalogue)
+
     {	
     	//consulter inventaire et return le vehicule disponible ayant la classe correspondante
     	//Return null si vehicule 0 valide
@@ -44,7 +43,7 @@ public class LocationControleur {
     	}
     	return null;
 
-    }
+    }*/
     
     public boolean verificationValidePermisControleur(Client client,Vehicule vehicule)
     {
