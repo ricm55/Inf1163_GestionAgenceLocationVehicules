@@ -1,5 +1,6 @@
 package controleur;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
@@ -30,24 +31,20 @@ public class LocationControleur {
         //Mettre la location dans la db
     }
     
-    public Vehicule rechercherInventaireLocationControleur(ClasseDeVehicule classe, LocalDate dateDebut, LocalDate dateFin, CatalogueVehicule catalogue)
+
+    /*public Vehicule rechercherInventaireLocationControleur(ClasseDeVehicule classe, LocalDate dateDebut, LocalDate dateFin, CatalogueVehicule catalogue)
+
     {	
     	//consulter inventaire et return le vehicule disponible ayant la classe correspondante
     	//Return null si vehicule 0 valide
-    	for (int vehicules = 0; vehicules <= catalogue.getListeDeVehicule().size(); vehicules ++)
-    	{
-    		Vehicule vehicule = catalogue.getListeDeVehicule().get(vehicules);
-    		if(vehicule.getDisponible())
-    		{
-    			if (vehicule.getClasseDeVehicule() == classe);
-    			{
-    				return vehicule;
-    			}	
-    		}  		
+    	for(Vehicule v : catalogue.getListeDeVehicule(classe)) {
+    		if(v.getDisponible()) {
+    			return v;
+    		}
     	}
     	return null;
 
-    }
+    }*/
     
     public boolean verificationValidePermisControleur(Client client,Vehicule vehicule)
     {
@@ -77,7 +74,7 @@ public class LocationControleur {
     public double nouvelleLocationControleur(Vehicule vehicule, Client client, Forfait forfait, LocalDate dateDebut, LoaclDate dateFin)
     {	
     	this.verificationValidePermisControleur(client, vehicule);
-    	Location location = new Location(client, dateDebut, dateFin, forfait, vehicule);
+    	Location location = new Location(client, dateDebut, dateFin, vehicule);
         this.controleurClient.setListeLocationEnPossession(location);
         return location.getPremierVersement();
     	
@@ -101,12 +98,12 @@ public class LocationControleur {
     	
     }
     
-    private double miseAJourReservoirVehicule(double reservoir)
+    public double miseAJourReservoirVehicule(double reservoir)
     {
     	return reservoir*1.41;
     }
     
-    private double miseAJourDommages(double dommages)
+    public double miseAJourDommages(double dommages)
     {
     	return dommages;
     }

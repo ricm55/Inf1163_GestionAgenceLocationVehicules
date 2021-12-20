@@ -23,6 +23,12 @@ import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 import java.awt.event.ActionEvent;
 import javax.swing.JDesktopPane;
 import javax.swing.JLayeredPane;
@@ -31,10 +37,16 @@ import javax.swing.JComboBox;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import background.ClasseDeVehicule;
+import controleur.ClientControleur;
+import controleur.LocationControleur;
+import background.CatalogueVehicule;
 import javax.swing.JLabel;
 import javax.swing.JCheckBox;
 import javax.swing.JRadioButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import constante.ClasseVehicule;
+import background.ClasseDeVehicule.Classe;
+import background.Vehicule;
 
 public class LocationVehicule extends JFrame {
 
@@ -43,34 +55,49 @@ public class LocationVehicule extends JFrame {
 	private static JTextField txtVehiculeDisponible;
 	private static LocationVehicule frame;
 	private JTextField txtVehicule;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField dateDebutTxt;
+	private JTextField dateFinTxt;
 	private static JRadioButton rdbtnForfaitA ;
 	private static JRadioButton rdbtnForfaitB;
 	private static JRadioButton assuranceCompagnie;
 	private static JRadioButton assurancePersonnelle;
+	private static ClientControleur controleurClient;
+	private static LocationControleur controleurLocation ;
+	private static SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
+	private static CatalogueVehicule catVehicule ;
+	
+	
+	
+	
 	
 	/**
 	 * Launch the application.
+	 * @throws Exception 
 	 */
-	public static void launch() {
+	public static void launch() throws Exception {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					frame = new LocationVehicule();
 					frame.setVisible(true);
 					
+					
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
+		controleurClient = new ClientControleur();
+		controleurLocation = new LocationControleur(controleurClient);
+		
 	}
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public LocationVehicule() {
+	public LocationVehicule() throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 875, 478);
 		contentPane = new JPanel();
@@ -161,6 +188,92 @@ public class LocationVehicule extends JFrame {
 		txtClasse.setBounds(38, 56, 107, 27);
 		Mid.add(txtClasse);
 		
+		dateDebutTxt = new JTextField();
+		dateDebutTxt.setBounds(38, 333, 86, 20);
+		Mid.add(dateDebutTxt);
+		dateDebutTxt.setColumns(10);
+		String dateDebutString = dateDebutTxt.getText();
+		//Date dateD = formatter.parse(dateDebutString);
+		
+		dateFinTxt = new JTextField();
+		dateFinTxt.setColumns(10);
+		dateFinTxt.setBounds(258, 333, 86, 20);
+		Mid.add(dateFinTxt);
+		String dateFinString = dateFinTxt.getText();
+		//Date dateF = formatter.parse(dateFinString);
+		
+		JLabel couleurValueTxt = new JLabel("couleurVehicule");
+		JLabel kiloValueTxt = new JLabel("kiloVehicule");
+		  
+		JComboBox vehiculeBox = new JComboBox();
+		//vehiculeBox.setModel(new DefaultComboBoxModel(new String [] {vehicule.toString()}));
+		vehiculeBox.setToolTipText("Classe");
+		vehiculeBox.setMaximumRowCount(6);
+		vehiculeBox.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		vehiculeBox.setBounds(144, 118, 230, 27);
+		Mid.add(vehiculeBox);
+		
+		JComboBox choixDeClasseVehiculeBox = new JComboBox();
+		choixDeClasseVehiculeBox.setModel(new DefaultComboBoxModel(Classe.values()));
+		/*catVehicule = new CatalogueVehicule();
+		ArrayList<Vehicule> classeV = catVehicule.getVehicules(choixDeClasseVehiculeBox.getSelectedItem().toString());
+		List<Vehicule>vehicule = catVehicule.getListeDeVehicule(classeV);*/
+		choixDeClasseVehiculeBox.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		choixDeClasseVehiculeBox.setMaximumRowCount(6);
+		choixDeClasseVehiculeBox.setToolTipText("Classe");
+		choixDeClasseVehiculeBox.setBounds(144, 56, 230, 27);
+		Mid.add(choixDeClasseVehiculeBox);
+		
+		String type = choixDeClasseVehiculeBox.getSelectedItem().toString();
+		try {
+			catVehicule = new CatalogueVehicule();
+			List<Vehicule>vehicule = catVehicule.getListeDeVehicule(type);
+			//vehiculeBox.setModel(new DefaultComboBoxModel(vehicule.toArray().toString()));
+			vehiculeBox.removeAllItems();
+			for(Vehicule v : vehicule) {
+				vehiculeBox.addItem(v.getMarque()+ " " + v.getModele() + " " + v.getAnnee());
+				couleurValueTxt.setText(v.getCouleur());
+				kiloValueTxt.setText(String.valueOf(v.getKilometrage()));
+				
+			}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		choixDeClasseVehiculeBox.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				
+				String type = choixDeClasseVehiculeBox.getSelectedItem().toString();
+				try {
+					catVehicule = new CatalogueVehicule();
+					List<Vehicule>vehicule = catVehicule.getListeDeVehicule(type);
+					//vehiculeBox.setModel(new DefaultComboBoxModel(vehicule.toArray().toString()));
+					vehiculeBox.removeAllItems();
+					for(Vehicule v : vehicule) {
+						vehiculeBox.addItem(v.getMarque()+ " " + v.getModele() + " " + v.getAnnee());
+						couleurValueTxt.setText(v.getCouleur());
+						kiloValueTxt.setText(String.valueOf(v.getKilometrage()));
+						
+					}
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				//ArrayList<Vehicule> classeV = catVehicule.getVehicules(choixDeClasseVehiculeBox.getSelectedItem().toString());
+				
+				
+				
+			}
+
+		});
+			
+		
+		
+	
+		
 		JButton btnEnvoyer = new JButton("Envoyer");
 		btnEnvoyer.setForeground(Color.WHITE);
 		btnEnvoyer.setFont(new Font("Verdana", Font.PLAIN, 16));
@@ -171,6 +284,7 @@ public class LocationVehicule extends JFrame {
 		{
 			public void actionPerformed(ActionEvent e)
 			{
+				System.out.println("");//;controleurLocation.rechercherInventaireLocationControleur(choixDeClasseVehiculeBox.getSelectedItem().toString(), dateD, dateF, catVehicule);
 				frame.dispose();
 				Transaction.launch();
 			}
@@ -179,22 +293,10 @@ public class LocationVehicule extends JFrame {
 		
 		Icon icon = new ImageIcon("editButton.jpg");
 		
-		JComboBox choixDeClasseVehiculeBox = new JComboBox();
-		choixDeClasseVehiculeBox.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		choixDeClasseVehiculeBox.setModel(new DefaultComboBoxModel(new String[] {"Economique", "Moyenne", "Confort", "Luxe", "Utilitaire"}));
-		choixDeClasseVehiculeBox.setMaximumRowCount(6);
-		choixDeClasseVehiculeBox.setToolTipText("Classe");
-		choixDeClasseVehiculeBox.setBounds(144, 56, 230, 27);
-		Mid.add(choixDeClasseVehiculeBox);
+		
 		
 			
-		JComboBox vehiculeBox = new JComboBox();
-		vehiculeBox.setModel(new DefaultComboBoxModel(new String[] {"Toyota Yaris 2001 Jaune", "Honda Civic 2015 Grise", "Hyundai Accent 2011 Rouge"}));
-		vehiculeBox.setToolTipText("Classe");
-		vehiculeBox.setMaximumRowCount(6);
-		vehiculeBox.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		vehiculeBox.setBounds(144, 118, 230, 27);
-		Mid.add(vehiculeBox);
+		
 		
 		txtVehicule = new JTextField();
 		txtVehicule.setText("Vehicule");
@@ -256,7 +358,7 @@ public class LocationVehicule extends JFrame {
 		  
 		  JPanel panel = new JPanel();
 		  panel.setBackground(Color.LIGHT_GRAY);
-		  panel.setBounds(38, 198, 336, 98);
+		  panel.setBounds(38, 164, 336, 98);
 		  Mid.add(panel);
 		  
 		  JLabel couleurLabel = new JLabel("Couleur :");
@@ -265,14 +367,9 @@ public class LocationVehicule extends JFrame {
 		  JLabel kiloLabel = new JLabel("Kilom\u00E9trage :");
 		  kiloLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
 		  
-		  JLabel anneeLabel = new JLabel("Ann\u00E9e :");
-		  anneeLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
+		
 		  
-		  JLabel anneeValueTxt = new JLabel("anneeVehicule");
 		  
-		  JLabel couleurValueTxt = new JLabel("couleurVehicule");
-		  
-		  JLabel kiloValueTxt = new JLabel("kiloVehicule");
 		  GroupLayout gl_panel = new GroupLayout(panel);
 		  gl_panel.setHorizontalGroup(
 		  	gl_panel.createParallelGroup(Alignment.LEADING)
@@ -280,47 +377,32 @@ public class LocationVehicule extends JFrame {
 		  			.addGap(24)
 		  			.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 		  				.addGroup(gl_panel.createSequentialGroup()
-		  					.addComponent(anneeLabel)
-		  					.addGap(18)
-		  					.addComponent(anneeValueTxt))
-		  				.addGroup(gl_panel.createSequentialGroup()
-		  					.addComponent(couleurLabel)
-		  					.addGap(18)
-		  					.addComponent(couleurValueTxt, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE))
-		  				.addGroup(gl_panel.createSequentialGroup()
 		  					.addComponent(kiloLabel)
 		  					.addPreferredGap(ComponentPlacement.RELATED)
-		  					.addComponent(kiloValueTxt, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)))
-		  			.addContainerGap(120, Short.MAX_VALUE))
+		  					.addComponent(kiloValueTxt, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE))
+		  				.addGroup(gl_panel.createSequentialGroup()
+		  					.addComponent(couleurLabel)
+		  					.addPreferredGap(ComponentPlacement.UNRELATED)
+		  					.addComponent(couleurValueTxt, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)))
+		  			.addContainerGap(128, Short.MAX_VALUE))
 		  );
 		  gl_panel.setVerticalGroup(
 		  	gl_panel.createParallelGroup(Alignment.LEADING)
 		  		.addGroup(gl_panel.createSequentialGroup()
-		  			.addGap(16)
-		  			.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-		  				.addComponent(anneeLabel)
-		  				.addComponent(anneeValueTxt))
-		  			.addPreferredGap(ComponentPlacement.UNRELATED)
+		  			.addContainerGap()
 		  			.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 		  				.addComponent(couleurLabel)
 		  				.addComponent(couleurValueTxt))
-		  			.addPreferredGap(ComponentPlacement.UNRELATED)
+		  			.addGap(18)
 		  			.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 		  				.addComponent(kiloLabel)
 		  				.addComponent(kiloValueTxt))
-		  			.addContainerGap(12, Short.MAX_VALUE))
+		  			.addContainerGap(37, Short.MAX_VALUE))
 		  );
 		  panel.setLayout(gl_panel);
 		  
-		  textField = new JTextField();
-		  textField.setBounds(38, 333, 86, 20);
-		  Mid.add(textField);
-		  textField.setColumns(10);
 		  
-		  textField_1 = new JTextField();
-		  textField_1.setColumns(10);
-		  textField_1.setBounds(258, 333, 86, 20);
-		  Mid.add(textField_1);
+		 
 		  
 		  JLabel dateDebut = new JLabel("Date de Debut");
 		  dateDebut.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -368,4 +450,7 @@ public class LocationVehicule extends JFrame {
 		assurancePersonnelle.setEnabled(invisible);
 		txtVehiculeDisponible.setText("V\\u00e9hicule disponible \\u00e0 la R\\u00e9servation");
 	}
+	
+	
+
 }
