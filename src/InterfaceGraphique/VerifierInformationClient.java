@@ -234,19 +234,34 @@ public class VerifierInformationClient extends JFrame
 					{
 					case LOCATION:
 						frame.dispose();
-						LocationVehicule.launch();
+						try {
+							LocationVehicule.launch();
+						} catch (Exception e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						break;
 					case RESERVATION:
 						frame.dispose();
 						// interface reservation
-						LocationVehicule.launch();
+						try {
+							LocationVehicule.launch();
+						} catch (Exception e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						LocationVehicule.rendreInvisible(false);
 						break;
 					case VOIR_COMPTE_CLIENT:
 						break;
 					case RETOUR:
 						frame.dispose();
-						RetourVehicule.launch();
+						try {
+							RetourVehicule.launch();
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 						break;
 					default:
 						break;

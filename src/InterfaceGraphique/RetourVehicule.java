@@ -31,6 +31,10 @@ import javax.swing.JComboBox;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import background.ClasseDeVehicule;
+import background.Tarif;
+import controleur.ClientControleur;
+import controleur.LocationControleur;
+
 import javax.swing.JLabel;
 import javax.swing.JCheckBox;
 import javax.swing.JRadioButton;
@@ -51,16 +55,21 @@ public class RetourVehicule extends JFrame {
 	private JTextField txtDommageConsidrable;
 	private JTextField txtEssenceManquante;
 	private JTextField labelClient;
+	private static Tarif tarif;
+	private static ClientControleur controleurClient ;
+	private static LocationControleur controleurLocation ;
 	
 	
 
 	/**
 	 * Launch the application.
+	 * @throws Exception 
 	 */
-	public static void launch() {
+	public static void launch() throws Exception {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					
 					frame = new RetourVehicule();
 					frame.setVisible(true);
 					
@@ -69,6 +78,8 @@ public class RetourVehicule extends JFrame {
 				}
 			}
 		});
+		controleurClient = new ClientControleur();
+		controleurLocation = new LocationControleur(controleurClient);
 	}
 
 	/**
@@ -165,6 +176,12 @@ public class RetourVehicule extends JFrame {
 		txtVehiculeEtat.setBounds(38, 42, 213, 27);
 		Mid.add(txtVehiculeEtat);
 		
+		JTextPane txtDommage = new JTextPane();
+		  txtDommage.setText((String) null);
+		  txtDommage.setFont(new Font("Verdana", Font.PLAIN, 11));
+		  txtDommage.setBounds(251, 195, 213, 27);
+		  Mid.add(txtDommage);
+		
 		JButton btnEnvoyer = new JButton("Envoyer");
 		btnEnvoyer.setForeground(Color.WHITE);
 		btnEnvoyer.setFont(new Font("Verdana", Font.PLAIN, 16));
@@ -175,6 +192,9 @@ public class RetourVehicule extends JFrame {
 		{
 			public void actionPerformed(ActionEvent e)
 			{
+				
+				controleurLocation.miseAJourReservoirVehicule(Double.parseDouble(txtDommage.getText().trim()));
+				controleurLocation.miseAJourDommages(Double.parseDouble(txtDommage.getText().trim()));
 				frame.dispose();
 				Transaction.launch();
 			}
@@ -249,11 +269,7 @@ public class RetourVehicule extends JFrame {
 		  txtEssenceManquante.setBounds(38, 157, 213, 27);
 		  Mid.add(txtEssenceManquante);
 		  
-		  JTextPane txtKilometreParcouru_1_1 = new JTextPane();
-		  txtKilometreParcouru_1_1.setText((String) null);
-		  txtKilometreParcouru_1_1.setFont(new Font("Verdana", Font.PLAIN, 11));
-		  txtKilometreParcouru_1_1.setBounds(251, 195, 213, 27);
-		  Mid.add(txtKilometreParcouru_1_1);
+		  
 		  
 		  labelClient = new JTextField();
 		  labelClient.setText("Client");
@@ -330,4 +346,6 @@ public class RetourVehicule extends JFrame {
 		assurancePersonnelle.setEnabled(invisible);
 		txtRetourVehicule.setText("V\\u00e9hicule disponible \\u00e0 la R\\u00e9servation");
 	}
+	
+	
 }
