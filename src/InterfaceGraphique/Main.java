@@ -1,18 +1,5 @@
 package InterfaceGraphique;
 
-import java.sql.SQLException;
-import java.util.List;
-
-import models.ModeleClient;
-import stockage.StockageBasic;
-import background.Vehicule;
-import constante.ClasseVehicule;
-import background.Client;
-import background.Forfait;
-import background.Location;
-import background.PermisDeConduire;
-import controleur.LocationControleur;
-
 public class Main
 {
 

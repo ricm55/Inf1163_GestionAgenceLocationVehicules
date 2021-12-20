@@ -1,7 +1,6 @@
 package controleur;
 
 import background.Reservation;
-import controleur.ClientControleur;
 
 public class ReservationControleur {
 	

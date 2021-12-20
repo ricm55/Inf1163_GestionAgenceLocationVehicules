@@ -1,45 +1,33 @@
 package InterfaceGraphique;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import org.w3c.dom.events.UIEvent;
-
 import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.Icon;
-import javax.swing.JButton;
-import java.awt.Font;
-import java.awt.SystemColor;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.JList;
-import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
 import javax.swing.ImageIcon;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JDesktopPane;
-import javax.swing.JLayeredPane;
-import javax.swing.JInternalFrame;
-import javax.swing.JComboBox;
-import javax.swing.ButtonGroup;
-import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
 import background.ClasseDeVehicule;
 import background.Tarif;
 import controleur.ClientControleur;
 import controleur.LocationControleur;
-
-import javax.swing.JLabel;
-import javax.swing.JCheckBox;
-import javax.swing.JRadioButton;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JTextPane;
 
 public class RetourVehicule extends JFrame {
 

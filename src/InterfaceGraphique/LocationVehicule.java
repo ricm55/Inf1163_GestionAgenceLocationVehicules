@@ -1,52 +1,40 @@
 package InterfaceGraphique;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import org.w3c.dom.events.UIEvent;
-
 import java.awt.Color;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.Icon;
-import javax.swing.JButton;
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.JList;
-import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
-import javax.swing.ImageIcon;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.awt.event.ActionEvent;
-import javax.swing.JDesktopPane;
-import javax.swing.JLayeredPane;
-import javax.swing.JInternalFrame;
-import javax.swing.JComboBox;
+
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
-import background.ClasseDeVehicule;
-import controleur.ClientControleur;
-import controleur.LocationControleur;
-import background.CatalogueVehicule;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JCheckBox;
+import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import constante.ClasseVehicule;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+import background.CatalogueVehicule;
+import background.ClasseDeVehicule;
 import background.ClasseDeVehicule.Classe;
 import background.Vehicule;
+import controleur.ClientControleur;
+import controleur.LocationControleur;
 
 public class LocationVehicule extends JFrame {
 

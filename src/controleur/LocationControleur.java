@@ -1,18 +1,12 @@
 package controleur;
 
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.List;
-import background.CatalogueVehicule;
-import background.ClasseDeVehicule;
+
 import background.Client;
 import background.Forfait;
 import background.Location;
-import background.Paiement;
-import background.PermisDeConduire;
 import background.Vehicule;
-import constante.ClasseVehicule;
 
 public class LocationControleur {
     
@@ -71,7 +65,7 @@ public class LocationControleur {
     
     
     //date expiration permis,classe valide,  age
-    public double nouvelleLocationControleur(Vehicule vehicule, Client client, Forfait forfait, LocalDate dateDebut, LoaclDate dateFin)
+    public double nouvelleLocationControleur(Vehicule vehicule, Client client, Forfait forfait, LocalDate dateDebut, LocalDate dateFin)
     {	
     	this.verificationValidePermisControleur(client, vehicule);
     	Location location = new Location(client, dateDebut, dateFin, vehicule);

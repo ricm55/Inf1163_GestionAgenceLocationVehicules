@@ -1,7 +1,5 @@
 package background;
 
-import constante.ClasseVehicule;
-
 public class Vehicule
 {
 	private String marque;
