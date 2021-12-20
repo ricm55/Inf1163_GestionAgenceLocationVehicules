@@ -1,6 +1,7 @@
 package controleur;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import background.CatalogueVehicule;
 import background.ClasseDeVehicule;
@@ -73,7 +74,7 @@ public class LocationControleur {
     
     
     //date expiration permis,classe valide,  age
-    public double nouvelleLocationControleur(Vehicule vehicule, Client client, Forfait forfait, Date dateDebut, Date dateFin)
+    public double nouvelleLocationControleur(Vehicule vehicule, Client client, Forfait forfait, LocalDate dateDebut, LoaclDate dateFin)
     {	
     	this.verificationValidePermisControleur(client, vehicule);
     	Location location = new Location(client, dateDebut, dateFin, forfait, vehicule);
@@ -92,14 +93,8 @@ public class LocationControleur {
     		
     	}
     	else{
-    	
-    		long dateLocation = location.getDateDebut().getTime();
-    	
-    		Date dateNow=new Date();  
-    	
-    		long timeDiff = dateLocation - dateNow.getTime();
-    	
-    		surplus = TimeUnit.DAYS.convert(timeDiff, TimeUnit.MICROSECONDS) * 18.45 ;
+    		LocalDate now = LocalDate.now();
+    		surplus = (int) ChronoUnit.DAYS.between(location.getDateDebut(), now) * 18.45;
     	}
     	
     	return surplus;
@@ -139,13 +134,8 @@ public class LocationControleur {
     
     private double miseAJourDelai(Location location)
     {
-    	long dateLocation = location.getDateDebut().getTime();
-    	
-    	Date dateNow=new Date();  
-    	
-		long timeDiff = dateLocation - dateNow.getTime();
-	
-		timeDiff = TimeUnit.HOURS.convert(timeDiff, TimeUnit.MICROSECONDS);
+    	LocalDate now = LocalDate.now();
+		int timeDiff = (int) ChronoUnit.HOURS.between(location.getDateDebut(), now);
 		
 		return timeDiff + (timeDiff*0.10);
 		

@@ -63,7 +63,6 @@ public class Client
 		this.dateCreation = dateCreation;
 		this.courriel = courriel;
 		this.assurancePersonnelle = assurancePersonnelle;
-		// maybe instancier ca? you know parce que les listes sont pas vides quand on get le client
 		List<Reservation> listeReservationEnPossession = new ArrayList<Reservation>();
 		List<Location> listeLocationEnPossession = new ArrayList<Location>();
 		this.age = this.calculAge();
